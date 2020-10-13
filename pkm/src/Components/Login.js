@@ -8,13 +8,14 @@ import {
 } from "react-bootstrap";
 import "./Login.css";
 import img1 from "../img/img1.jpg";
+import logo from "../img/PKM.png";
 import { HiOutlineUserGroup } from "react-icons/hi";
 import { RiLockPasswordLine } from "react-icons/ri";
 import Axios from "axios";
-import Home from './Home.js'
+import Home from "./Home.js";
 
 export default function Login() {
-  const [userLogin,setuserLogin] = useState(false);
+  const [userLogin, setuserLogin] = useState(false);
   const [ipForm, setipForm] = useState({
     userName: "",
     passWord: "",
@@ -37,24 +38,27 @@ export default function Login() {
     });
   };
   if (userLogin) {
-    return <Home/> ;
+    return <Home />;
   } else {
     return (
       <div className="Login">
         <div className="Login-header">
           <CardGroup>
-            <Card style={{ width: "20rem", height: "20rem" }}>
+            <Card style={{ width: "30rem", height: "30rem" }}>
               <Card.Img
                 src={img1}
-                style={{ width: "20rem", height: "20rem" }}
+                style={{ width: "30rem", height: "30rem" }}
               />
             </Card>
             <form onSubmit={onSubmit}>
               <Card
-                style={{ width: "20rem", height: "20rem" }}
+                style={{ width: "30rem", height: "30rem" }}
                 className="text-center"
               >
-                <Card.Title>Login</Card.Title>
+                <Card.Title>
+                  <img src={logo} />
+                </Card.Title>
+                <h3>Login</h3>
                 <Card.Body>
                   <InputGroup className="mb-3">
                     <InputGroup.Prepend>
