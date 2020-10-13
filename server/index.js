@@ -24,8 +24,7 @@ app.post('/api/login',(req,res)=>{
         console.log(result);
         if(result.length > 0){
             res.send("login success");
-        }else{
-            res.send("login Failed");
+            return;
         }
     });
 });
