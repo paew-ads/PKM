@@ -1,9 +1,5 @@
 import React from "react";
-<<<<<<< HEAD
-import { Navbar, Nav, NavDropdown, Form, Button } from "react-bootstrap";
-=======
-import { Navbar,Nav,NavDropdown,Form ,FormControl,Button} from "react-bootstrap";
->>>>>>> 4771618e85651d5f3a1ef478273ca41a08d72dcb
+import { Navbar, Nav, NavDropdown, Form, Button ,FormControl} from "react-bootstrap";
 import logo from "../img/PKM.png";
 
 export default function nav() {
@@ -13,7 +9,7 @@ export default function nav() {
         <img
           alt=""
           src={logo}
-<<<<<<< HEAD
+
           width="40"
           height="40"
           className="d-inline-block align-top"
@@ -49,13 +45,8 @@ export default function nav() {
           {" "}
           Logout{" "}
         </Button>
-=======
-          width="30"
-          height="30"
-          className="d-inline-block align-top"
-        />{" "}
-        PKM
-      </Navbar.Brand>
+
+      
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
@@ -77,8 +68,9 @@ export default function nav() {
           <FormControl type="text" placeholder="Search" className="mr-sm-2" />
           <Button variant="outline-success">Search</Button>
         </Form>
->>>>>>> 4771618e85651d5f3a1ef478273ca41a08d72dcb
+
       </Navbar.Collapse>
+   </Navbar.Collapse>
     </Navbar>
   );
 }

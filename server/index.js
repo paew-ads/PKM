@@ -10,36 +10,19 @@ const jwt = require("jsonwebtoken");
 const utils = require("./utils");
 
 const db = mysql.createPool({
-<<<<<<< HEAD
+
     host:'localhost',
     user: 'root',
     password:'1234',
     database:'pkm',
     
-=======
-  host: "localhost",
-  user: "root",
-  password: "1234",
-  database: "pkm",
->>>>>>> 4771618e85651d5f3a1ef478273ca41a08d72dcb
+
 });
 
 app.use(cors());
 app.use(express.json());
-<<<<<<< HEAD
-app.use(bodyParser.urlencoded({extended:true}));
 
-app.post('/api/login',(req,res)=>{
-    const userName = req.body.userName;
-    const sql = "SELECT userName,passWord FROM pkm.accounts WHERE userName LIKE ?";
-    db.query(sql,[userName],(err,result)=>{
-        if (err) throw err;
-        
-        if(result.length > 0){
-            res.send("login success");
-            return;
-        }
-=======
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(function (req, res, next) {
   var token = req.headers["authorization"];
@@ -66,7 +49,6 @@ app.post("/api/login", (req, res) => {
     return res.status(400).json({
       error: true,
       message: "Username or Password is required.",
->>>>>>> 4771618e85651d5f3a1ef478273ca41a08d72dcb
     });
   }
 
