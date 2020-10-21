@@ -8,17 +8,20 @@ import {
 } from "react-bootstrap";
 import "./Login.css";
 import img1 from "../img/img1.jpg";
+import logo from "../img/PKM.png";
 import { HiOutlineUserGroup } from "react-icons/hi";
 import { RiLockPasswordLine } from "react-icons/ri";
-import Axios from "axios";
-import Home from './Home.js'
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import * as sessionActions from "../action/sessionActions";
 
-export default function Login() {
-  const [userLogin,setuserLogin] = useState(false);
+function Login(props) {
   const [ipForm, setipForm] = useState({
     userName: "",
     passWord: "",
   });
+  
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -29,73 +32,81 @@ export default function Login() {
   };
   const onSubmit = (e) => {
     e.preventDefault();
+    const { login } = props.actions;
     console.log("login", ipForm);
-    Axios.post("http://localhost:3001/api/login", {
-      userName: ipForm.userName,
-    }).then((res) => {
-      setuserLogin(true);
-    });
+    login(ipForm.userName,props.history)
   };
-  if (userLogin) {
-    return <Home/> ;
-  } else {
-    return (
-      <div className="Login">
-        <div className="Login-header">
-          <CardGroup>
-            <Card style={{ width: "20rem", height: "20rem" }}>
-              <Card.Img
-                src={img1}
-                style={{ width: "20rem", height: "20rem" }}
-              />
+
+  return (
+    <div className="Login">
+      <div className="Login-header">
+        <CardGroup>
+          <Card style={{ width: "30rem", height: "30rem" }}>
+            <Card.Img src={img1} style={{ width: "30rem", height: "30rem" }} />
+          </Card>
+          <form onSubmit={onSubmit}>
+            <Card
+              style={{ width: "30rem", height: "30rem" }}
+              className="text-center"
+            >
+              <Card.Title>
+                <img src={logo} />
+              </Card.Title>
+              <h3>Login</h3>
+              <Card.Body>
+                <InputGroup className="mb-3">
+                  <InputGroup.Prepend>
+                    <InputGroup.Text id="basic-addon1">
+                      <HiOutlineUserGroup />
+                    </InputGroup.Text>
+                  </InputGroup.Prepend>
+                  <FormControl
+                    name="userName"
+                    placeholder="Username"
+                    aria-label="Username"
+                    aria-describedby="basic-addon1"
+                    onChange={handleChange}
+                  />
+                </InputGroup>
+                <InputGroup className="mb-3">
+                  <InputGroup.Prepend>
+                    <InputGroup.Text id="basic-addon1">
+                      <RiLockPasswordLine />
+                    </InputGroup.Text>
+                  </InputGroup.Prepend>
+                  <FormControl
+                    type="password"
+                    name="passWord"
+                    placeholder="Password"
+                    aria-label="Password"
+                    aria-describedby="basic-addon1"
+                    onChange={handleChange}
+                  />
+                </InputGroup>
+              </Card.Body>
+              <Card.Footer>
+                <Button variant="outline-success" type="submit">
+                  login
+                </Button>{" "}
+              </Card.Footer>
             </Card>
-            <form onSubmit={onSubmit}>
-              <Card
-                style={{ width: "20rem", height: "20rem" }}
-                className="text-center"
-              >
-                <Card.Title>Login</Card.Title>
-                <Card.Body>
-                  <InputGroup className="mb-3">
-                    <InputGroup.Prepend>
-                      <InputGroup.Text id="basic-addon1">
-                        <HiOutlineUserGroup />
-                      </InputGroup.Text>
-                    </InputGroup.Prepend>
-                    <FormControl
-                      name="userName"
-                      placeholder="Username"
-                      aria-label="Username"
-                      aria-describedby="basic-addon1"
-                      onChange={handleChange}
-                    />
-                  </InputGroup>
-                  <InputGroup className="mb-3">
-                    <InputGroup.Prepend>
-                      <InputGroup.Text id="basic-addon1">
-                        <RiLockPasswordLine />
-                      </InputGroup.Text>
-                    </InputGroup.Prepend>
-                    <FormControl
-                      type="password"
-                      name="passWord"
-                      placeholder="Password"
-                      aria-label="Password"
-                      aria-describedby="basic-addon1"
-                      onChange={handleChange}
-                    />
-                  </InputGroup>
-                </Card.Body>
-                <Card.Footer>
-                  <Button variant="outline-success" type="submit">
-                    login
-                  </Button>{" "}
-                </Card.Footer>
-              </Card>
-            </form>
-          </CardGroup>
-        </div>
+          </form>
+        </CardGroup>
       </div>
-    );
-  }
+    </div>
+  );
 }
+
+const { object } = PropTypes;
+
+Login.propTypes = {
+  actions: object.isRequired,
+};
+
+const mapDispatch = (dispath) => {
+  return {
+    actions: bindActionCreators(sessionActions,dispath)
+  };
+};
+
+export default connect(null, mapDispatch)(Login);
