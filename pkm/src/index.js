@@ -1,13 +1,33 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Login from './Components/Login.js';
+import App from './Components/App';
 import * as serviceWorker from './serviceWorker';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { combineReducers,createStore,compose,applyMiddleware  } from 'redux';
+import { sessionService,sessionReducer  } from 'redux-react-session';
+import thunkMiddleware from 'redux-thunk';
+import { Provider } from 'react-redux';
+
+
+
+
+
+const reducers = {
+  // ... your other reducers here ...
+  session: sessionReducer
+};
+const reducer = combineReducers(reducers);
+
+const store = createStore(reducer, undefined, compose(applyMiddleware(thunkMiddleware)));
+ 
+sessionService.initSessionService(store);
 
 ReactDOM.render(
   <React.StrictMode>
-    <Login />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
