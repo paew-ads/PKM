@@ -9,7 +9,8 @@ const db = mysql.createPool({
     host:'localhost',
     user: 'root',
     password:'1234',
-    database:'pkm'
+    database:'pkm',
+    
 });
 
 app.use(cors());
@@ -21,7 +22,7 @@ app.post('/api/login',(req,res)=>{
     const sql = "SELECT userName,passWord FROM pkm.accounts WHERE userName LIKE ?";
     db.query(sql,[userName],(err,result)=>{
         if (err) throw err;
-        console.log(result);
+        
         if(result.length > 0){
             res.send("login success");
             return;
