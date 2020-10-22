@@ -1,5 +1,5 @@
 import React from "react";
-import { Navbar, Nav, NavDropdown, Form, Button ,FormControl} from "react-bootstrap";
+import { Navbar, Nav, NavDropdown, Button } from "react-bootstrap";
 import logo from "../img/PKM.png";
 
 export default function nav() {
@@ -9,7 +9,6 @@ export default function nav() {
         <img
           alt=""
           src={logo}
-
           width="40"
           height="40"
           className="d-inline-block align-top"
@@ -39,14 +38,12 @@ export default function nav() {
         <Nav.Link href="#ddd">ระบบตรวจสอบสินค้า</Nav.Link>
       </span>
 
-
       <Navbar.Collapse className="justify-content-end">
         <Button variant="outline-danger" type="cancel">
           {" "}
           Logout{" "}
         </Button>
       </Navbar.Collapse>
-      </Navbar>
-     
+    </Navbar>
   );
 }
