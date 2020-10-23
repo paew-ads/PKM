@@ -1,11 +1,17 @@
 import React from "react";
 import { Navbar, Nav, NavDropdown, Button } from "react-bootstrap";
 import logo from "../img/PKM.png";
+import { removeUserSession } from "../Utils/Common";
 
-export default function nav() {
+export default function nav(props) {
+  const handleLogout = () => {
+    removeUserSession();
+    props.history.push("/login");
+  };
+
   return (
     <Navbar variant="dark" style={{ backgroundColor: "rgba(0, 255, 0, 0.5)" }}>
-      <Navbar.Brand href="#home">
+      <Navbar.Brand href="/">
         <img
           alt=""
           src={logo}
@@ -16,7 +22,7 @@ export default function nav() {
       </Navbar.Brand>
 
       <span>
-        <Nav.Link href="#aaa">PKM</Nav.Link>
+        <Nav.Link href="/">PKM</Nav.Link>
       </span>
       <span class="Dropdown ">
         <NavDropdown title="ระบบการจองต่างๆ" id="basic-nav-dropdown">
@@ -39,7 +45,7 @@ export default function nav() {
       </span>
 
       <Navbar.Collapse className="justify-content-end">
-        <Button variant="outline-danger" type="cancel">
+        <Button variant="outline-danger" type="cancel" onClick={handleLogout}>
           {" "}
           Logout{" "}
         </Button>
