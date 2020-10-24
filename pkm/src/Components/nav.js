@@ -61,7 +61,7 @@ export default function nav(props) {
           <NavDropdown.Item href="#action/3.2">
             ใบกํากับ/ใบส่งสินค้า(Tax Invoice)
           </NavDropdown.Item>
-          <NavDropdown.Item href="#action/3.3">
+          <NavDropdown.Item href="/Customers">
             ลูกค้า(Customers)
           </NavDropdown.Item>
         </NavDropdown>

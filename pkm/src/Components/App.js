@@ -6,6 +6,7 @@ import PrivateRoute from "../Utils/PrivateRoute";
 import PublicRoute from "../Utils/PublicRoute";
 import Axios from "axios";
 import { getToken, removeUserSession, setUserSession } from "../Utils/Common";
+import Customers from "./Customers";
 
 function App() {
   const [authLoading, setAuthLoading] = useState(true);
@@ -36,6 +37,7 @@ function App() {
       <div className="content">
         <Switch>
           <PrivateRoute exact path="/" component={Home} />
+          <PrivateRoute exact path="/Customers" component={Customers} />
           <PublicRoute path="/login" component={Login} />
         </Switch>
       </div>
