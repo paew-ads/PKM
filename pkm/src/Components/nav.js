@@ -42,8 +42,7 @@ export default function nav() {
 
       <Navbar.Collapse className="justify-content-end">
         <Button variant="outline-danger" type="cancel">
-          {" "}
-          Logout{" "}
+          Logout
         </Button>
       </Navbar.Collapse>
       </Navbar>
