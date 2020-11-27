@@ -1,15 +1,20 @@
 import React from "react";
-import { Navbar, Nav, NavDropdown, Form, Button ,FormControl} from "react-bootstrap";
+import { Navbar, Nav, NavDropdown, Button } from "react-bootstrap";
 import logo from "../img/PKM.png";
+import { removeUserSession } from "../Utils/Common";
 
-export default function nav() {
+export default function nav(props) {
+  const handleLogout = () => {
+    removeUserSession();
+    props.history.push("/login");
+  };
+
   return (
     <Navbar variant="dark" style={{ backgroundColor: "rgba(0, 255, 0, 0.5)" }}>
-      <Navbar.Brand href="#home">
+      <Navbar.Brand href="/">
         <img
           alt=""
           src={logo}
-
           width="40"
           height="40"
           className="d-inline-block align-top"
@@ -17,35 +22,57 @@ export default function nav() {
       </Navbar.Brand>
 
       <span>
-        <Nav.Link href="#aaa">PKM</Nav.Link>
+        <Nav.Link href="/">PKM</Nav.Link>
       </span>
       <span class="Dropdown ">
-        <NavDropdown title="ระบบการจองต่างๆ" id="basic-nav-dropdown">
-          <NavDropdown.Item href="#action/3.1">จองรถ</NavDropdown.Item>
-          <NavDropdown.Item href="#action/3.2">จองห้องประชุม</NavDropdown.Item>
-          <NavDropdown.Item href="#action/3.3">จองรถส่งของ</NavDropdown.Item>
+        <NavDropdown title="Inventory control" id="basic-nav-dropdown">
+          <NavDropdown.Item href="#action/3.1">ข้อมูลพื้นฐาน</NavDropdown.Item>
+          <NavDropdown.Item href="#action/3.2">คลังสินค้า</NavDropdown.Item>
+          <NavDropdown.Item href="#action/3.3">ลงรับสินค้า</NavDropdown.Item>
+          <NavDropdown.Item href="#action/3.3">งบประมาณ</NavDropdown.Item>
+        </NavDropdown>
+      </span>
+
+      <span class="Dropdown ">
+        <NavDropdown title="Purchase" id="basic-nav-dropdown">
+          <NavDropdown.Item href="#action/3.1">สั่งซื้อ(PO)</NavDropdown.Item>
+          <NavDropdown.Item href="#action/3.2">ขอซื้อ(PR)</NavDropdown.Item>
+          <NavDropdown.Item href="#action/3.3">Inquire(PO)</NavDropdown.Item>
         </NavDropdown>
       </span>
 
       <span>
-        <Nav.Link href="#bbb">ระบบตรวจสอบการทำงาน</Nav.Link>
+        <Nav.Link href="#ccc">Financial</Nav.Link>
       </span>
 
-      <span>
-        <Nav.Link href="#ccc">ระบบการลา</Nav.Link>
+      <span class="Dropdown ">
+        <NavDropdown title="Daily" id="basic-nav-dropdown">
+          <NavDropdown.Item href="#action/3.1">ขอเบิกสินค้า</NavDropdown.Item>
+          <NavDropdown.Item href="#action/3.2">จ่ายสินค้า</NavDropdown.Item>
+          <NavDropdown.Item href="#action/3.3">ตัดจ่ายสินค้า</NavDropdown.Item>
+        </NavDropdown>
       </span>
 
-      <span>
-        <Nav.Link href="#ddd">ระบบตรวจสอบสินค้า</Nav.Link>
+      <span class="Dropdown ">
+        <NavDropdown title="Billing" id="basic-nav-dropdown">
+          <NavDropdown.Item href="#action/3.1">
+            ใบเสนอราคา(Quatation)
+          </NavDropdown.Item>
+          <NavDropdown.Item href="#action/3.2">
+            ใบกํากับ/ใบส่งสินค้า(Tax Invoice)
+          </NavDropdown.Item>
+          <NavDropdown.Item href="/Customers">
+            ลูกค้า(Customers)
+          </NavDropdown.Item>
+        </NavDropdown>
       </span>
-
 
       <Navbar.Collapse className="justify-content-end">
-        <Button variant="outline-danger" type="cancel">
-          Logout
+        <Button variant="outline-danger" type="cancel" onClick={handleLogout}>
+          {" "}
+          Logout{" "}
         </Button>
       </Navbar.Collapse>
-      </Navbar>
-     
+    </Navbar>
   );
 }

@@ -6,7 +6,7 @@ import {
   InputGroup,
   FormControl,
 } from "react-bootstrap";
-import "./Login.css";
+import "./App.css";
 import img1 from "../img/img1.jpg";
 import logo from "../img/PKM.png";
 import { HiOutlineUserGroup } from "react-icons/hi";
@@ -21,7 +21,6 @@ function Login(props) {
     userName: "",
     passWord: "",
   });
-  
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -34,7 +33,7 @@ function Login(props) {
     e.preventDefault();
     const { login } = props.actions;
     console.log("login", ipForm);
-    login(ipForm.userName,props.history)
+    login(ipForm.userName, props.history);
   };
 
   return (
@@ -105,7 +104,7 @@ Login.propTypes = {
 
 const mapDispatch = (dispath) => {
   return {
-    actions: bindActionCreators(sessionActions,dispath)
+    actions: bindActionCreators(sessionActions, dispath),
   };
 };
 
