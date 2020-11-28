@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Switch } from "react-router-dom";
+import { Switch } from "react-router-dom";
 import Home from "./Home";
 import Login from "./Login";
 import PrivateRoute from "../Utils/PrivateRoute";
@@ -7,6 +7,7 @@ import PublicRoute from "../Utils/PublicRoute";
 import Axios from "axios";
 import { getToken, removeUserSession, setUserSession } from "../Utils/Common";
 import Customers from "./Customers";
+import addCustomers from "./AddCustomer";
 
 function App() {
   const [authLoading, setAuthLoading] = useState(true);
@@ -33,15 +34,14 @@ function App() {
   }
 
   return (
-    <Router>
-      <div className="content">
-        <Switch>
-          <PrivateRoute exact path="/" component={Home} />
-          <PrivateRoute exact path="/Customers" component={Customers} />
-          <PublicRoute path="/login" component={Login} />
-        </Switch>
-      </div>
-    </Router>
+    <div className="content">
+      <Switch>
+        <PrivateRoute exact path="/" component={Home} />
+        <PrivateRoute exact path="/Customers" component={Customers} />
+        <PrivateRoute exact path="/addCustomers" component={addCustomers} />
+        <PublicRoute path="/login" component={Login} />
+      </Switch>
+    </div>
   );
 }
 export default App;

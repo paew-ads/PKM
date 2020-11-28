@@ -37,7 +37,12 @@ export default function Customers(props) {
       </div>
       <br />
       <div>
-        <button class="float-right" type="add">
+        <a
+          href="/addCustomers"
+          class="btn btn-primary btn-lg "
+          role="button"
+          aria-disabled="true"
+        >
           <svg
             width="1em"
             height="1em"
@@ -56,9 +61,10 @@ export default function Customers(props) {
             />
           </svg>{" "}
           เพิ่มลูกค้าใหม่
-        </button>
-        <h5>รายชื่อลูกค้า</h5>
+        </a>
       </div>
+      <br />
+      <h5>รายชื่อลูกค้า</h5>
       <br />
       <table class="table table-bordered">
         <thead class="table-success">
