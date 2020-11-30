@@ -26,7 +26,7 @@ export default function nav(props) {
       </span>
       <span class="Dropdown ">
         <NavDropdown title="Inventory control" id="basic-nav-dropdown">
-          <NavDropdown.Item href="#action/3.1">ข้อมูลพื้นฐาน</NavDropdown.Item>
+          <NavDropdown.Item href="/masterData">ข้อมูลพื้นฐาน</NavDropdown.Item>
           <NavDropdown.Item href="#action/3.2">คลังสินค้า</NavDropdown.Item>
           <NavDropdown.Item href="#action/3.3">ลงรับสินค้า</NavDropdown.Item>
           <NavDropdown.Item href="#action/3.3">งบประมาณ</NavDropdown.Item>
