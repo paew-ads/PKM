@@ -113,7 +113,7 @@ export default function MasterData(props) {
         </table>
         <div>
           <a
-            href="/addCustomers"
+            href="/addProduct"
             class="btn btn-primary btn-lg "
             role="button"
             aria-disabled="true"

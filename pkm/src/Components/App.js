@@ -9,7 +9,7 @@ import { getToken, removeUserSession, setUserSession } from "../Utils/Common";
 import Customers from "./Customers";
 import addCustomers from "./AddCustomer";
 import masterData from "./MasterData";
-
+import addProduct from "./AddProduct";
 function App() {
   const [authLoading, setAuthLoading] = useState(true);
 
@@ -41,6 +41,7 @@ function App() {
         <PrivateRoute exact path="/Customers" component={Customers} />
         <PrivateRoute exact path="/addCustomers" component={addCustomers} />
         <PrivateRoute exact path="/masterData" component={masterData} />
+        <PrivateRoute exact path="/addProduct" component={addProduct} />
         <PublicRoute path="/login" component={Login} />
       </Switch>
     </div>
