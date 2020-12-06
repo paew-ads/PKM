@@ -1,0 +1,22 @@
+{
+  "name": "pkm",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "client": "cd pkm && npm run start",
+    "server": "cd server && npm run devStart ",
+    "startAll": "concurrently \" npm run client \" \" npm run server \""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/paew-ads/PKM.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/paew-ads/PKM/issues"
+  },
+  "homepage": "https://github.com/paew-ads/PKM#readme"
+}
