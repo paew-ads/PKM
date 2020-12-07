@@ -1,6 +1,6 @@
 import React from "react";
 import Nav from "./nav";
-import { Button, NavDropdown } from "react-bootstrap";
+import { NavDropdown } from "react-bootstrap";
 
 export default function AddProduct(props) {
   return (

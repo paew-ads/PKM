@@ -58,7 +58,7 @@ export default function nav(props) {
           <NavDropdown.Item href="#action/3.1">
             ใบเสนอราคา(Quatation)
           </NavDropdown.Item>
-          <NavDropdown.Item href="#action/3.2">
+          <NavDropdown.Item href="/tax">
             ใบกํากับ/ใบส่งสินค้า(Tax Invoice)
           </NavDropdown.Item>
           <NavDropdown.Item href="/Customers">
