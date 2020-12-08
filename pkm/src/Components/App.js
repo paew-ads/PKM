@@ -11,6 +11,7 @@ import addCustomers from "./AddCustomer";
 import masterData from "./MasterData";
 import addProduct from "./AddProduct";
 import tax from "./TaxInvoice";
+import addTax from "./AddTax";
 
 function App() {
   const [authLoading, setAuthLoading] = useState(true);
@@ -45,6 +46,7 @@ function App() {
         <PrivateRoute exact path="/masterData" component={masterData} />
         <PrivateRoute exact path="/addProduct" component={addProduct} />
         <PrivateRoute exact path="/tax" component={tax} />
+        <PrivateRoute exact path="/addTax" component={addTax} />
         <PublicRoute path="/login" component={Login} />
       </Switch>
     </div>
