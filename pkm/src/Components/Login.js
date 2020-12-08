@@ -49,7 +49,7 @@ function Login(props) {
               className="text-center"
             >
               <Card.Title>
-                <img src={logo} />
+                <img src={logo} alt="" />
               </Card.Title>
               <h3>Login</h3>
               <Card.Body>
