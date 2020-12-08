@@ -76,9 +76,14 @@ export default function TaxInvoice(props) {
         <h5>รายการใบสั่งซื้อและลงรับ</h5>
         <div class="text-right">
           {" "}
-          <button type="Refresh" class="btn btn-primary ">
+          <a
+            href="/addTax"
+            class="btn btn-primary btn-lg "
+            role="button"
+            aria-disabled="true"
+          >
             บันทึกลงรับใหม่ (KEY-NEW)
-          </button>
+          </a>
         </div>
         <br />
         <table class="table table-bordered ">
