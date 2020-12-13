@@ -10,18 +10,14 @@ const jwt = require("jsonwebtoken");
 const utils = require("./utils");
 
 const db = mysql.createPool({
-
-    host:'localhost',
-    user: 'root',
-    password:'1234',
-    database:'pkm',
-    
-
+  host: "localhost",
+  user: "root",
+  password: "1234",
+  database: "pkm",
 });
 
 app.use(cors());
 app.use(express.json());
-
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(function (req, res, next) {
@@ -38,6 +34,20 @@ app.use(function (req, res, next) {
     } else {
       req.user = user;
       next();
+    }
+  });
+});
+app.post("/api/customer", (req, res) => {});
+
+app.get("/Customers", (req, res) => {
+  const sql = "SELECT * FROM pkm.customers";
+
+  db.query(sql, (err, result) => {
+    if (err) throw err;
+
+    if (result.length > 0) {
+      console.log(result);
+      res.send(result);
     }
   });
 });
@@ -120,7 +130,7 @@ app.get("/verifyToken", function (req, res) {
 
       if (result.length > 0) {
         console.log(result[0]);
-        userObj = utils.getCleanUser(result[0]);        
+        userObj = utils.getCleanUser(result[0]);
       }
     });
     return res.json({ user: userObj, token });
