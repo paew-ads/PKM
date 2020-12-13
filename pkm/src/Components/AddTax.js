@@ -1,5 +1,4 @@
 import React from "react";
-import { Tab } from "react-bootstrap";
 import Nav from "./nav";
 
 export default function AddTax(props) {
