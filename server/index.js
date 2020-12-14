@@ -37,7 +37,28 @@ app.use(function (req, res, next) {
     }
   });
 });
-app.post("/api/customer", (req, res) => {});
+app.post("/api/Customer", (req, res) => {
+  const searchCus = req.body.searchCus;
+
+  if (!searchCus) {
+    return res.status(400).json({
+      error: true,
+      message: "searchCus  is required.",
+    });
+  }
+
+  const sql =
+    "SELECT * FROM pkm.customers WHERE idCus = ? OR branchName = ? OR contactName= ? OR tel = ?";
+
+  db.query(sql, [searchCus, searchCus, searchCus, searchCus], (err, result) => {
+    if (err) throw err;
+
+    if (result.length > 0) {
+      console.log(result);
+      res.send(result);
+    }
+  });
+});
 
 app.get("/Customers", (req, res) => {
   const sql = "SELECT * FROM pkm.customers";

@@ -1,12 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Nav from "./nav.js";
 import Axios from "axios";
 
 export default function Customers(props) {
   const [customers, setCustomers] = useState([]);
 
-  const getCustomers = () => {
-    Axios.get("http://localhost:3001/Customers")
+  const [search, setSearch] = useState("");
+
+  const handleChange = (e) => {
+    setSearch(e.target.value);
+  };
+
+  const searchCustomers = (e) => {
+    e.preventDefault();
+    console.log(search);
+    Axios.post("http://localhost:3001/api/Customer", {
+      searchCus: search,
+    })
       .then((res) => {
         setCustomers(res.data);
       })
@@ -14,41 +24,55 @@ export default function Customers(props) {
         console.log(err);
       });
   };
+
+  useEffect(() => {
+    Axios.get("http://localhost:3001/Customers")
+      .then((res) => {
+        setCustomers(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
   console.log(customers);
+
   return (
     <>
       <Nav history={props.history} />
       <div className="container">
-        <div className="row" style={{ marginTop: "20px" }}>
-          <div class="input-group col-md-4">
-            <input class="form-control py-2"></input>
-            <span class="input-group-append">
-              <button
-                class="btn btn-outline-secondary"
-                type="search"
-                onClick={getCustomers}
-              >
-                <svg
-                  width="1em"
-                  height="1em"
-                  viewBox="0 0 16 16"
-                  class="bi bi-search"
-                  fill="currentColor"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"
-                  />
-                  <path
-                    fill-rule="evenodd"
-                    d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"
-                  />
-                </svg>
-              </button>
-            </span>
+        <form onSubmit={searchCustomers}>
+          <div className="row" style={{ marginTop: "20px" }}>
+            <div class="input-group col-md-4">
+              <input
+                class="form-control py-2"
+                name="search"
+                onChange={handleChange}
+              ></input>
+              <span class="input-group-append">
+                <button class="btn btn-outline-secondary" type="search">
+                  <svg
+                    width="1em"
+                    height="1em"
+                    viewBox="0 0 16 16"
+                    class="bi bi-search"
+                    fill="currentColor"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"
+                    />
+                    <path
+                      fill-rule="evenodd"
+                      d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"
+                    />
+                  </svg>
+                </button>
+              </span>
+            </div>
           </div>
-        </div>
+        </form>
 
         <div className="row" style={{ marginTop: "20px" }}>
           <div className="col">
