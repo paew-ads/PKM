@@ -21,12 +21,7 @@ export default function Customers(props) {
       <div className="container">
         <div className="row" style={{ marginTop: "20px" }}>
           <div class="input-group col-md-4">
-            <input
-              class="form-control py-2"
-              type="search"
-              value="search"
-              id="example-search-input"
-            ></input>
+            <input class="form-control py-2"></input>
             <span class="input-group-append">
               <button
                 class="btn btn-outline-secondary"
