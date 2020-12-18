@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Nav from "./nav.js";
 import Axios from "axios";
-
+import Footer from "./footer";
 export default function Customers(props) {
   const [customers, setCustomers] = useState([]);
 
@@ -136,6 +136,7 @@ export default function Customers(props) {
           </tbody>
         </table>
       </div>
+      <Footer />
     </>
   );
 }

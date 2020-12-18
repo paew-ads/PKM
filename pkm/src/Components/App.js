@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Switch } from "react-router-dom";
-import Home from "./Home";
+import Home from "../page/Home";
 import Login from "./Login";
 import PrivateRoute from "../Utils/PrivateRoute";
 import PublicRoute from "../Utils/PublicRoute";

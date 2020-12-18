@@ -6,9 +6,11 @@ export default function Home(props) {
   return (
     <div className="Home">
       <Nav history={props.history} />
-      <br />
-      <br />
-      <Card />
+      <div className="Container">
+        <br />
+        <br />
+        <Card />
+      </div>
     </div>
   );
 }
