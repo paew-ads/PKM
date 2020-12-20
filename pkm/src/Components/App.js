@@ -6,7 +6,7 @@ import PrivateRoute from "../Utils/PrivateRoute";
 import PublicRoute from "../Utils/PublicRoute";
 import Axios from "axios";
 import { getToken, removeUserSession, setUserSession } from "../Utils/Common";
-import Customers from "./Customers";
+import Customers from "../page/Customers";
 import addCustomers from "./AddCustomer";
 import masterData from "./MasterData";
 import addProduct from "./AddProduct";
