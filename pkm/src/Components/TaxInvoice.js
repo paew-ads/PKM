@@ -1,14 +1,39 @@
 import React from "react";
 import Nav from "./nav";
 import { NavDropdown } from "react-bootstrap";
+import DropdownItem from "react-bootstrap/esm/DropdownItem";
+import DropdownMenu from "react-bootstrap/esm/DropdownMenu";
 
 export default function TaxInvoice(props) {
   return (
     <div>
       <Nav history={props.history} />
-      <br />
-      <div class="container">
-        <h5>รายการใบส่งของ</h5>
+      <div class="container" style={{ marginTop: "3em" }}>
+        <h3>รายการใบส่งของ</h3>
+        <div className="row" style={{ marginTop: "3em" }}>
+          <div className="col-6">
+            <div class="input-group mb-3">
+              <span class="input-group-text" id="basic-addon1">
+                ชื่อลูกค้า
+              </span>
+            </div>
+          </div>
+          <div className="col-6">
+            <div class="input-group mb-3">
+              <span class="input-group-text" id="basic-addon1">
+                ประเภทการชำระเงิน
+              </span>
+              <input
+                type="text"
+                class="form-control"
+                placeholder=""
+                aria-label="Username"
+                aria-describedby="basic-addon1"
+              ></input>
+            </div>
+          </div>
+        </div>
+
         <table class="table table-bordered">
           <tr>
             <th class="table-success ">ชื่อลูกค้า</th>
