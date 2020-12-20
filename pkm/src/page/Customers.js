@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
-import Nav from "./nav.js";
+import Nav from "../Components/nav.js";
 import Axios from "axios";
+import Footer from "../Components/footer";
+import "./Customers.css";
 
 export default function Customers(props) {
   const [customers, setCustomers] = useState([]);
@@ -40,7 +42,7 @@ export default function Customers(props) {
   return (
     <>
       <Nav history={props.history} />
-      <div className="container">
+      <div className="container" style={{}}>
         <form onSubmit={searchCustomers}>
           <div className="row" style={{ marginTop: "20px" }}>
             <div class="input-group col-md-4">
@@ -75,67 +77,70 @@ export default function Customers(props) {
         </form>
 
         <div className="row" style={{ marginTop: "20px" }}>
-          <div className="col">
+          <div className="col-lg-9">
             <h3>รายชื่อลูกค้า</h3>
           </div>
-          <a
-            href="/addCustomers"
-            class="btn btn-primary btn-lg "
-            role="button"
-            aria-disabled="true"
-          >
-            <svg
-              width="1em"
-              height="1em"
-              viewBox="0 0 16 16"
-              class="bi bi-plus-circle"
-              fill="currentColor"
-              xmlns="http://www.w3.org/2000/svg"
+          <div className="col">
+            <a
+              href="/addCustomers"
+              class="btn btn-primary btn-lg "
+              role="button"
+              aria-disabled="true"
             >
-              <path
-                fill-rule="evenodd"
-                d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"
-              />
-              <path
-                fill-rule="evenodd"
-                d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"
-              />
-            </svg>{" "}
-            เพิ่มลูกค้าใหม่
-          </a>
+              <svg
+                width="1em"
+                height="1em"
+                viewBox="0 0 16 16"
+                class="bi bi-plus-circle"
+                fill="currentColor"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"
+                />
+                <path
+                  fill-rule="evenodd"
+                  d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"
+                />
+              </svg>{" "}
+              เพิ่มลูกค้าใหม่
+            </a>
+          </div>
         </div>
 
-        <table class="table table-bordered" style={{ marginTop: "25px" }}>
-          <thead class="table-success">
-            <tr>
-              <th scope="col" style={{ textAlign: "center" }}>
-                รหัสลูกค้า
-              </th>
-              <th scope="col" style={{ textAlign: "center" }}>
-                ชื่อสาขา
-              </th>
-              <th scope="col" style={{ textAlign: "center" }}>
-                ชื่อผู้ติดต่อ
-              </th>
-              <th scope="col" style={{ textAlign: "center" }}>
-                เบอร์โทร
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {customers.map((val, key) => {
-              return (
-                <tr>
-                  <td>{val.idCus}</td>
-                  <td>{val.branchName}</td>
-                  <td>{val.contactName}</td>
-                  <td>{val.tel}</td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
+        <div className="row" style={{ marginTop: "1rem" }}>
+          {customers.map((val, key) => {
+            return (
+              <div
+                class="card"
+                style={{
+                  width: "18rem",
+                  alignItems: "center",
+                  marginRight: "1rem",
+                }}
+              >
+                <img src={val.image} class="avatar" alt="..." />
+                <div class="card-body" style={{ textAlign: "center" }}>
+                  <h5 class="card-title">{val.cus_Name}</h5>
+                  <p class="card-text">{val.contact_No}</p>
+                  <a
+                    href="/#"
+                    class="btn btn-primary"
+                    style={{ marginRight: "1rem" }}
+                  >
+                    Go
+                  </a>
+                  <a href="/#" class="btn btn-warning">
+                    Go
+                  </a>
+                </div>
+              </div>
+            );
+          })}
+        </div>
       </div>
+      <Footer />
     </>
   );
 }

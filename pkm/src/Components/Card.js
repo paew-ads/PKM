@@ -1,7 +1,8 @@
 import React from "react";
 
-export default function card() {
+export default function card(props) {
   return (
+<<<<<<< HEAD
     <div className="container" style={{ marginTop: "100" }}>
       <div className="row">
         <div className="col-sm-4">
@@ -117,5 +118,31 @@ export default function card() {
         </div>
       </div>
     </div>
+=======
+    <>
+      <div
+        className="card text-white  mb-3"
+        style={{
+          maxWidth: "18rem",
+          maxHeight: "18rem",
+          backgroundColor: props.color,
+          alignItems: "center",
+        }}
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="10rem"
+          height="7rem"
+          fill="currentColor"
+          class="bi bi-people-fill "
+          viewBox="0 0 20 20"
+          style={{ marginTop: "1rem" }}
+        >
+          <path fill-rule="evenodd" d={props.icon} />
+        </svg>
+        <h5>{props.text}</h5>
+      </div>
+    </>
+>>>>>>> 00e8769932a80da630dc7549cf41535634a34f2b
   );
 }

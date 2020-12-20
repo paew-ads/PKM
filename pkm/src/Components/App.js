@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Switch } from "react-router-dom";
-import Home from "./Home";
+import Home from "../page/Home";
 import Login from "./Login";
 import PrivateRoute from "../Utils/PrivateRoute";
 import PublicRoute from "../Utils/PublicRoute";
 import Axios from "axios";
 import { getToken, removeUserSession, setUserSession } from "../Utils/Common";
-import Customers from "./Customers";
+import Customers from "../page/Customers";
 import addCustomers from "./AddCustomer";
 import masterData from "./MasterData";
 import addProduct from "./AddProduct";
