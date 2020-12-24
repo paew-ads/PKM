@@ -7,7 +7,7 @@ export default function Home(props) {
   return (
     <>
       <Nav history={props.history} />
-      <div className="container" style={{}}>
+      <div className="container" style={{ marginBottom: "7rem" }}>
         <div className="row align-items-center" style={{ marginTop: "5rem" }}>
           <div className="col">
             <a href="/Customers">

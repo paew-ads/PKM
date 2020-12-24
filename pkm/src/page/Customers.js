@@ -42,9 +42,9 @@ export default function Customers(props) {
   return (
     <>
       <Nav history={props.history} />
-      <div className="container" style={{}}>
+      <div className="container " style={{ marginBottom: "7rem" }}>
         <form onSubmit={searchCustomers}>
-          <div className="row" style={{ marginTop: "20px" }}>
+          <div className="row" style={{ marginTop: "5rem" }}>
             <div class="input-group col-md-4">
               <input
                 class="form-control py-2"
@@ -109,7 +109,7 @@ export default function Customers(props) {
           </div>
         </div>
 
-        <div className="row" style={{ marginTop: "1rem" }}>
+        <div className="row" style={{ marginTop: "3rem" }}>
           {customers.map((val, key) => {
             return (
               <div
@@ -117,7 +117,8 @@ export default function Customers(props) {
                 style={{
                   width: "18rem",
                   alignItems: "center",
-                  marginRight: "1rem",
+                  marginRight: "5rem",
+                  marginTop: "2rem",
                 }}
               >
                 <img src={val.image} class="avatar" alt="..." />

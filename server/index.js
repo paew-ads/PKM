@@ -47,10 +47,9 @@ app.post("/api/Customer", (req, res) => {
     });
   }
 
-  const sql =
-    "SELECT * FROM pkm.customers WHERE idCus = ? OR branchName = ? OR contactName= ? OR tel = ?";
+  const sql = "SELECT * FROM pkm.customers WHERE cus_Name LIKE ?";
 
-  db.query(sql, [searchCus, searchCus, searchCus, searchCus], (err, result) => {
+  db.query(sql, [searchCus], (err, result) => {
     if (err) throw err;
 
     if (result.length > 0) {
