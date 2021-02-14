@@ -8,6 +8,9 @@ const port = process.env.PORT || 3001;
 const mysql = require("mysql");
 const jwt = require("jsonwebtoken");
 const utils = require("./utils");
+const filesUpload = require("express-fileupload");
+const multer = require("multer");
+const upload = multer();
 
 const db = mysql.createPool({
   host: "localhost",
@@ -19,7 +22,8 @@ const db = mysql.createPool({
 app.use(cors());
 app.use(express.json());
 
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true }));
+
 app.use(function (req, res, next) {
   var token = req.headers["authorization"];
   if (!token) return next();
@@ -37,6 +41,51 @@ app.use(function (req, res, next) {
     }
   });
 });
+app.use(
+  filesUpload({
+    createParentPath: true,
+  })
+);
+
+app.post("/picture", async (req, res) => {
+  try {
+    if (!req.files) {
+      res.send({
+        status: false,
+        message: "No files",
+      });
+    } else {
+      const { picture } = req.files;
+
+      picture.mv("../pkm/public/images/" + picture.name);
+
+      res.send({
+        status: true,
+        message: "File is uploaded",
+      });
+    }
+  } catch (e) {
+    res.status(500).send(e);
+  }
+});
+
+app.post("/api/addCustomer", (req, res) => {
+  console.log(req.body.inputData);
+  const file = req.body.inputData.image;
+
+  if (file === null) {
+    return res.status(400).json({ msg: "No data" });
+  }
+
+  file.mv(`${__dirname}/pkm/public/images/${file.name}`, (err) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).send(err);
+    }
+    res.json({ filename: file.name, filePath: `/images/${file.name}` });
+  });
+});
+
 app.post("/api/Customer", (req, res) => {
   const searchCus = req.body.searchCus;
 
@@ -96,32 +145,47 @@ app.post("/api/login", (req, res) => {
   });
 });
 
-app.post("/users/signin", function (req, res) {
-  const user = req.body.username;
-  const pwd = req.body.password;
+app.get("/doc_delete", (req, res) => {
+  const rcid = req.body.rcid;
+});
 
-  // return 400 status if username/password is not exist
-  if (!user || !pwd) {
+app.get("/doc_select", (req, res) => {
+  const rcid = req.body.rcid;
+  const sql = "SELECT * FROM document WHERE rcid = ?";
+
+  db.query(sql, [rcid], (err, result) => {
+    if (err) throw err;
+
+    if (result.length > 0) {
+      console.log(result);
+      res.send(result);
+    }
+  });
+});
+
+app.post("/authen", (req, res) => {
+  const id = req.body.id;
+  const pwd = req.body.pwd;
+
+  if (!id || !pwd) {
     return res.status(400).json({
       error: true,
-      message: "Username or Password is required.",
+      message: "ID or Password is required.",
     });
   }
 
-  // return 401 status if the credential is not match.
-  if (user !== userData.username || pwd !== userData.password) {
-    return res.status(401).json({
-      error: true,
-      message: "Username or Password is wrong.",
-    });
-  }
+  const sql =
+    "SELECT uid,upwd,uname,urole FROM users WHERE uid = ? AND upwd = ?";
+  db.query(sql, [id, pwd], (err, result) => {
+    if (err) throw err;
 
-  // generate token
-  const token = utils.generateToken(userData);
-  // get basic user details
-  const userObj = utils.getCleanUser(userData);
-  // return the token along with user details
-  return res.json({ user: userObj, token });
+    if (result.length > 0) {
+      console.log(result[0]);
+      const token = utils.generateToken(result[0]);
+      const userObj = utils.getCleanUser(result[0]);
+      return res.json({ user: userObj, token });
+    }
+  });
 });
 
 app.get("/verifyToken", function (req, res) {

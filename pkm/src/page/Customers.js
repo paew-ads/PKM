@@ -127,13 +127,13 @@ export default function Customers(props) {
                   <p class="card-text">{val.contact_No}</p>
                   <a
                     href="/#"
-                    class="btn btn-primary"
+                    class="btn btn-info"
                     style={{ marginRight: "1rem" }}
                   >
-                    Go
+                    Edit
                   </a>
-                  <a href="/#" class="btn btn-warning">
-                    Go
+                  <a href="/#" class="btn btn-danger">
+                    Delete
                   </a>
                 </div>
               </div>
