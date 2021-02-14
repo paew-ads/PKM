@@ -1,12 +1,9 @@
 import React from "react";
 import Nav from "./nav";
-import { NavDropdown } from "react-bootstrap";
-import DropdownItem from "react-bootstrap/esm/DropdownItem";
-import DropdownMenu from "react-bootstrap/esm/DropdownMenu";
 
 export default function TaxInvoice(props) {
   return (
-    <div>
+    <>
       <Nav history={props.history} />
       <div class="container" style={{ marginTop: "3em" }}>
         <h3>รายการใบส่งของ</h3>
@@ -14,8 +11,31 @@ export default function TaxInvoice(props) {
           <div className="col-6">
             <div class="input-group mb-3">
               <span class="input-group-text" id="basic-addon1">
-                ชื่อลูกค้า
+                ชื่อสาขา
               </span>
+              <div class="dropdown">
+                <button
+                  class="btn btn-outline-secondary dropdown-toggle"
+                  type="button"
+                  id="dropdownMenu2"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  ค้นหา
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                  <button class="dropdown-item" type="button">
+                    สาขาเชียงใหม่
+                  </button>
+                  <button class="dropdown-item" type="button">
+                    สาขาชุมพร
+                  </button>
+                  <button class="dropdown-item" type="button">
+                    สาขาเชียงราย
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
           <div className="col-6">
@@ -34,64 +54,38 @@ export default function TaxInvoice(props) {
           </div>
         </div>
 
-        <table class="table table-bordered">
-          <tr>
-            <th class="table-success ">ชื่อลูกค้า</th>
-            <td colSpan="2">
-              {" "}
-              <span class="Dropdown ">
-                <NavDropdown title="สาขาเชียงใหม่" id="basic-nav-dropdown">
-                  <NavDropdown.Item href="/masterData">
-                    สาขาสมุทราสาคร
-                  </NavDropdown.Item>
-                  <NavDropdown.Item href="#action/3.2">
-                    สาขาชุมพร
-                  </NavDropdown.Item>
-                  <NavDropdown.Item href="#action/3.3">
-                    สาขาชุมพร
-                  </NavDropdown.Item>
-                  <NavDropdown.Item href="#action/3.3">
-                    สาขาชุมพร
-                  </NavDropdown.Item>
-                </NavDropdown>
+        <div className="row" style={{ marginTop: "1em" }}>
+          <div className="col-1">
+            <div class="input-group mb-3">
+              <span class="input-group-text" id="basic-addon1">
+                ข้อคามค้นหา
               </span>
-            </td>
-            <th class="table-success ">ประเภทการชำระเงิน</th>
-            <td colSpan="2">
-              {" "}
-              <span class="Dropdown ">
-                <NavDropdown title="--- ALL ---" id="basic-nav-dropdown">
-                  <NavDropdown.Item href="/masterData">
-                    สาขาสมุทราสาคร
-                  </NavDropdown.Item>
-                  <NavDropdown.Item href="#action/3.2">
-                    สาขาชุมพร
-                  </NavDropdown.Item>
-                  <NavDropdown.Item href="#action/3.3">
-                    ลงรับสินค้า
-                  </NavDropdown.Item>
-                  <NavDropdown.Item href="#action/3.3">
-                    งบประมาณ
-                  </NavDropdown.Item>
-                </NavDropdown>
-              </span>
-            </td>
-          </tr>
-          <tr>
-            <th class="table-success ">ข้อคามค้นหา</th>
-            <td colSpan="4">
-              {" "}
+            </div>
+          </div>
+          <div className="col-4" style={{ marginLeft: "15px" }}>
+            <form class="form-inline my-2 my-lg-0">
               <input
-                class="form-control py-2"
+                class="form-control mr-sm-2"
                 type="search"
-                value="search"
-                id="example-search-input"
-              ></input>
-            </td>
-          </tr>
-        </table>
+                placeholder="Search"
+                aria-label="Search"
+              />
+              <button
+                class="btn btn-outline-success my-2 my-sm-0"
+                type="submit"
+              >
+                Search
+                <i
+                  class="fas fa-search"
+                  aria-hidden="true"
+                  style={{ marginLeft: "5px" }}
+                ></i>
+              </button>
+            </form>
+          </div>
+        </div>
+
         <div class="text-right">
-          {" "}
           <button type="Refresh" class="btn btn-primary ">
             Refresh
           </button>
@@ -164,6 +158,6 @@ export default function TaxInvoice(props) {
           </tbody>
         </table>
       </div>
-    </div>
+    </>
   );
 }
