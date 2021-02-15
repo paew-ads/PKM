@@ -1,16 +1,9 @@
 require("dotenv").config();
 
-const express = require("express");
-const bodyParser = require("body-parser");
-const cors = require("cors");
-const app = express();
+const app = require("./express");
 const port = process.env.PORT || 3001;
 const mysql = require("mysql");
-const jwt = require("jsonwebtoken");
 const utils = require("./utils");
-const filesUpload = require("express-fileupload");
-const multer = require("multer");
-const upload = multer();
 
 const db = mysql.createPool({
   host: "localhost",
@@ -18,34 +11,6 @@ const db = mysql.createPool({
   password: "1234",
   database: "pkm",
 });
-
-app.use(cors());
-app.use(express.json());
-
-app.use(express.urlencoded({ extended: true }));
-
-app.use(function (req, res, next) {
-  var token = req.headers["authorization"];
-  if (!token) return next();
-
-  token = token.replace("Bearer ", "");
-  jwt.verify(token, process.env.JWT_SECRET, function (err, user) {
-    if (err) {
-      return res.status(401).json({
-        error: true,
-        message: "Invalid user.",
-      });
-    } else {
-      req.user = user;
-      next();
-    }
-  });
-});
-app.use(
-  filesUpload({
-    createParentPath: true,
-  })
-);
 
 app.post("/picture", async (req, res) => {
   try {
