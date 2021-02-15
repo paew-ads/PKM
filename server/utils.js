@@ -25,6 +25,11 @@ function getCleanUser(user) {
     //name: user.name,
     username: user.userName,
     //isAdmin: user.isAdmin,
+
+    //uid : user.uid,
+    //upwd : user.upwd,
+    //uname : user.uname,
+    //urole : user.urole,
   };
 }
 
