@@ -18,8 +18,8 @@ import * as sessionActions from "../action/sessionActions";
 
 function Login(props) {
   const [ipForm, setipForm] = useState({
-    userName: "",
-    passWord: "",
+    uid: "",
+    upwd: "",
   });
 
   const handleChange = (e) => {
@@ -33,7 +33,7 @@ function Login(props) {
     e.preventDefault();
     const { login } = props.actions;
     console.log("login", ipForm);
-    login(ipForm.userName, props.history);
+    login(ipForm.uid, ipForm.upwd, props.history);
   };
 
   return (
@@ -60,8 +60,8 @@ function Login(props) {
                     </InputGroup.Text>
                   </InputGroup.Prepend>
                   <FormControl
-                    name="userName"
-                    placeholder="Username"
+                    name="uid"
+                    placeholder="ID"
                     aria-label="Username"
                     aria-describedby="basic-addon1"
                     onChange={handleChange}
@@ -75,7 +75,7 @@ function Login(props) {
                   </InputGroup.Prepend>
                   <FormControl
                     type="password"
-                    name="passWord"
+                    name="upwd"
                     placeholder="Password"
                     aria-label="Password"
                     aria-describedby="basic-addon1"

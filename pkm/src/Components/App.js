@@ -7,7 +7,7 @@ import PublicRoute from "../Utils/PublicRoute";
 import Axios from "axios";
 import { getToken, removeUserSession, setUserSession } from "../Utils/Common";
 import Customers from "../page/Customers";
-import addCustomers from "./AddCustomer";
+import addCustomers from "../page/AddCustomer";
 import masterData from "./MasterData";
 import addProduct from "./AddProduct";
 import tax from "./TaxInvoice";
