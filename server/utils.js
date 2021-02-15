@@ -6,10 +6,10 @@ function generateToken(user) {
   if (!user) return null;
 
   var u = {
-    //userId: user.userId,
-    //name: user.name,
-    username: user.userName,
-    //isAdmin: user.isAdmin,
+    uid: user.uid,
+    upwd: user.upwd,
+    uname: user.uname,
+    urole: user.urole,
   };
 
   return jwt.sign(u, process.env.JWT_SECRET, {
@@ -21,15 +21,10 @@ function getCleanUser(user) {
   if (!user) return null;
 
   return {
-    //userId: user.userId,
-    //name: user.name,
-    username: user.userName,
-    //isAdmin: user.isAdmin,
-
-    //uid : user.uid,
-    //upwd : user.upwd,
-    //uname : user.uname,
-    //urole : user.urole,
+    uid: user.uid,
+    upwd: user.upwd,
+    uname: user.uname,
+    urole: user.urole,
   };
 }
 
