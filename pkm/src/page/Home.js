@@ -30,7 +30,7 @@ export default function Home(props) {
           <div className="col">
             <a href="/#">
               <Card
-                color="#74F10B"
+                color="#00ff00"
                 icon="M10.862,6.47H3.968v6.032h6.894V6.47z M10,11.641H4.83V7.332H10V11.641z M12.585,11.641h-0.861v0.861h0.861V11.641z M7.415,14.226h0.862v-0.862H7.415V14.226z M8.707,17.673h2.586c0.237,0,0.431-0.193,0.431-0.432c0-0.237-0.193-0.431-0.431-0.431H8.707c-0.237,0-0.431,0.193-0.431,0.431C8.276,17.479,8.47,17.673,8.707,17.673 M5.691,14.226h0.861v-0.862H5.691V14.226z M4.83,13.363H3.968v0.862H4.83V13.363z M16.895,4.746h-3.017V3.023h1.292c0.476,0,0.862-0.386,0.862-0.862V1.299c0-0.476-0.387-0.862-0.862-0.862H10c-0.476,0-0.862,0.386-0.862,0.862v0.862c0,0.476,0.386,0.862,0.862,0.862h1.293v1.723H3.106c-0.476,0-0.862,0.386-0.862,0.862v12.926c0,0.476,0.386,0.862,0.862,0.862h13.789c0.475,0,0.861-0.387,0.861-0.862V5.608C17.756,5.132,17.369,4.746,16.895,4.746 M10.862,2.161H10V1.299h0.862V2.161zM11.724,1.299h3.446v0.862h-3.446V1.299z M13.016,4.746h-0.861V3.023h0.861V4.746z M16.895,18.534H3.106v-2.585h13.789V18.534zM16.895,15.088H3.106v-9.48h13.789V15.088z M15.17,12.502h0.862v-0.861H15.17V12.502z M13.447,12.502h0.861v-0.861h-0.861V12.502zM15.17,10.778h0.862V9.917H15.17V10.778z M15.17,9.055h0.862V8.193H15.17V9.055z M16.032,6.47h-4.309v0.862h4.309V6.47zM14.309,8.193h-0.861v0.862h0.861V8.193z M12.585,8.193h-0.861v0.862h0.861V8.193z M13.447,14.226h2.585v-0.862h-2.585V14.226zM13.447,10.778h0.861V9.917h-0.861V10.778z M12.585,9.917h-0.861v0.861h0.861V9.917z"
                 text="Buy"
               />
@@ -41,7 +41,7 @@ export default function Home(props) {
           <div className="col">
             <a href="/#">
               <Card
-                color="#0B34F1"
+                color="#0033cc"
                 icon="M11 2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h1V7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7h1V2z"
                 text="Report"
               />
@@ -69,6 +69,100 @@ export default function Home(props) {
               />
             </a>
           </div>
+        </div>
+        <div className="row align-items-center" style={{ marginTop: "3rem" }}>
+          <h3>เอกสารออก</h3>
+          <div className="col-sm-1">
+            <th>ค้นหา:</th>
+          </div>
+          <div className="col-sm-4">
+            <td class="input-group ">
+              <input
+                class="form-control py-2"
+                type="search"
+                value="search"
+                id="example-search-input"
+              ></input>
+              <td style={{ marginLeft: "3px" }}>
+                <button class="btn btn-outline-primary" type="search">
+                  <svg
+                    width="1em"
+                    height="1em"
+                    viewBox="0 0 16 16"
+                    class="bi bi-search"
+                    fill="currentColor"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"
+                    />
+                    <path
+                      fill-rule="evenodd"
+                      d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"
+                    />
+                  </svg>
+                </button>
+              </td>
+            </td>
+          </div>
+        </div>
+        <div className="row align-items-center" style={{ marginTop: "1rem" }}>
+          <div className="col-sm-1">
+            <th>วันที่:</th>
+          </div>
+          <div className="col-sm-4">
+            <td class="input-group ">
+              <input type="date"></input>
+            </td>
+          </div>
+        </div>
+        <div className="row align-items-center" style={{ marginTop: "1rem" }}>
+          <div className="col-sm-1">
+            <th>ถึง:</th>
+          </div>
+          <div className="col-sm-4">
+            <td class="input-group ">
+              <input type="date"></input>
+            </td>
+          </div>
+        </div>
+        <div className="row" style={{ marginTop: "1rem", marginLeft: "80px" }}>
+          <div className="col-sm-3">
+            <button class="btn btn-outline-primary" type="submit">
+              บันทึกเอกสารใหม่
+            </button>
+          </div>
+        </div>
+        <div className="row" style={{ marginTop: "1rem", marginLeft: "65px" }}>
+          <table class="table table-bordered ">
+            <thead class="table-success">
+              <tr>
+                <th scope="col">จัดการ</th>
+                <th scope="col">เลขที่บันทึก</th>
+                <th scope="col">วันที่บันทึก</th>
+                <th scope="col">หมวดหมู่หนังสือ</th>
+                <th scope="col">เลขที่หนังสือ</th>
+                <th scope="col">วันที่ออก</th>
+                <th scope="col">ชนิดหนังสือ</th>
+                <th scope="col">เรื่อง</th>
+                <th scope="col">ผู้ออก</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th>ดูข้อมูล</th>
+                <td>001</td>
+                <td>12/12/2020</td>
+                <td>เอกสารออก</td>
+                <td>ga001</td>
+                <td>09/01/2021</td>
+                <td>หนังสือภายใน</td>
+                <td>แจ้งยอดการสั่งซื้อ</td>
+                <td>kim</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
       <Footer />

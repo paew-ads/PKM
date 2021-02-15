@@ -10,22 +10,24 @@ export default function nav(props) {
   };
 
   return (
-    <Navbar variant="dark" style={{ backgroundColor: "rgba(0, 255, 0, 0.5)" }}>
+    <Navbar
+      style={{
+        backgroundColor: "rgba(102, 255, 102)",
+        fontSize: "18px",
+      }}
+    >
       <Navbar.Brand href="/">
         <img
           alt=""
           src={logo}
-          width="40"
-          height="40"
+          width="50"
+          height="50"
           className="d-inline-block align-top"
         />
       </Navbar.Brand>
 
       <span>
-        <Nav.Link href="/">PKM</Nav.Link>
-      </span>
-      <span class="Dropdown ">
-        <NavDropdown title="Inventory control" id="basic-nav-dropdown">
+        <NavDropdown title="Inventory control " id="basic-nav-dropdown">
           <NavDropdown.Item href="/masterData">ข้อมูลพื้นฐาน</NavDropdown.Item>
           <NavDropdown.Item href="#action/3.2">คลังสินค้า</NavDropdown.Item>
           <NavDropdown.Item href="#action/3.3">ลงรับสินค้า</NavDropdown.Item>
@@ -33,7 +35,7 @@ export default function nav(props) {
         </NavDropdown>
       </span>
 
-      <span class="Dropdown ">
+      <span>
         <NavDropdown title="Purchase" id="basic-nav-dropdown">
           <NavDropdown.Item href="#action/3.1">สั่งซื้อ(PO)</NavDropdown.Item>
           <NavDropdown.Item href="#action/3.2">ขอซื้อ(PR)</NavDropdown.Item>
@@ -45,7 +47,7 @@ export default function nav(props) {
         <Nav.Link href="#ccc">Financial</Nav.Link>
       </span>
 
-      <span class="Dropdown ">
+      <span>
         <NavDropdown title="Daily" id="basic-nav-dropdown">
           <NavDropdown.Item href="#action/3.1">ขอเบิกสินค้า</NavDropdown.Item>
           <NavDropdown.Item href="#action/3.2">จ่ายสินค้า</NavDropdown.Item>
@@ -53,7 +55,7 @@ export default function nav(props) {
         </NavDropdown>
       </span>
 
-      <span class="Dropdown ">
+      <span>
         <NavDropdown title="Billing" id="basic-nav-dropdown">
           <NavDropdown.Item href="#action/3.1">
             ใบเสนอราคา(Quatation)
