@@ -13,8 +13,9 @@ import { RiLockPasswordLine } from "react-icons/ri";
 import "../Components/App.css";
 import AuthApi from "../Utils/AuthApi";
 import { signin } from "../action/auth-api";
+import PropTypes from "prop-types";
 
-export default function SignIn() {
+export default function SignIn({ setToken }) {
   const [ipForm, setipForm] = useState({
     uid: "",
     upwd: "",
@@ -31,7 +32,12 @@ export default function SignIn() {
     e.preventDefault();
     const res = await signin({ ipForm });
     console.log(res.data.auth);
-    authApi.setAuth(res.data.auth);
+
+    if (res.data.auth) {
+      console.log("token : " + res.data.token);
+      setToken(res.data.token);
+      window.location.reload();
+    }
   };
   return (
     <div className="Login">
@@ -96,3 +102,7 @@ export default function SignIn() {
     </div>
   );
 }
+
+SignIn.propTypes = {
+  setToken: PropTypes.func.isRequired,
+};

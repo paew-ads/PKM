@@ -30,6 +30,7 @@ router.post("/auth/signin", (req, res) => {
       return res.json({
         message: "Login Success",
         auth: true,
+        token: "test-token",
       });
     }
   });
