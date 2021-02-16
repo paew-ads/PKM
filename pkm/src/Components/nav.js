@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Navbar, Nav, NavDropdown, Button } from "react-bootstrap";
 import logo from "../img/PKM.png";
-import { removeUserSession } from "../Utils/Common";
+import AuthApi from "../Utils/AuthApi";
+import { signout } from "../action/auth-api";
 
-export default function nav(props) {
-  const handleLogout = () => {
-    removeUserSession();
-    props.history.push("/login");
+export default function nav() {
+  const authApi = useContext(AuthApi);
+  const handleLogout = async () => {
+    const res = await signout();
+    //authApi.setAuth(res.data.auth);
   };
 
   return (
