@@ -1,15 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
-import { removeUserSession } from "../Utils/Common";
 import Avatar from "@material-ui/core/Avatar";
 import logo from "../img/PKM.png";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
+import AuthApi from "../Utils/AuthApi";
+import { signout } from "../action/auth-api";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -23,13 +24,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ButtonAppBar(props) {
+export default function ButtonAppBar() {
+  const authApi = useContext(AuthApi);
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
-
-  const handleLogout = () => {
-    removeUserSession();
-    props.history.push("/login");
+  const handleLogout = async () => {
+    const res = await signout();
+    authApi.setAuth(res.data.auth);
   };
 
   const handleClick = (event) => {

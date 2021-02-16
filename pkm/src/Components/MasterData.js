@@ -1,5 +1,5 @@
 import React from "react";
-import Nav from "./nav";
+import Nav from "./nav2";
 import { NavDropdown } from "react-bootstrap";
 
 export default function MasterData(props) {

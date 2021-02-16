@@ -1,5 +1,5 @@
 import React from "react";
-import Nav from "./nav";
+import Nav from "./nav2";
 
 export default function AddTax(props) {
   return (

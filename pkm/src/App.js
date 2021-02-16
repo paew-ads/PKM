@@ -5,15 +5,17 @@ import AuthApi from "./Utils/AuthApi";
 import { hassSignned } from "./action/auth-api";
 
 function App() {
-  const [auth, setAuth] = useState(false);
+  const [auth, setAuth] = useState(true);
 
   const readSession = async () => {
     const res = await hassSignned();
-    setAuth(res.data.auth);
+    if (res.data.auth) {
+      setAuth(true);
+    }
   };
   useEffect(() => {
     readSession();
-  }, []);
+  }, [auth]);
   return (
     <div className="App">
       <AuthApi.Provider value={{ auth, setAuth }}>

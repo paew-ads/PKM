@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import AuthApi from "../Utils/AuthApi";
 import SignIn from "../page/SignIn";
@@ -12,6 +12,7 @@ import addTax from "../Components/AddTax";
 
 function Routes() {
   const authApi = useContext(AuthApi);
+
   return (
     <Switch>
       <RoutePublic
