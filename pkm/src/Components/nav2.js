@@ -33,8 +33,9 @@ const useStyles = makeStyles((theme) => ({
 export default function ButtonAppBar() {
   const authApi = useContext(AuthApi);
   const classes = useStyles();
+  const [open, setOpen] = React.useState(false);
+  const anchorRef = React.useRef(null);
 
-  const [anchorEl, setAnchorEl] = React.useState(null);
   const handleLogout = async () => {
     const res = await signout();
     authApi.setAuth(res.data.auth);
