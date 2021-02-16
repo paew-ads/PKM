@@ -1,5 +1,4 @@
 import React from "react";
-import Nav from "../Components/nav";
 import Card from "../Components/Card";
 import Footer from "../Components/footer";
 import Nav2 from "../Components/nav2";
@@ -7,7 +6,7 @@ import Nav2 from "../Components/nav2";
 export default function Home(props) {
   return (
     <>
-      <Nav2 history={props.history} />
+      <Nav2 />
       <div className="container" style={{ marginBottom: "7rem" }}>
         <div className="row align-items-center" style={{ marginTop: "5rem" }}>
           <div className="col">

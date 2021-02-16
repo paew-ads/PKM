@@ -11,6 +11,7 @@
     "axios": "^0.20.0",
     "bootstrap": "^4.5.2",
     "express": "^4.17.1",
+    "http-proxy-middleware": "^1.0.6",
     "mdbreact": "^4.27.0",
     "mysql": "^2.18.1",
     "react": "^16.13.1",
@@ -51,5 +52,6 @@
   "main": "index.js",
   "devDependencies": {},
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "proxy": "http://localhost:3001"
 }

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Nav from "../Components/nav";
+import Nav from "../Components/nav2";
 import Footer from "../Components/footer";
 import { useForm } from "react-hook-form";
 
