@@ -2,11 +2,12 @@ import React from "react";
 import Nav from "../Components/nav";
 import Card from "../Components/Card";
 import Footer from "../Components/footer";
+import Nav2 from "../Components/nav2";
 
 export default function Home(props) {
   return (
     <>
-      <Nav history={props.history} />
+      <Nav2 history={props.history} />
       <div className="container" style={{ marginBottom: "7rem" }}>
         <div className="row align-items-center" style={{ marginTop: "5rem" }}>
           <div className="col">
@@ -72,97 +73,102 @@ export default function Home(props) {
         </div>
         <div className="row align-items-center" style={{ marginTop: "3rem" }}>
           <h3>เอกสารออก</h3>
-          <div className="col-sm-1">
-            <th>ค้นหา:</th>
-          </div>
-          <div className="col-sm-4">
-            <td class="input-group ">
-              <input
-                class="form-control py-2"
-                type="search"
-                value="search"
-                id="example-search-input"
-              ></input>
-              <td style={{ marginLeft: "3px" }}>
-                <button class="btn btn-outline-primary" type="search">
-                  <svg
-                    width="1em"
-                    height="1em"
-                    viewBox="0 0 16 16"
-                    class="bi bi-search"
-                    fill="currentColor"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"
-                    />
-                    <path
-                      fill-rule="evenodd"
-                      d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"
-                    />
-                  </svg>
-                </button>
+          <div className="row align-items-center" style={{ marginTop: "2rem" }}>
+            <div className="col-sm-1">
+              <th>ค้นหา:</th>
+            </div>
+            <div className="col-sm-4">
+              <td class="input-group ">
+                <input
+                  class="form-control py-2"
+                  type="search"
+                  value="search"
+                  id="example-search-input"
+                ></input>
+                <td style={{ marginLeft: "3px" }}>
+                  <button class="btn btn-outline-primary" type="search">
+                    <svg
+                      width="1em"
+                      height="1em"
+                      viewBox="0 0 16 16"
+                      class="bi bi-search"
+                      fill="currentColor"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"
+                      />
+                      <path
+                        fill-rule="evenodd"
+                        d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"
+                      />
+                    </svg>
+                  </button>
+                </td>
               </td>
-            </td>
+            </div>
           </div>
-        </div>
-        <div className="row align-items-center" style={{ marginTop: "1rem" }}>
-          <div className="col-sm-1">
-            <th>วันที่:</th>
+          <div className="row align-items-center" style={{ marginTop: "1rem" }}>
+            <div className="col-sm-1">
+              <th>วันที่:</th>
+            </div>
+            <div className="col-sm-4">
+              <td class="input-group ">
+                <input type="date"></input>
+              </td>
+            </div>
           </div>
-          <div className="col-sm-4">
-            <td class="input-group ">
-              <input type="date"></input>
-            </td>
+          <div className="row align-items-center" style={{ marginTop: "1rem" }}>
+            <div className="col-sm-1">
+              <th>ถึง:</th>
+            </div>
+            <div className="col-sm-4">
+              <td class="input-group ">
+                <input type="date"></input>
+              </td>
+            </div>
           </div>
-        </div>
-        <div className="row align-items-center" style={{ marginTop: "1rem" }}>
-          <div className="col-sm-1">
-            <th>ถึง:</th>
+          <div
+            className="row"
+            style={{ marginTop: "1rem", marginLeft: "80px" }}
+          >
+            <div className="col-sm-3">
+              <button class="btn btn-outline-primary" type="submit">
+                บันทึกเอกสารใหม่
+              </button>
+            </div>
           </div>
-          <div className="col-sm-4">
-            <td class="input-group ">
-              <input type="date"></input>
-            </td>
+          <div className="row" style={{ marginTop: "2rem" }}>
+            <table class="table table-bordered ">
+              <thead class="table-success">
+                <tr>
+                  <th scope="col">จัดการ</th>
+                  <th scope="col">เลขที่บันทึก</th>
+                  <th scope="col">วันที่บันทึก</th>
+                  <th scope="col">หมวดหมู่หนังสือ</th>
+                  <th scope="col">เลขที่หนังสือ</th>
+                  <th scope="col">วันที่ออก</th>
+                  <th scope="col">ชนิดหนังสือ</th>
+                  <th scope="col">เรื่อง</th>
+                  <th scope="col">ผู้ออก</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th>ดูข้อมูล</th>
+                  <td>001</td>
+                  <td>12/12/2020</td>
+                  <td>เอกสารออก</td>
+                  <td>ga001</td>
+                  <td>09/01/2021</td>
+                  <td>หนังสือภายใน</td>
+                  <td>แจ้งยอดการสั่งซื้อ</td>
+                  <td>kim</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
-        </div>
-        <div className="row" style={{ marginTop: "1rem", marginLeft: "80px" }}>
-          <div className="col-sm-3">
-            <button class="btn btn-outline-primary" type="submit">
-              บันทึกเอกสารใหม่
-            </button>
-          </div>
-        </div>
-        <div className="row" style={{ marginTop: "1rem", marginLeft: "65px" }}>
-          <table class="table table-bordered ">
-            <thead class="table-success">
-              <tr>
-                <th scope="col">จัดการ</th>
-                <th scope="col">เลขที่บันทึก</th>
-                <th scope="col">วันที่บันทึก</th>
-                <th scope="col">หมวดหมู่หนังสือ</th>
-                <th scope="col">เลขที่หนังสือ</th>
-                <th scope="col">วันที่ออก</th>
-                <th scope="col">ชนิดหนังสือ</th>
-                <th scope="col">เรื่อง</th>
-                <th scope="col">ผู้ออก</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th>ดูข้อมูล</th>
-                <td>001</td>
-                <td>12/12/2020</td>
-                <td>เอกสารออก</td>
-                <td>ga001</td>
-                <td>09/01/2021</td>
-                <td>หนังสือภายใน</td>
-                <td>แจ้งยอดการสั่งซื้อ</td>
-                <td>kim</td>
-              </tr>
-            </tbody>
-          </table>
         </div>
       </div>
       <Footer />

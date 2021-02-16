@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/paew-ads/PKM/issues"
   },
-  "homepage": "https://github.com/paew-ads/PKM#readme"
+  "homepage": "https://github.com/paew-ads/PKM#readme",
+  "dependencies": {
+    "concurrently": "^5.3.0"
+  }
 }

@@ -3,6 +3,7 @@ import Nav from "../Components/nav.js";
 import Axios from "axios";
 import Footer from "../Components/footer";
 import "./Customers.css";
+import Nav2 from "../Components/nav2";
 
 export default function Customers(props) {
   const [customers, setCustomers] = useState([]);
@@ -41,7 +42,7 @@ export default function Customers(props) {
 
   return (
     <>
-      <Nav history={props.history} />
+      <Nav2 history={props.history} />
       <div className="container " style={{ marginBottom: "7rem" }}>
         <form onSubmit={searchCustomers}>
           <div className="row" style={{ marginTop: "5rem" }}>
