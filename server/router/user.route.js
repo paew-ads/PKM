@@ -25,11 +25,10 @@ router.post("/auth/signin", (req, res) => {
   db.query(sql, [uid, upwd], (err, result) => {
     if (err) throw err;
     if (result.length > 0) {
-      console.log(result[0].urole);
-      req.session.user = result[0].urole;
+      console.log(result[0]);
       return res.json({
         message: "Login Success",
-        auth: true,
+        user: result[0],
         token: "test-token",
       });
     }

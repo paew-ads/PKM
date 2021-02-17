@@ -1,14 +1,12 @@
-import React, { useContext } from "react";
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
-
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import Avatar from "@material-ui/core/Avatar";
 import logo from "../img/PKM.png";
-
 import MenuItem from "@material-ui/core/MenuItem";
 import MenuList from "@material-ui/core/MenuList";
 import ExitToAppOutlinedIcon from "@material-ui/icons/ExitToAppOutlined";
@@ -16,8 +14,6 @@ import Paper from "@material-ui/core/Paper";
 import Popper from "@material-ui/core/Popper";
 import Grow from "@material-ui/core/Grow";
 import ClickAwayListener from "@material-ui/core/ClickAwayListener";
-import AuthApi from "../Utils/AuthApi";
-import { signout } from "../action/auth-api";
 import { purple } from "@material-ui/core/colors";
 
 const useStyles = makeStyles((theme) => ({
@@ -39,15 +35,15 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function ButtonAppBar() {
-  const authApi = useContext(AuthApi);
+  const history = useHistory();
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
 
   const handleLogout = async () => {
-    const res = await signout();
     sessionStorage.clear();
-    window.location.reload();
+    history.push("/signin");
+    //window.location.reload();
   };
 
   const handleToggle = () => {

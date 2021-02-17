@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import {
   Card,
   Button,
@@ -11,11 +11,12 @@ import logo from "../img/PKM.png";
 import { HiOutlineUserGroup } from "react-icons/hi";
 import { RiLockPasswordLine } from "react-icons/ri";
 import "../Components/App.css";
-import AuthApi from "../Utils/AuthApi";
 import { signin } from "../action/auth-api";
-import PropTypes from "prop-types";
+import { useHistory } from "react-router-dom";
+import { setUserSession } from "../Utils/Common";
 
-export default function SignIn({ setToken }) {
+export default function SignIn() {
+  const history = useHistory();
   const [ipForm, setipForm] = useState({
     uid: "",
     upwd: "",
@@ -27,16 +28,13 @@ export default function SignIn({ setToken }) {
       [name]: value,
     });
   };
-  const authApi = useContext(AuthApi);
   const handleSignIn = async (e) => {
     e.preventDefault();
     const res = await signin({ ipForm });
-    console.log(res.data.auth);
-
-    if (res.data.auth) {
-      console.log("token : " + res.data.token);
-      setToken(res.data.token);
-      window.location.reload();
+    alert(res.data.message);
+    if (res) {
+      setUserSession(res.data.token, res.data.user);
+      history.push("/");
     }
   };
   return (
@@ -108,7 +106,3 @@ export default function SignIn({ setToken }) {
     </div>
   );
 }
-
-SignIn.propTypes = {
-  setToken: PropTypes.func.isRequired,
-};
