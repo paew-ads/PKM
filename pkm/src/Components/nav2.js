@@ -2,6 +2,7 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
+import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import Avatar from "@material-ui/core/Avatar";
@@ -13,7 +14,7 @@ import Paper from "@material-ui/core/Paper";
 import Popper from "@material-ui/core/Popper";
 import Grow from "@material-ui/core/Grow";
 import ClickAwayListener from "@material-ui/core/ClickAwayListener";
-import { useHistory } from "react-router-dom";
+import { purple } from "@material-ui/core/colors";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -22,8 +23,14 @@ const useStyles = makeStyles((theme) => ({
   menuButton: {
     marginRight: theme.spacing(2),
   },
+  toolbar: {
+    minHeight: 128,
+    alignItems: "flex-start",
+    paddingBottom: theme.spacing(2),
+  },
   title: {
     flexGrow: 1,
+    alignItems: "flex-end",
   },
 }));
 
@@ -69,10 +76,10 @@ export default function ButtonAppBar() {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static">
+      <AppBar position="static" style={{ backgroundColor: purple[300] }}>
         <Toolbar>
           <IconButton edge="start" href="/">
-            <Avatar src={logo} />
+            <Avatar src={logo} style={{ height: "2.8rem", width: "2.8rem" }} />
           </IconButton>
 
           <Button
@@ -82,7 +89,9 @@ export default function ButtonAppBar() {
             color="inherit"
             onClick={handleToggle}
           >
-            Toggle Menu Grow
+            <Typography variant="h6" noWrap>
+              ข้อมูลลูกค้า
+            </Typography>
           </Button>
           <Popper
             open={open}
@@ -106,9 +115,8 @@ export default function ButtonAppBar() {
                       id="menu-list-grow"
                       onKeyDown={handleListKeyDown}
                     >
-                      <MenuItem onClick={handleClose}>Profile</MenuItem>
-                      <MenuItem onClick={handleClose}>My account</MenuItem>
-                      <MenuItem onClick={handleClose}>Logout</MenuItem>
+                      <MenuItem href="/Customers">ข้อมูลลูกค้า</MenuItem>
+                      <MenuItem href="/AddCustomers">เพิ่มลูกค้าใหม่</MenuItem>
                     </MenuList>
                   </ClickAwayListener>
                 </Paper>
@@ -116,12 +124,29 @@ export default function ButtonAppBar() {
             )}
           </Popper>
 
+          <Button aria-haspopup="true" color="inherit">
+            <Typography variant="h6" noWrap>
+              ข้อมูลสินค้า
+            </Typography>
+          </Button>
+
+          <Button color="inherit">
+            <Typography variant="h6" noWrap>
+              การสั่งซื้อสินค้า
+            </Typography>
+          </Button>
+
+          <Button color="inherit">
+            <Typography variant="h6" noWrap>
+              รายงานการสั่งซื้อสินค้า
+            </Typography>
+          </Button>
           <Button
             color="secondary"
             type="cancel"
-            style={{ marginLeft: "80rem" }}
             onClick={handleLogout}
             startIcon={<ExitToAppOutlinedIcon />}
+            style={{ position: "absolute", right: "100px" }}
           >
             Logout
           </Button>
