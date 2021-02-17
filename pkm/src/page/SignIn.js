@@ -58,7 +58,10 @@ export default function SignIn({ setToken }) {
               <Card.Body>
                 <InputGroup className="mb-3">
                   <InputGroup.Prepend>
-                    <InputGroup.Text id="basic-addon1">
+                    <InputGroup.Text
+                      id="basic-addon1"
+                      style={{ height: "2.2rem" }}
+                    >
                       <HiOutlineUserGroup />
                     </InputGroup.Text>
                   </InputGroup.Prepend>
@@ -72,7 +75,10 @@ export default function SignIn({ setToken }) {
                 </InputGroup>
                 <InputGroup className="mb-3">
                   <InputGroup.Prepend>
-                    <InputGroup.Text id="basic-addon1">
+                    <InputGroup.Text
+                      id="basic-addon1"
+                      style={{ height: "2.2rem" }}
+                    >
                       <RiLockPasswordLine />
                     </InputGroup.Text>
                   </InputGroup.Prepend>
