@@ -2,8 +2,9 @@ import React from "react";
 import Card from "../Components/Card";
 import Footer from "../Components/footer";
 import Nav2 from "../Components/nav2";
-
+import { useHistory } from "react-router-dom";
 export default function Home(props) {
+  const history = useHistory();
   return (
     <>
       <Nav2 />
@@ -133,7 +134,13 @@ export default function Home(props) {
             style={{ marginTop: "1rem", marginLeft: "80px" }}
           >
             <div className="col-sm-3">
-              <button class="btn btn-outline-primary" type="submit">
+              <button
+                class="btn btn-outline-primary"
+                type="submit"
+                onClick={() => {
+                  history.push("/doc_form");
+                }}
+              >
                 บันทึกเอกสารใหม่
               </button>
             </div>
