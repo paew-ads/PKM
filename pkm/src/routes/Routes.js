@@ -10,7 +10,7 @@ import tax from "../Components/TaxInvoice";
 import addTax from "../Components/AddTax";
 import PrivateRoute from "../Utils/PrivateRoute";
 import PublicRoute from "../Utils/PublicRoute";
-import DocForm from "../page/doc_form";
+import DocForm from "../page/DocForm";
 
 function Routes() {
   return (

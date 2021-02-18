@@ -36,7 +36,15 @@ router.get("/delete:rcid ", (req, res) => {
 });
 
 router.post("/add", (req, res) => {
-  const { docfile } = req.files;
+  var fitype = "";
+  var ficont = "";
+
+  if (req.files) {
+    const { docfile } = req.files;
+    fitype = docfile.mimetype;
+    ficont = fs.readFileSync(docfile.tempFilePath);
+  }
+
   const {
     rcid,
     rcdate,
@@ -47,15 +55,8 @@ router.post("/add", (req, res) => {
     docsubj,
     doccont,
     docauth,
-  } = req.body;
+  } = JSON.parse(req.body.info);
 
-  var fitype = "";
-  var ficont = "";
-
-  if (docfile) {
-    fitype = docfile.mimetype;
-    ficont = fs.readFileSync(docfile.tempFilePath);
-  }
   const sql =
     "INSERT INTO document(rcid, rcdate,doccate,docid,docdate,doctype,docsubj,doccont,docauth,fitype,ficont) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
   db.query(
@@ -76,7 +77,7 @@ router.post("/add", (req, res) => {
     (err, result) => {
       if (err) throw err;
       res.json({
-        massage: "insert sucess",
+        message: "insert sucess",
       });
     }
   );
@@ -152,49 +153,50 @@ router.post("/update", (req, res) => {
   );
 });
 
-router.get("/list/:doccate-:keyword-:stdate-:endate", (req, res) => {
-  const { doccate, keyword, stdate, endate } = req.params;
-  const sql = "SELECT * FROM document WHERE doccate = ?";
-  if (keyword && stdate && endate) {
-    sql +=
-      " AND (rcid = ? OR docid = ? OR docsubj LIKE %?%) AND (docdate BETWEEN ? AND ?) ORDER BY rcdate DESC,rcid DESC";
-    db.query(
-      sql,
-      [doccate, keyword, keyword, keyword, stdate, endate],
-      (err, result) => {
-        if (err) throw err;
-        if (result.length > 0) {
-          console.log(result);
-        }
-      }
-    );
-  } else if (keyword) {
-    sql +=
-      " AND (rcid = ? OR docid = ? OR docsubj LIKE %?%) ORDER BY rcdate DESC,rcid DESC";
-    db.query(sql, [doccate, keyword, keyword, keyword], (err, result) => {
-      if (err) throw err;
-      if (result.length > 0) {
-        console.log(result);
-      }
-    });
-  } else if (stdate && endate) {
-    sql += " AND (docdate BETWEEN ? AND ?) ORDER BY rcdate DESC,rcid DESC";
-    db.query(sql, [doccate, stdate, endate], (err, result) => {
-      if (err) throw err;
-      if (result.length > 0) {
-        console.log(result);
-      }
-    });
-  } else {
-    const nowdate = Date.now();
-    sql += " AND (docdate BETWEEN ? AND ?) ORDER BY rcdate DESC,rcid DESC";
-    db.query(sql, [doccate, nowdate, nowdate], (err, result) => {
-      if (err) throw err;
-      if (result.length > 0) {
-        console.log(result);
-      }
-    });
-  }
+router.get("/list/:doccate-:keyword", (req, res) => {
+  res.send(req.params);
+  // const { doccate, keyword, stdate, endate } = req.params;
+  // const sql = "SELECT * FROM document WHERE doccate = ?";
+  // if (keyword && stdate && endate) {
+  //   sql +=
+  //     " AND (rcid = ? OR docid = ? OR docsubj LIKE %?%) AND (docdate BETWEEN ? AND ?) ORDER BY rcdate DESC,rcid DESC";
+  //   db.query(
+  //     sql,
+  //     [doccate, keyword, keyword, keyword, new Date(stdate), new Date(endate)],
+  //     (err, result) => {
+  //       if (err) throw err;
+  //       if (result.length > 0) {
+  //         console.log(result);
+  //       }
+  //     }
+  //   );
+  // } else if (keyword) {
+  //   sql +=
+  //     " AND (rcid = ? OR docid = ? OR docsubj LIKE %?%) ORDER BY rcdate DESC,rcid DESC";
+  //   db.query(sql, [doccate, keyword, keyword, keyword], (err, result) => {
+  //     if (err) throw err;
+  //     if (result.length > 0) {
+  //       console.log(result);
+  //     }
+  //   });
+  // } else if (stdate && endate) {
+  //   sql += " AND (docdate BETWEEN ? AND ?) ORDER BY rcdate DESC,rcid DESC";
+  //   db.query(sql, [doccate, stdate, endate], (err, result) => {
+  //     if (err) throw err;
+  //     if (result.length > 0) {
+  //       console.log(result);
+  //     }
+  //   });
+  // } else {
+  //   const nowdate = Date.now();
+  //   sql += " AND (docdate BETWEEN ? AND ?) ORDER BY rcdate DESC,rcid DESC";
+  //   db.query(sql, [doccate, nowdate, nowdate], (err, result) => {
+  //     if (err) throw err;
+  //     if (result.length > 0) {
+  //       console.log(result);
+  //     }
+  //   });
+  // }
 });
 
 module.exports = router;

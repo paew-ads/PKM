@@ -1,16 +1,34 @@
-import React from "react";
-import Select from "react-select";
+import React, { useState } from "react";
 import Nav2 from "../Components/nav2";
-import Footer from "../Components/footer";
-
-const options = [
-  { value: "ยอดขาย", label: "ยอดขาย" },
-  { value: "ยอดการสั่งซื้อ", label: "ยอดการสั่งซื้อ" },
-  { value: "จองรถขนส่ง", label: "จองรถขนส่ง" },
-  { value: "จองห้องประชุม", label: "จองห้องประชุม" },
-];
-
-export default function doc_form() {
+import { add } from "../action/doc-api";
+export default function DocForm() {
+  const [ipFile, setipFile] = useState();
+  const [ipForm, setipForm] = useState({
+    rcid: "",
+    rcdate: "",
+    doccate: "",
+    docid: "",
+    docdate: "",
+    doctype: "",
+    docsubj: "",
+    doccont: "",
+    docauth: "",
+  });
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setipForm({
+      ...ipForm,
+      [name]: value,
+    });
+  };
+  const selectFile = (e) => {
+    setipFile(e.target.files[0]);
+  };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const res = await add(ipForm, ipFile);
+    alert(res.data.message);
+  };
   return (
     <>
       <Nav2 />
@@ -48,7 +66,12 @@ export default function doc_form() {
             <div className="col-sm-5">
               <th>
                 หมายเลขบันทึก:
-                <input type="text" style={{ marginLeft: "1rem" }}></input>
+                <input
+                  type="text"
+                  style={{ marginLeft: "1rem" }}
+                  name="rcid"
+                  onChange={handleChange}
+                ></input>
               </th>
             </div>
             <div className="col-sm-1" style={{ marginLeft: "6.8rem" }}>
@@ -56,7 +79,11 @@ export default function doc_form() {
             </div>
             <div className="col-sm-4">
               <td class="input-group ">
-                <input type="date"></input>
+                <input
+                  type="date"
+                  name="rcdate"
+                  onChange={handleChange}
+                ></input>
               </td>
             </div>
 
@@ -64,7 +91,12 @@ export default function doc_form() {
               <div className="col-sm-5">
                 <th>
                   เลขที่หนังสือ:
-                  <input type="text" style={{ marginLeft: "1rem" }}></input>
+                  <input
+                    type="text"
+                    style={{ marginLeft: "1rem" }}
+                    name="docid"
+                    onChange={handleChange}
+                  ></input>
                 </th>
               </div>
               <div className="col-sm-1" style={{ marginLeft: "7.5rem" }}>
@@ -72,7 +104,11 @@ export default function doc_form() {
               </div>
               <div className="col-sm-4">
                 <td class="input-group ">
-                  <input type="date"></input>
+                  <input
+                    type="date"
+                    name="docdate"
+                    onChange={handleChange}
+                  ></input>
                 </td>
               </div>
             </div>
@@ -82,7 +118,20 @@ export default function doc_form() {
                 <th>หมวดหนังสือ:</th>
               </div>
               <div className="col-sm-2" style={{ marginRight: "58.5rem" }}>
-                <Select options={options} />
+                <select
+                  class="form-select"
+                  aria-label="Default select example"
+                  name="doccate"
+                  onChange={handleChange}
+                >
+                  <option selected>โปรดเลือก</option>
+                  <option value="0">หนังสือภายนอก</option>
+                  <option value="1">หนังสือภายใน</option>
+                  <option value="2">หนังสือประทับตรา</option>
+                  <option value="3">หนังสือสั่งการ</option>
+                  <option value="4">หนังสือประชาสัมพันธ์</option>
+                  <option value="5">หนังสือใช้เป็นหลักฐาน</option>
+                </select>
               </div>
             </div>
             <div className="row " style={{ marginTop: "1rem" }}>
@@ -90,7 +139,16 @@ export default function doc_form() {
                 <th>ชนิดหนังสือ:</th>
               </div>
               <div className="col-sm-2" style={{ marginRight: "58.5rem" }}>
-                <Select options={options} />
+                <select
+                  class="form-select"
+                  aria-label="Default select example"
+                  name="doctype"
+                  onChange={handleChange}
+                >
+                  <option selected>โปรดเลือก</option>
+                  <option value="0">เอกสารเข้า</option>
+                  <option value="1">เอกสารออก</option>
+                </select>
               </div>
             </div>
 
@@ -98,7 +156,12 @@ export default function doc_form() {
               <div className="col">
                 <th>
                   เรื่อง:
-                  <input type="text" style={{ marginLeft: "1rem" }}></input>
+                  <input
+                    type="text"
+                    style={{ marginLeft: "1rem" }}
+                    name="docsubj"
+                    onChange={handleChange}
+                  ></input>
                 </th>
               </div>
             </div>
@@ -107,7 +170,12 @@ export default function doc_form() {
               <div className="col">
                 <th>
                   ผู้ออก:
-                  <input type="text" style={{ marginLeft: "1rem" }}></input>
+                  <input
+                    type="text"
+                    style={{ marginLeft: "1rem" }}
+                    name="docauth"
+                    onChange={handleChange}
+                  ></input>
                 </th>
               </div>
             </div>
@@ -120,6 +188,8 @@ export default function doc_form() {
                 <th>
                   <textarea
                     style={{ width: "22rem", height: "7rem" }}
+                    name="doccont"
+                    onChange={handleChange}
                   ></textarea>
                 </th>
               </div>
@@ -127,7 +197,8 @@ export default function doc_form() {
             <div className="row ">
               <div className="col">
                 <th>
-                  File: <button>Choose File</button>
+                  File:
+                  <input type="file" name="file" onChange={selectFile}></input>
                 </th>
               </div>
             </div>
@@ -135,7 +206,11 @@ export default function doc_form() {
             <div className="row " style={{ marginTop: "1rem" }}>
               <div className="col-sm-1">
                 <th>
-                  <button class="btn btn-primary" type="submit">
+                  <button
+                    class="btn btn-primary"
+                    type="submit"
+                    onClick={handleSubmit}
+                  >
                     บันทึก
                   </button>
                 </th>
