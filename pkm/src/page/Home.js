@@ -9,8 +9,11 @@ export default function Home(props) {
     <>
       <Nav2 />
       <div className="container" style={{ marginBottom: "7rem" }}>
-        <div className="row align-items-center" style={{ marginTop: "5rem" }}>
-          <div className="col">
+        <div
+          className="row align-items-center"
+          style={{ marginTop: "5rem", marginLeft: "5rem" }}
+        >
+          <div className="col-sm-3">
             <a href="/Customers">
               <Card
                 color="#F1120B"
@@ -19,7 +22,7 @@ export default function Home(props) {
               />
             </a>
           </div>
-          <div className="col">
+          <div className="col-sm-3" style={{ marginLeft: "5rem" }}>
             <a href="/#">
               <Card
                 color="#E7F10B"
@@ -28,7 +31,7 @@ export default function Home(props) {
               />
             </a>
           </div>
-          <div className="col">
+          <div className="col-sm-3" style={{ marginLeft: "5rem" }}>
             <a href="/#">
               <Card
                 color="#00ff00"
@@ -38,8 +41,11 @@ export default function Home(props) {
             </a>
           </div>
         </div>
-        <div className="row align-items-center" style={{ marginTop: "3rem" }}>
-          <div className="col">
+        <div
+          className="row align-items-center"
+          style={{ marginTop: "3rem", marginLeft: "5rem" }}
+        >
+          <div className="col-sm-3">
             <a href="/#">
               <Card
                 color="#0033cc"
@@ -48,7 +54,7 @@ export default function Home(props) {
               />
             </a>
           </div>
-          <div className="col">
+          <div className="col-sm-3" style={{ marginLeft: "5rem" }}>
             <a href="/#">
               <Card
                 color="#EB0BF1"
@@ -57,7 +63,7 @@ export default function Home(props) {
               />
             </a>
           </div>
-          <div className="col">
+          <div className="col-sm-3" style={{ marginLeft: "5rem" }}>
             <a href="/#">
               <Card
                 color="#130114"
@@ -71,11 +77,14 @@ export default function Home(props) {
             </a>
           </div>
         </div>
-        <div className="row align-items-center" style={{ marginTop: "3rem" }}>
+        <div
+          className="row align-items-center"
+          style={{ marginTop: "3rem", backgroundColor: "#ccccff" }}
+        >
           <h3>เอกสารออก</h3>
           <div className="row align-items-center" style={{ marginTop: "2rem" }}>
             <div className="col-sm-1">
-              <th>ค้นหา:</th>
+              <text>ค้นหา:</text>
             </div>
             <div className="col-sm-4">
               <td class="input-group ">
@@ -111,7 +120,7 @@ export default function Home(props) {
           </div>
           <div className="row align-items-center" style={{ marginTop: "1rem" }}>
             <div className="col-sm-1">
-              <th>วันที่:</th>
+              <text>วันที่:</text>
             </div>
             <div className="col-sm-4">
               <td class="input-group ">
@@ -121,7 +130,7 @@ export default function Home(props) {
           </div>
           <div className="row align-items-center" style={{ marginTop: "1rem" }}>
             <div className="col-sm-1">
-              <th>ถึง:</th>
+              <text>ถึง:</text>
             </div>
             <div className="col-sm-4">
               <td class="input-group ">
@@ -131,7 +140,7 @@ export default function Home(props) {
           </div>
           <div
             className="row"
-            style={{ marginTop: "1rem", marginLeft: "80px" }}
+            style={{ marginTop: "1rem", marginLeft: "10px" }}
           >
             <div className="col-sm-3">
               <button
@@ -145,7 +154,10 @@ export default function Home(props) {
               </button>
             </div>
           </div>
-          <div className="row" style={{ marginTop: "2rem" }}>
+          <div
+            className="row"
+            style={{ marginTop: "2rem", marginLeft: "0.1rem" }}
+          >
             <table class="table table-bordered ">
               <thead class="table-success">
                 <tr>
@@ -160,7 +172,7 @@ export default function Home(props) {
                   <th scope="col">ผู้ออก</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody style={{ backgroundColor: "white" }}>
                 <tr>
                   <th>ดูข้อมูล</th>
                   <td>001</td>

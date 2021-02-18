@@ -35,14 +35,13 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function ButtonAppBar() {
-  const history = useHistory();
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
 
   const handleLogout = async () => {
     sessionStorage.clear();
-    history.push("/signin");
+
     //window.location.reload();
   };
 
