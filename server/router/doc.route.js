@@ -38,13 +38,11 @@ router.get("/delete:rcid ", (req, res) => {
 router.post("/add", (req, res) => {
   var fitype = "";
   var ficont = "";
-
   if (req.files) {
     const { docfile } = req.files;
     fitype = docfile.mimetype;
     ficont = fs.readFileSync(docfile.tempFilePath);
   }
-
   const {
     rcid,
     rcdate,
@@ -56,7 +54,6 @@ router.post("/add", (req, res) => {
     doccont,
     docauth,
   } = JSON.parse(req.body.info);
-
   const sql =
     "INSERT INTO document(rcid, rcdate,doccate,docid,docdate,doctype,docsubj,doccont,docauth,fitype,ficont) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
   db.query(
@@ -75,10 +72,17 @@ router.post("/add", (req, res) => {
       ficont,
     ],
     (err, result) => {
-      if (err) throw err;
-      res.json({
-        message: "insert sucess",
-      });
+      if (err) {
+        res.json({
+          error: true,
+          message: "Failed to save data",
+        });
+      } else {
+        res.json({
+          error: false,
+          message: "insert sucess",
+        });
+      }
     }
   );
 });
