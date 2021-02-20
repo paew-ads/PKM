@@ -116,7 +116,13 @@ export default function ButtonAppBar() {
                       id="menu-list-grow"
                       onKeyDown={handleListKeyDown}
                     >
-                      <MenuItem href="/Customers">ข้อมูลลูกค้า</MenuItem>
+                      <MenuItem
+                        onClick={() => {
+                          history.push("/Customers");
+                        }}
+                      >
+                        ข้อมูลลูกค้า
+                      </MenuItem>
                       <MenuItem href="/AddCustomers">เพิ่มลูกค้าใหม่</MenuItem>
                     </MenuList>
                   </ClickAwayListener>

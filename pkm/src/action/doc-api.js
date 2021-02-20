@@ -11,4 +11,18 @@ const add = async (info, file) => {
   return res;
 };
 
-export { add };
+const list = async (search) => {
+  const url =
+    "/doc/list?doccate=" +
+    search.doccate +
+    "&keyword=" +
+    search.keyword +
+    "&stdate=" +
+    search.stdate +
+    "&endate=" +
+    search.endate;
+  const res = await Axios.get(url);
+  return res;
+};
+
+export { add, list };
