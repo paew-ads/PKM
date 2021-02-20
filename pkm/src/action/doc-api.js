@@ -11,9 +11,4 @@ const add = async (info, file) => {
   return res;
 };
 
-// const signin = async (user) => {
-//     const result = await Axios.post("/auth/signin", user);
-//     return result;
-//   };
-
 export { add };

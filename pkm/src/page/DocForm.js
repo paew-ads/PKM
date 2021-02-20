@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import Nav2 from "../Components/nav2";
 import { add } from "../action/doc-api";
+import { useHistory } from "react-router-dom";
+
 export default function DocForm() {
+  const history = useHistory();
   const [ipFile, setipFile] = useState();
   const [ipForm, setipForm] = useState({
     rcid: "",
@@ -26,8 +29,21 @@ export default function DocForm() {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
+    for (const [key, value] of Object.entries(ipForm)) {
+      console.log(`${key}: ${value}`);
+      if (value === "") {
+        alert("Please provide complete information.");
+        return;
+      }
+    }
     const res = await add(ipForm, ipFile);
+    if (res.data.error) {
+      alert(res.data.message);
+      alert("หมายเลขบันทึก อาจซ้ำในฐานข้อมูล");
+      return;
+    }
     alert(res.data.message);
+    history.push("/");
   };
   return (
     <>
