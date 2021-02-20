@@ -157,50 +157,73 @@ router.post("/update", (req, res) => {
   );
 });
 
-router.get("/list/:doccate-:keyword", (req, res) => {
-  res.send(req.params);
-  // const { doccate, keyword, stdate, endate } = req.params;
-  // const sql = "SELECT * FROM document WHERE doccate = ?";
-  // if (keyword && stdate && endate) {
-  //   sql +=
-  //     " AND (rcid = ? OR docid = ? OR docsubj LIKE %?%) AND (docdate BETWEEN ? AND ?) ORDER BY rcdate DESC,rcid DESC";
-  //   db.query(
-  //     sql,
-  //     [doccate, keyword, keyword, keyword, new Date(stdate), new Date(endate)],
-  //     (err, result) => {
-  //       if (err) throw err;
-  //       if (result.length > 0) {
-  //         console.log(result);
-  //       }
-  //     }
-  //   );
-  // } else if (keyword) {
-  //   sql +=
-  //     " AND (rcid = ? OR docid = ? OR docsubj LIKE %?%) ORDER BY rcdate DESC,rcid DESC";
-  //   db.query(sql, [doccate, keyword, keyword, keyword], (err, result) => {
-  //     if (err) throw err;
-  //     if (result.length > 0) {
-  //       console.log(result);
-  //     }
-  //   });
-  // } else if (stdate && endate) {
-  //   sql += " AND (docdate BETWEEN ? AND ?) ORDER BY rcdate DESC,rcid DESC";
-  //   db.query(sql, [doccate, stdate, endate], (err, result) => {
-  //     if (err) throw err;
-  //     if (result.length > 0) {
-  //       console.log(result);
-  //     }
-  //   });
-  // } else {
-  //   const nowdate = Date.now();
-  //   sql += " AND (docdate BETWEEN ? AND ?) ORDER BY rcdate DESC,rcid DESC";
-  //   db.query(sql, [doccate, nowdate, nowdate], (err, result) => {
-  //     if (err) throw err;
-  //     if (result.length > 0) {
-  //       console.log(result);
-  //     }
-  //   });
-  // }
+router.get("/list", (req, res) => {
+  const { doccate, keyword, stdate, endate } = req.query;
+  if (keyword && stdate && endate) {
+    const sql =
+      "SELECT * FROM document WHERE doccate = ? AND (rcid = ? OR docid = ? OR docsubj LIKE ?) AND (docdate BETWEEN ? AND ?) ORDER BY rcdate DESC,rcid DESC";
+    db.query(
+      sql,
+      [
+        doccate,
+        keyword,
+        keyword,
+        "%" + keyword + "%",
+        new Date(stdate),
+        new Date(endate),
+      ],
+      (err, result) => {
+        if (err) throw err;
+        if (result.length > 0) {
+          console.log(result);
+          res.send(result);
+        }
+      }
+    );
+  } else if (keyword) {
+    const sql =
+      "SELECT * FROM document WHERE doccate = ? AND (rcid = ? OR docid = ? OR docsubj LIKE ?) ORDER BY rcdate DESC,rcid DESC";
+    db.query(
+      sql,
+      [doccate, keyword, keyword, "%" + keyword + "%"],
+      (err, result) => {
+        if (err) throw err;
+        if (result.length > 0) {
+          console.log(result);
+          res.send(result);
+        }
+      }
+    );
+  } else if (stdate && endate) {
+    const sql =
+      "SELECT * FROM document WHERE doccate = ? AND (docdate BETWEEN ? AND ?) ORDER BY rcdate DESC,rcid DESC";
+    db.query(sql, [doccate, stdate, endate], (err, result) => {
+      if (err) throw err;
+      if (result.length > 0) {
+        console.log(result);
+        res.send(result);
+      }
+    });
+  } else {
+    const st = Date.now();
+    const now = new Date(st);
+    const nowDate =
+      now.getFullYear() + "-" + (now.getMonth() + 1) + "-" + now.getDate();
+
+    const sql =
+      "SELECT * FROM document WHERE doccate = ? AND (docdate BETWEEN ? AND ?)  ORDER BY rcdate DESC,rcid DESC";
+    db.query(
+      sql,
+      [doccate, new Date(nowDate), new Date(nowDate)],
+      (err, result) => {
+        if (err) throw err;
+        if (result.length > 0) {
+          console.log(result);
+          res.send(result);
+        }
+      }
+    );
+  }
 });
 
 module.exports = router;
