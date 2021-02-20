@@ -81,41 +81,35 @@ export default function Home(props) {
           className="row align-items-center"
           style={{ marginTop: "3rem", backgroundColor: "#ccccff" }}
         >
-          <h3>เอกสารออก</h3>
           <div className="row align-items-center" style={{ marginTop: "2rem" }}>
             <div className="col-sm-1">
               <text>ค้นหา:</text>
             </div>
-            <div className="col-sm-4">
+            <div className="col-sm-3">
               <td class="input-group ">
                 <input
                   class="form-control py-2"
                   type="search"
-                  value="search"
                   id="example-search-input"
                 ></input>
-                <td style={{ marginLeft: "3px" }}>
-                  <button class="btn btn-outline-primary" type="search">
-                    <svg
-                      width="1em"
-                      height="1em"
-                      viewBox="0 0 16 16"
-                      class="bi bi-search"
-                      fill="currentColor"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        fill-rule="evenodd"
-                        d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"
-                      />
-                      <path
-                        fill-rule="evenodd"
-                        d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"
-                      />
-                    </svg>
-                  </button>
-                </td>
               </td>
+            </div>
+          </div>
+          <div className="row aling-item-center" style={{ marginTop: "1rem" }}>
+            <div className="col-sm-1">
+              <text>ชนิดหนังสือ:</text>
+            </div>
+            <div className="col-sm-2">
+              <select
+                class="form-select"
+                aria-label="Default select example"
+                name="doctype"
+                // onChange={handleChange}
+              >
+                <option selected>โปรดเลือก</option>
+                <option value="0">หนังสือเข้า</option>
+                <option value="1">หนังสือออก</option>
+              </select>
             </div>
           </div>
           <div className="row align-items-center" style={{ marginTop: "1rem" }}>
@@ -144,13 +138,37 @@ export default function Home(props) {
           >
             <div className="col-sm-3">
               <button
-                class="btn btn-outline-primary"
+                class="btn btn-primary"
                 type="submit"
                 onClick={() => {
                   history.push("/doc_form");
                 }}
+                style={{ fontSize: "0.9rem" }}
               >
                 บันทึกเอกสารใหม่
+              </button>
+              <button
+                class="btn btn-primary"
+                type="search"
+                style={{ marginLeft: "1rem", fontSize: "0.9rem" }}
+              >
+                <svg
+                  width="1em"
+                  height="1em"
+                  viewBox="0 0 16 16"
+                  class="bi bi-search"
+                  fill="currentColor"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"
+                  />
+                  <path
+                    fill-rule="evenodd"
+                    d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"
+                  />
+                </svg>
               </button>
             </div>
           </div>

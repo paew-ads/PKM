@@ -16,6 +16,7 @@ import Grow from "@material-ui/core/Grow";
 import ClickAwayListener from "@material-ui/core/ClickAwayListener";
 import { purple } from "@material-ui/core/colors";
 import { useHistory } from "react-router-dom";
+import DetailsIcon from "@material-ui/icons/Details";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -79,7 +80,7 @@ export default function ButtonAppBar() {
       <AppBar position="static" style={{ backgroundColor: purple[300] }}>
         <Toolbar>
           <IconButton edge="start" href="/">
-            <Avatar src={logo} style={{ height: "2.8rem", width: "2.8rem" }} />
+            <Avatar src={logo} style={{ height: "3rem", width: "3rem" }} />
           </IconButton>
 
           <Button
