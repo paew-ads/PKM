@@ -245,6 +245,9 @@ export default function Home() {
                               height: "5px",
                               marginLeft: "10px",
                             }}
+                            onClick={() => {
+                              history.push("/doc_detial");
+                            }}
                           >
                             <FindInPageIcon color="primary" />
                           </IconButton>
