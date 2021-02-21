@@ -16,7 +16,6 @@ import Grow from "@material-ui/core/Grow";
 import ClickAwayListener from "@material-ui/core/ClickAwayListener";
 import { purple } from "@material-ui/core/colors";
 import { useHistory } from "react-router-dom";
-import DetailsIcon from "@material-ui/icons/Details";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -80,7 +79,7 @@ export default function ButtonAppBar() {
       <AppBar position="static" style={{ backgroundColor: purple[300] }}>
         <Toolbar>
           <IconButton edge="start" href="/">
-            <Avatar src={logo} style={{ height: "3rem", width: "3rem" }} />
+            <Avatar src={logo} style={{ height: "2.8rem", width: "2.8rem" }} />
           </IconButton>
 
           <Button
@@ -113,11 +112,10 @@ export default function ButtonAppBar() {
                   <ClickAwayListener onClickAway={handleClose}>
                     <MenuList
                       autoFocusItem={open}
-                      id="menu-list-grow"
                       onKeyDown={handleListKeyDown}
                     >
-                      <MenuItem href="/Customers">ข้อมูลลูกค้า</MenuItem>
-                      <MenuItem href="/AddCustomers">เพิ่มลูกค้าใหม่</MenuItem>
+                      <MenuItem> ข้อมูลลูกค้า </MenuItem>
+                      <MenuItem>เพิ่มลูกค้าใหม่</MenuItem>
                     </MenuList>
                   </ClickAwayListener>
                 </Paper>
