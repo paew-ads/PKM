@@ -4,6 +4,7 @@ import Footer from "../Components/footer";
 import Nav2 from "../Components/nav2";
 import { useHistory } from "react-router-dom";
 import { list } from "../action/doc-api";
+import { doccateArr, doctypeArr } from "../Utils/Config";
 
 export default function Home() {
   const [Doc, setDoc] = useState([]);
@@ -134,8 +135,8 @@ export default function Home() {
                 onChange={handleChange}
               >
                 <option selected>โปรดเลือก</option>
-                <option value="0">หนังสือเข้า</option>
-                <option value="1">หนังสือออก</option>
+                <option value="0">{doccateArr[0]}</option>
+                <option value="1">{doccateArr[1]}</option>
               </select>
             </div>
           </div>
@@ -228,15 +229,17 @@ export default function Home() {
               </thead>
               <tbody style={{ backgroundColor: "white" }}>
                 {Doc.map((val, key) => {
+                  const rcDate = val.rcdate.split("T");
+                  const docDate = val.docdate.split("T");
                   return (
                     <tr>
                       <th>ดูข้อมูล</th>
                       <td>{val.rcid}</td>
-                      <td>{val.rcdate}</td>
-                      <td>{val.doccate}</td>
+                      <td>{rcDate[0]}</td>
+                      <td>{doccateArr[val.doccate]}</td>
                       <td>{val.docid}</td>
-                      <td>{val.docdate}</td>
-                      <td>{val.doctype}</td>
+                      <td>{docDate[0]}</td>
+                      <td>{doctypeArr[val.doctype]}</td>
                       <td>{val.docsubj}</td>
                       <td>{val.docauth}</td>
                     </tr>
