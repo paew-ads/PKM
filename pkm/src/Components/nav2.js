@@ -114,9 +114,6 @@ export default function ButtonAppBar() {
                       autoFocusItem={open}
                       onKeyDown={handleListKeyDown}
                     >
-                      <MenuItem> ข้อมูลลูกค้า </MenuItem>
-                      <MenuItem>เพิ่มลูกค้าใหม่</MenuItem>
-
                       <MenuItem
                         onClick={() => {
                           history.push("/Customers");
