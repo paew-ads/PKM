@@ -11,6 +11,7 @@ import addTax from "../Components/AddTax";
 import PrivateRoute from "../Utils/PrivateRoute";
 import PublicRoute from "../Utils/PublicRoute";
 import DocForm from "../page/DocForm";
+import DocDetial from "../page/DocDetial";
 
 function Routes() {
   return (
@@ -24,6 +25,7 @@ function Routes() {
       <PrivateRoute exact path="/tax" component={tax} />
       <PrivateRoute exact path="/addTax" component={addTax} />
       <PrivateRoute exact path="/doc_form" component={DocForm} />
+      <PrivateRoute exact path="/doc_detial" component={DocDetial} />
     </Switch>
   );
 }
