@@ -246,7 +246,10 @@ export default function Home() {
                               marginLeft: "10px",
                             }}
                             onClick={() => {
-                              history.push("/doc_detial");
+                              history.push({
+                                pathname: "/doc_detial",
+                                state: { rcid: val.rcid },
+                              });
                             }}
                           >
                             <FindInPageIcon color="primary" />

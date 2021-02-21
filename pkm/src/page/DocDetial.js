@@ -1,18 +1,27 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import EditIcon from "@material-ui/icons/Edit";
 import Nav2 from "../Components/nav2";
 import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
+import { select } from "../action/doc-api";
+import { doccateArr, doctypeArr } from "../Utils/Config";
 
-export default function DocDetial() {
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    // setipForm({
-    //   ...ipForm,
-    //   [name]: value,
-    // });
-  };
+export default function DocDetial(props) {
+  const search = props.location.state.rcid;
+  const [Detial, setDetial] = useState({});
 
+  useEffect(() => {
+    async function fetchData() {
+      const res = await select(search);
+      setDetial(res.data);
+    }
+    fetchData();
+  }, [search]);
+  const strRCDate = "" + Detial.rcdate;
+  const strDocDate = "" + Detial.docdate;
+  const spRCDate = strRCDate.split("T");
+  const spDocDate = strDocDate.split("T");
+  //console.log(res);
   return (
     <>
       <Nav2 />
@@ -31,8 +40,7 @@ export default function DocDetial() {
                 <input
                   type="text"
                   style={{ marginLeft: "1rem" }}
-                  name="rcid"
-                  // onChange={handleChange}
+                  value={Detial.rcid}
                 ></input>
               </th>
             </div>
@@ -40,10 +48,9 @@ export default function DocDetial() {
               <th>
                 วันที่บันทึก:
                 <input
-                  type="text"
+                  type="date"
                   style={{ marginLeft: "1rem" }}
-                  name="rcid"
-                  // onChange={handleChange}
+                  value={spRCDate[0]}
                 ></input>
               </th>
             </div>
@@ -59,8 +66,7 @@ export default function DocDetial() {
                 <input
                   type="text"
                   style={{ marginLeft: "2rem" }}
-                  name="rcid"
-                  // onChange={handleChange}
+                  value={doccateArr[Detial.doccate]}
                 ></input>
               </th>
             </div>
@@ -68,10 +74,9 @@ export default function DocDetial() {
               <th>
                 วันที่ออก:
                 <input
-                  type="text"
+                  type="date"
                   style={{ marginLeft: "1.9rem" }}
-                  name="rcid"
-                  // onChange={handleChange}
+                  value={spDocDate[0]}
                 ></input>
               </th>
             </div>
@@ -87,8 +92,7 @@ export default function DocDetial() {
                 <input
                   type="text"
                   style={{ marginLeft: "2rem" }}
-                  name="rcid"
-                  // onChange={handleChange}
+                  value={Detial.docid}
                 ></input>
               </th>
             </div>
@@ -104,8 +108,7 @@ export default function DocDetial() {
                 <input
                   type="text"
                   style={{ marginLeft: "2.5rem" }}
-                  name="rcid"
-                  // onChange={handleChange}
+                  value={doctypeArr[Detial.doctype]}
                 ></input>
               </th>
             </div>
@@ -121,8 +124,7 @@ export default function DocDetial() {
                 <input
                   type="text"
                   style={{ marginLeft: "5.8rem" }}
-                  name="rcid"
-                  // onChange={handleChange}
+                  value={Detial.docsubj}
                 ></input>
               </th>
             </div>
@@ -143,8 +145,7 @@ export default function DocDetial() {
                   width: "15rem",
                   height: "6rem",
                 }}
-                name="rcid"
-                // onChange={handleChange}
+                value={Detial.doccont}
               ></textarea>
             </div>
           </div>

@@ -25,4 +25,9 @@ const list = async (search) => {
   return res;
 };
 
-export { add, list };
+const select = async (search) => {
+  const res = await Axios.get("/doc/select/" + search);
+  return res;
+};
+
+export { add, list, select };

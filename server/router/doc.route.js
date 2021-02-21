@@ -17,8 +17,8 @@ router.get("/select/:rcid", (req, res) => {
   db.query(sql, [rcid], (err, result) => {
     if (err) throw err;
     if (result.length > 0) {
-      console.log(result);
-      res.send(result);
+      console.log(result[0]);
+      res.send(result[0]);
     }
   });
 });
