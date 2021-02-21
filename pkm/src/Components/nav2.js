@@ -116,6 +116,21 @@ export default function ButtonAppBar() {
                     >
                       <MenuItem> ข้อมูลลูกค้า </MenuItem>
                       <MenuItem>เพิ่มลูกค้าใหม่</MenuItem>
+
+                      <MenuItem
+                        onClick={() => {
+                          history.push("/Customers");
+                        }}
+                      >
+                        ข้อมูลลูกค้า
+                      </MenuItem>
+                      <MenuItem
+                        onClick={() => {
+                          history.push("/addCustomers");
+                        }}
+                      >
+                        เพิ่มลูกค้าใหม่
+                      </MenuItem>
                     </MenuList>
                   </ClickAwayListener>
                 </Paper>

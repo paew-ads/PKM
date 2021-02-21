@@ -158,6 +158,7 @@ router.post("/update", (req, res) => {
 });
 
 router.get("/list", (req, res) => {
+  console.log(req.query);
   const { doccate, keyword, stdate, endate } = req.query;
   if (keyword && stdate && endate) {
     const sql =
@@ -209,7 +210,6 @@ router.get("/list", (req, res) => {
     const now = new Date(st);
     const nowDate =
       now.getFullYear() + "-" + (now.getMonth() + 1) + "-" + now.getDate();
-
     const sql =
       "SELECT * FROM document WHERE doccate = ? AND (docdate BETWEEN ? AND ?)  ORDER BY rcdate DESC,rcid DESC";
     db.query(

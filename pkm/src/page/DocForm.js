@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Nav2 from "../Components/nav2";
 import { add } from "../action/doc-api";
 import { useHistory } from "react-router-dom";
+import { doccateArr, doctypeArr } from "../Utils/Config";
 
 export default function DocForm() {
   const history = useHistory();
@@ -141,12 +142,8 @@ export default function DocForm() {
                   onChange={handleChange}
                 >
                   <option selected>โปรดเลือก</option>
-                  <option value="0">หนังสือภายนอก</option>
-                  <option value="1">หนังสือภายใน</option>
-                  <option value="2">หนังสือประทับตรา</option>
-                  <option value="3">หนังสือสั่งการ</option>
-                  <option value="4">หนังสือประชาสัมพันธ์</option>
-                  <option value="5">หนังสือใช้เป็นหลักฐาน</option>
+                  <option value="0">{doccateArr[0]}</option>
+                  <option value="1">{doccateArr[1]}</option>
                 </select>
               </div>
             </div>
@@ -162,8 +159,12 @@ export default function DocForm() {
                   onChange={handleChange}
                 >
                   <option selected>โปรดเลือก</option>
-                  <option value="0">เอกสารเข้า</option>
-                  <option value="1">เอกสารออก</option>
+                  <option value="0">{doctypeArr[0]}</option>
+                  <option value="1">{doctypeArr[1]}</option>
+                  <option value="2">{doctypeArr[2]}</option>
+                  <option value="3">{doctypeArr[3]}</option>
+                  <option value="4">{doctypeArr[4]}</option>
+                  <option value="5">{doctypeArr[5]}</option>
                 </select>
               </div>
             </div>

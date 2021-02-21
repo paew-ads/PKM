@@ -1,10 +1,40 @@
-import React from "react";
+import React, { useState } from "react";
 import Card from "../Components/Card";
 import Footer from "../Components/footer";
 import Nav2 from "../Components/nav2";
 import { useHistory } from "react-router-dom";
-export default function Home(props) {
+import { list } from "../action/doc-api";
+import { doccateArr, doctypeArr } from "../Utils/Config";
+import FindInPageIcon from "@material-ui/icons/FindInPage";
+import { IconButton } from "@material-ui/core";
+import EditIcon from "@material-ui/icons/Edit";
+import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
+
+export default function Home() {
+  const [Doc, setDoc] = useState([]);
   const history = useHistory();
+  const [ipForm, setipForm] = useState({
+    doccate: "",
+    keyword: "",
+    stdate: "",
+    endate: "",
+  });
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setipForm({
+      ...ipForm,
+      [name]: value,
+    });
+  };
+  const handleSearch = async (e) => {
+    if (!ipForm.doccate) {
+      ipForm.doccate = "0";
+    }
+    const res = await list(ipForm);
+    console.log(res.data);
+    setDoc(res.data);
+  };
+
   return (
     <>
       <Nav2 />
@@ -83,7 +113,7 @@ export default function Home(props) {
         >
           <div className="row align-items-center" style={{ marginTop: "2rem" }}>
             <div className="col-sm-1">
-              <text>ค้นหา:</text>
+              <text>คำค้นหา:</text>
             </div>
             <div className="col-sm-3">
               <td class="input-group ">
@@ -91,24 +121,26 @@ export default function Home(props) {
                   class="form-control py-2"
                   type="search"
                   id="example-search-input"
+                  name="keyword"
+                  onChange={handleChange}
                 ></input>
               </td>
             </div>
           </div>
           <div className="row aling-item-center" style={{ marginTop: "1rem" }}>
             <div className="col-sm-1">
-              <text>ชนิดหนังสือ:</text>
+              <text>หมวดหมู่หนังสือ:</text>
             </div>
             <div className="col-sm-2">
               <select
                 class="form-select"
                 aria-label="Default select example"
-                name="doctype"
-                // onChange={handleChange}
+                name="doccate"
+                onChange={handleChange}
               >
                 <option selected>โปรดเลือก</option>
-                <option value="0">หนังสือเข้า</option>
-                <option value="1">หนังสือออก</option>
+                <option value="0">{doccateArr[0]}</option>
+                <option value="1">{doccateArr[1]}</option>
               </select>
             </div>
           </div>
@@ -118,7 +150,11 @@ export default function Home(props) {
             </div>
             <div className="col-sm-4">
               <td class="input-group ">
-                <input type="date"></input>
+                <input
+                  type="date"
+                  name="stdate"
+                  onChange={handleChange}
+                ></input>
               </td>
             </div>
           </div>
@@ -128,7 +164,11 @@ export default function Home(props) {
             </div>
             <div className="col-sm-4">
               <td class="input-group ">
-                <input type="date"></input>
+                <input
+                  type="date"
+                  name="endate"
+                  onChange={handleChange}
+                ></input>
               </td>
             </div>
           </div>
@@ -151,6 +191,7 @@ export default function Home(props) {
                 class="btn btn-primary"
                 type="search"
                 style={{ marginLeft: "1rem", fontSize: "0.9rem" }}
+                onClick={handleSearch}
               >
                 <svg
                   width="1em"
@@ -191,17 +232,58 @@ export default function Home(props) {
                 </tr>
               </thead>
               <tbody style={{ backgroundColor: "white" }}>
-                <tr>
-                  <th>ดูข้อมูล</th>
-                  <td>001</td>
-                  <td>12/12/2020</td>
-                  <td>เอกสารออก</td>
-                  <td>ga001</td>
-                  <td>09/01/2021</td>
-                  <td>หนังสือภายใน</td>
-                  <td>แจ้งยอดการสั่งซื้อ</td>
-                  <td>kim</td>
-                </tr>
+                {Doc.map((val, key) => {
+                  const rcDate = val.rcdate.split("T");
+                  const docDate = val.docdate.split("T");
+                  return (
+                    <tr>
+                      <th>
+                        <td className="cal">
+                          <IconButton
+                            style={{
+                              width: "5px",
+                              height: "5px",
+                              marginLeft: "10px",
+                            }}
+                          >
+                            <FindInPageIcon color="primary" />
+                          </IconButton>
+                        </td>
+                        <td className="cal">
+                          <IconButton
+                            style={{
+                              width: "5px",
+                              height: "5px",
+                              marginLeft: "10px",
+                            }}
+                          >
+                            <EditIcon color="primary" />
+                          </IconButton>
+                        </td>
+                        <td className="cal">
+                          <IconButton
+                            style={{
+                              width: "5px",
+                              height: "5px",
+                              marginLeft: "10px",
+                            }}
+                          >
+                            <DeleteForeverIcon color="secondary" />
+                          </IconButton>
+                        </td>
+                      </th>
+
+                      <td>{val.rcid}</td>
+                      <td>{rcDate[0]}</td>
+                      <td>{doccateArr[val.doccate]}</td>
+                      <td>{val.docid}</td>
+                      <td>{docDate[0]}</td>
+                      <td>{doctypeArr[val.doctype]}</td>
+                      <td>{val.docsubj}</td>
+                      <td>{val.docauth}</td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           </div>
