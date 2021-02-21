@@ -11,12 +11,13 @@ const db = mysql.createPool({
   database: "pkm",
 });
 
-router.get("/select:rcid", (req, res) => {
+router.get("/select/:rcid", (req, res) => {
   const { rcid } = req.params;
   const sql = "SELECT * FROM document WHERE rcid = ?";
   db.query(sql, [rcid], (err, result) => {
     if (err) throw err;
     if (result.length > 0) {
+      console.log(result);
       res.send(result);
     }
   });
