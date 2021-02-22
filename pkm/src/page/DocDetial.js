@@ -21,6 +21,7 @@ export default function DocDetial(props) {
   const strDocDate = "" + Detial.docdate;
   const spRCDate = strRCDate.split("T");
   const spDocDate = strDocDate.split("T");
+
   //console.log(res);
   return (
     <>
@@ -134,14 +135,14 @@ export default function DocDetial(props) {
             className="row align-items-center"
             style={{ marginTop: "1rem", marginLeft: "1.8rem" }}
           >
-            <div className="col-sm-2">
+            <div className="col-sm-2" style={{ marginTop: "-5rem" }}>
               <th>เนื้อความ(ย่อ):</th>
             </div>
-            <div className="col">
+            <div className="col-sm-2">
               <textarea
                 type="text"
                 style={{
-                  marginLeft: "-62rem",
+                  marginLeft: "-8rem",
                   width: "15rem",
                   height: "6rem",
                 }}
@@ -167,9 +168,12 @@ export default function DocDetial(props) {
 
           <div
             className="row align-items-center"
-            style={{ marginTop: "3rem", marginLeft: "1.8rem" }}
+            style={{ marginTop: "5rem", marginLeft: "1.8rem" }}
           >
-            <div className="col-sm-2" style={{ marginLeft: "1rem" }}>
+            <div
+              className="col-sm-2"
+              style={{ marginLeft: "1rem", marginTop: "-2rem" }}
+            >
               <button
                 class="btn btn-warning"
                 style={{ fontSize: "15px" }}
@@ -179,7 +183,10 @@ export default function DocDetial(props) {
                 แก้ไข
               </button>
             </div>
-            <div className="col-sm-2" style={{ marginLeft: "-6rem" }}>
+            <div
+              className="col-sm-2"
+              style={{ marginLeft: "-6rem", marginTop: "-2rem" }}
+            >
               <button
                 class="btn btn-danger"
                 style={{ fontSize: "15px" }}
@@ -189,7 +196,10 @@ export default function DocDetial(props) {
                 ลบ
               </button>
             </div>
-            <div className="col-sm-2" style={{ marginLeft: "-5rem" }}>
+            <div
+              className="col-sm-2"
+              style={{ marginLeft: "-5rem", marginTop: "-2rem" }}
+            >
               <button
                 class="btn btn-secondary"
                 style={{ fontSize: "15px" }}
