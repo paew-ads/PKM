@@ -5,8 +5,10 @@ import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import { select } from "../action/doc-api";
 import { doccateArr, doctypeArr } from "../Utils/Config";
+import { useHistory } from "react-router-dom";
 
 export default function DocDetial(props) {
+  const history = useHistory();
   const search = props.location.state.rcid;
   const [Detial, setDetial] = useState({});
 
@@ -177,7 +179,12 @@ export default function DocDetial(props) {
               <button
                 class="btn btn-warning"
                 style={{ fontSize: "15px" }}
-                onClick={() => {}}
+                onClick={() => {
+                  history.push({
+                    pathname: "/doc_edit",
+                    state: { rcid: Detial.rcid },
+                  });
+                }}
               >
                 <EditIcon />
                 แก้ไข
@@ -197,7 +204,9 @@ export default function DocDetial(props) {
               <button
                 class="btn btn-secondary"
                 style={{ fontSize: "15px" }}
-                onClick={() => {}}
+                onClick={() => {
+                  history.push("/");
+                }}
               >
                 <ArrowBackIosIcon />
                 กลับ
