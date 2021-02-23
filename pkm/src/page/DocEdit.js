@@ -1,14 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Nav2 from "../Components/nav2";
-import { add } from "../action/doc-api";
+import { update } from "../action/doc-api";
 import { useHistory } from "react-router-dom";
 import { doccateArr, doctypeArr } from "../Utils/Config";
+import { select } from "../action/doc-api";
 
 export default function DocEdit(props) {
-  // const search = props.location.state.rcid;
-  // return <div>{search}</div>;
   const history = useHistory();
-  const [ipFile, setipFile] = useState();
+  const oldid = props.location.state.rcid;
+
   const [ipForm, setipForm] = useState({
     rcid: "",
     rcdate: "",
@@ -20,6 +20,7 @@ export default function DocEdit(props) {
     doccont: "",
     docauth: "",
   });
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setipForm({
@@ -27,6 +28,30 @@ export default function DocEdit(props) {
       [name]: value,
     });
   };
+
+  useEffect(() => {
+    async function fetchData() {
+      const res = await select(oldid);
+      const strRCDate = "" + res.data.rcdate;
+      const strDocDate = "" + res.data.docdate;
+      const spRCDate = strRCDate.split("T");
+      const spDocDate = strDocDate.split("T");
+      setipForm({
+        rcid: res.data.rcid,
+        rcdate: spRCDate[0],
+        doccate: res.data.doccate,
+        docid: res.data.docid,
+        docdate: spDocDate[0],
+        doctype: res.data.doctype,
+        docsubj: res.data.docsubj,
+        doccont: res.data.doccont,
+        docauth: res.data.docauth,
+      });
+    }
+    fetchData();
+  }, [oldid]);
+
+  const [ipFile, setipFile] = useState();
   const selectFile = (e) => {
     setipFile(e.target.files[0]);
   };
@@ -39,7 +64,7 @@ export default function DocEdit(props) {
         return;
       }
     }
-    const res = await add(ipForm, ipFile);
+    const res = await update(oldid, ipForm, ipFile);
     if (res.data.error) {
       alert(res.data.message);
       alert("หมายเลขบันทึก อาจซ้ำในฐานข้อมูล");
@@ -67,6 +92,7 @@ export default function DocEdit(props) {
                   type="text"
                   style={{ marginLeft: "1rem" }}
                   name="rcid"
+                  value={ipForm.rcid}
                   onChange={handleChange}
                 ></input>
               </th>
@@ -79,6 +105,7 @@ export default function DocEdit(props) {
                 <input
                   type="date"
                   name="rcdate"
+                  value={ipForm.rcdate}
                   onChange={handleChange}
                 ></input>
               </td>
@@ -92,6 +119,7 @@ export default function DocEdit(props) {
                     type="text"
                     style={{ marginLeft: "1rem" }}
                     name="docid"
+                    value={ipForm.docid}
                     onChange={handleChange}
                   ></input>
                 </th>
@@ -104,6 +132,7 @@ export default function DocEdit(props) {
                   <input
                     type="date"
                     name="docdate"
+                    value={ipForm.docdate}
                     onChange={handleChange}
                   ></input>
                 </td>
@@ -119,9 +148,10 @@ export default function DocEdit(props) {
                   class="form-select"
                   aria-label="Default select example"
                   name="doccate"
+                  value={ipForm.doccate}
                   onChange={handleChange}
                 >
-                  <option selected>โปรดเลือก</option>
+                  <option>โปรดเลือก</option>
                   <option value="0">{doccateArr[0]}</option>
                   <option value="1">{doccateArr[1]}</option>
                 </select>
@@ -136,6 +166,7 @@ export default function DocEdit(props) {
                   class="form-select"
                   aria-label="Default select example"
                   name="doctype"
+                  value={ipForm.doctype}
                   onChange={handleChange}
                 >
                   <option selected>โปรดเลือก</option>
@@ -157,6 +188,7 @@ export default function DocEdit(props) {
                     type="text"
                     style={{ marginLeft: "1rem" }}
                     name="docsubj"
+                    value={ipForm.docsubj}
                     onChange={handleChange}
                   ></input>
                 </th>
@@ -171,6 +203,7 @@ export default function DocEdit(props) {
                     type="text"
                     style={{ marginLeft: "1rem" }}
                     name="docauth"
+                    value={ipForm.docauth}
                     onChange={handleChange}
                   ></input>
                 </th>
@@ -186,6 +219,7 @@ export default function DocEdit(props) {
                   <textarea
                     style={{ width: "22rem", height: "7rem" }}
                     name="doccont"
+                    value={ipForm.doccont}
                     onChange={handleChange}
                   ></textarea>
                 </th>
@@ -214,7 +248,13 @@ export default function DocEdit(props) {
               </div>
               <div className="col-sm-1">
                 <th>
-                  <button class="btn btn-danger" type="cancel">
+                  <button
+                    class="btn btn-danger"
+                    type="cancel"
+                    onClick={() => {
+                      history.push("/");
+                    }}
+                  >
                     ยกเลิก
                   </button>
                 </th>
