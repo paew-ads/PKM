@@ -12,7 +12,6 @@ const db = mysql.createPool({
 router.post("/auth/signin", (req, res) => {
   console.log(req.body);
   const { uid, upwd } = req.body.ipForm;
-
   if (!uid || !upwd) {
     return res.status(400).json({
       error: true,
@@ -26,6 +25,7 @@ router.post("/auth/signin", (req, res) => {
     if (err) throw err;
     if (result.length > 0) {
       console.log(result[0]);
+      req.session.user = result[0];
       return res.json({
         message: "Login Success",
         user: result[0],

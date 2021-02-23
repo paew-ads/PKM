@@ -12,20 +12,24 @@ const db = mysql.createPool({
 });
 
 router.get("/file/:rcid", (req, res) => {
-  const { rcid } = req.params;
-  const sql = "SELECT * FROM document WHERE rcid = ?";
-  db.query(sql, [rcid], (err, result) => {
-    if (err) throw err;
-    if (result.length > 0) {
-      console.log(result[0]);
-      if (result[0].fitype) {
-        res.setHeader("Content-Type", result[0].fitype);
-        res.send(result[0].ficont);
-      } else {
-        res.send("no file");
+  if (!req.session.user) {
+    res.send("you not login");
+  } else {
+    const { rcid } = req.params;
+    const sql = "SELECT * FROM document WHERE rcid = ?";
+    db.query(sql, [rcid], (err, result) => {
+      if (err) throw err;
+      if (result.length > 0) {
+        console.log(result[0]);
+        if (result[0].fitype) {
+          res.setHeader("Content-Type", result[0].fitype);
+          res.send(result[0].ficont);
+        } else {
+          res.send("no file");
+        }
       }
-    }
-  });
+    });
+  }
 });
 
 router.get("/select/:rcid", (req, res) => {
