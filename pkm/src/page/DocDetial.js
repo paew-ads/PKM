@@ -23,6 +23,7 @@ export default function DocDetial(props) {
   const spDocDate = strDocDate.split("T");
 
   //console.log(res);
+
   return (
     <>
       <Nav2 />
@@ -156,13 +157,17 @@ export default function DocDetial(props) {
             style={{ marginTop: "1rem", marginLeft: "1.8rem" }}
           >
             <div className="col-sm-2" style={{ marginLeft: "5rem" }}>
-              <button
+              <a
                 class="btn btn-secondary"
+                href={"http://localhost:3001/doc/file/" + Detial.rcid}
+                role="button"
                 style={{ fontSize: "15px" }}
-                onClick={() => {}}
+                target="_blank"
+                rel="noopener noreferrer"
+                download="file.pdf"
               >
                 เอกสาร
-              </button>
+              </a>
             </div>
           </div>
 
