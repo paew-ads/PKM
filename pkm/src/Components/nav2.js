@@ -16,6 +16,7 @@ import Grow from "@material-ui/core/Grow";
 import ClickAwayListener from "@material-ui/core/ClickAwayListener";
 import { purple } from "@material-ui/core/colors";
 import { useHistory } from "react-router-dom";
+import { signout } from "../action/auth-api";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -43,6 +44,7 @@ export default function ButtonAppBar() {
 
   const handleLogout = async () => {
     sessionStorage.clear();
+    signout();
     history.push("/signin");
   };
 

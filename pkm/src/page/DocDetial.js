@@ -23,9 +23,6 @@ export default function DocDetial(props) {
   const strDocDate = "" + Detial.docdate;
   const spRCDate = strRCDate.split("T");
   const spDocDate = strDocDate.split("T");
-
-  //console.log(res);
-
   return (
     <>
       <Nav2 />

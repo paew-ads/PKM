@@ -1,34 +1,27 @@
-var jwt = require("jsonwebtoken");
+var userModel = "";
 
-function generateToken(user) {
-  //1. Don't use password and other sensitive fields
-  //2. Use the information that are useful in other parts
+function saveUser(user) {
   if (!user) return null;
 
-  var u = {
+  userModel = {
     uid: user.uid,
     upwd: user.upwd,
     uname: user.uname,
     urole: user.urole,
   };
-
-  return jwt.sign(u, process.env.JWT_SECRET, {
-    expiresIn: 60 * 60 * 24, // expires in 24 hours
-  });
 }
 
-function getCleanUser(user) {
-  if (!user) return null;
+function getUser() {
+  if (!userModel) return null;
+  return JSON.stringify(userModel);
+}
 
-  return {
-    uid: user.uid,
-    upwd: user.upwd,
-    uname: user.uname,
-    urole: user.urole,
-  };
+function deleteUser() {
+  userModel = null;
 }
 
 module.exports = {
-  generateToken,
-  getCleanUser,
+  saveUser,
+  getUser,
+  deleteUser,
 };
