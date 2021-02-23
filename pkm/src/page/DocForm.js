@@ -55,28 +55,6 @@ export default function DocForm() {
           style={{ marginTop: "3rem", backgroundColor: "#ccccff" }}
         >
           <div
-            className="row"
-            style={{ marginTop: "0.2rem", marginLeft: "10px" }}
-          >
-            <div className="col-sm-3">
-              <button
-                class="btn btn-secondary"
-                style={{ fontSize: "15px" }}
-                onClick={() => {}}
-              >
-                เอกสารเข้า
-              </button>
-              <button
-                class="btn btn-secondary"
-                style={{ marginLeft: "1rem", fontSize: "15px" }}
-                onClick={() => {}}
-              >
-                เอกสารออก
-              </button>
-            </div>
-          </div>
-
-          <div
             className="row align-items-center"
             style={{ marginTop: "1rem", marginLeft: "1.8rem" }}
           >
