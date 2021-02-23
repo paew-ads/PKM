@@ -30,4 +30,18 @@ const select = async (search) => {
   return res;
 };
 
-export { add, list, select };
+const update = async (oldid, ipfrom, ipfile) => {
+  const jsonoldid = JSON.stringify(oldid);
+  const jsonipfrom = JSON.stringify(ipfrom);
+  var formData = new FormData();
+  formData.append("ipfile", ipfile);
+  formData.append("oldid", jsonoldid);
+  formData.append("ipfrom", jsonipfrom);
+  console.log({ oldid, ipfrom, ipfile });
+  const res = await Axios.post("/doc/update", formData, {
+    headers: { "Content-Type": "multipart/form-data" },
+  });
+  return res;
+};
+
+export { add, list, select, update };

@@ -106,8 +106,15 @@ router.post("/add", (req, res) => {
 });
 
 router.post("/update", (req, res) => {
+  const oldid = JSON.parse(req.body.oldid);
+  var fitype = "";
+  var ficont = "";
+  if (req.files) {
+    const { ipfile } = req.files;
+    fitype = ipfile.mimetype;
+    ficont = fs.readFileSync(ipfile.tempFilePath);
+  }
   const {
-    oldid,
     rcid,
     rcdate,
     doccate,
@@ -117,13 +124,10 @@ router.post("/update", (req, res) => {
     docsubj,
     doccont,
     docauth,
-  } = req.body;
-  const fitype = path.extname(req.files);
-  const ficont = req.files;
-  const sql =
-    "UPDATE document SET rcid=?, rcdate=?,doccate=?,docid=?,docdate=?,doctype=?,docsubj=?,doccont=?,docauth=? WHERE rcid=?";
+  } = JSON.parse(req.body.ipfrom);
   if (req.files) {
-    sql += ",fitype=?,ficont=? WHERE rcid=?";
+    const sql =
+      "UPDATE document SET rcid=?, rcdate=?,doccate=?,docid=?,docdate=?,doctype=?,docsubj=?,doccont=?,docauth=?,fitype=?,ficont=? WHERE rcid=?";
     db.query(
       sql,
       [
@@ -141,38 +145,51 @@ router.post("/update", (req, res) => {
         oldid,
       ],
       (err, result) => {
-        if (err) throw err;
-        if (result.length > 0) {
+        if (err) {
           res.json({
-            massage: "insert sucess",
+            error: true,
+            message: "Failed to update data",
+          });
+        } else {
+          res.json({
+            error: false,
+            message: "update sucess",
+          });
+        }
+      }
+    );
+  } else {
+    const sql =
+      "UPDATE document SET rcid=?, rcdate=?,doccate=?,docid=?,docdate=?,doctype=?,docsubj=?,doccont=?,docauth=? WHERE rcid=?";
+    db.query(
+      sql,
+      [
+        rcid,
+        rcdate,
+        doccate,
+        docid,
+        docdate,
+        doctype,
+        docsubj,
+        doccont,
+        docauth,
+        oldid,
+      ],
+      (err, result) => {
+        if (err) {
+          res.json({
+            error: true,
+            message: "Failed to update data",
+          });
+        } else {
+          res.json({
+            error: false,
+            message: "update  sucess (no file)",
           });
         }
       }
     );
   }
-  db.query(
-    sql,
-    [
-      rcid,
-      rcdate,
-      doccate,
-      docid,
-      docdate,
-      doctype,
-      docsubj,
-      doccont,
-      docauth,
-      oldid,
-    ],
-    (err, result) => {
-      if (err) throw err;
-      if (result.length > 0) {
-        res.json({
-          massage: "insert sucess No file",
-        });
-      }
-    }
-  );
 });
 
 router.get("/list", (req, res) => {
