@@ -12,6 +12,7 @@ import PrivateRoute from "../Utils/PrivateRoute";
 import PublicRoute from "../Utils/PublicRoute";
 import DocForm from "../page/DocForm";
 import DocDetial from "../page/DocDetial";
+import DocEdit from "../page/DocEdit";
 
 function Routes() {
   return (
@@ -26,6 +27,7 @@ function Routes() {
       <PrivateRoute exact path="/addTax" component={addTax} />
       <PrivateRoute exact path="/doc_form" component={DocForm} />
       <PrivateRoute exact path="/doc_detial" component={DocDetial} />
+      <PrivateRoute exact path="/doc_edit" component={DocEdit} />
     </Switch>
   );
 }

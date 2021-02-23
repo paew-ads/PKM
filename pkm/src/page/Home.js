@@ -262,6 +262,12 @@ export default function Home() {
                               height: "5px",
                               marginLeft: "10px",
                             }}
+                            onClick={() => {
+                              history.push({
+                                pathname: "/doc_edit",
+                                state: { rcid: val.rcid },
+                              });
+                            }}
                           >
                             <EditIcon color="primary" />
                           </IconButton>
