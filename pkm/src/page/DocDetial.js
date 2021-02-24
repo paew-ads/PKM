@@ -3,7 +3,7 @@ import EditIcon from "@material-ui/icons/Edit";
 import Nav2 from "../Components/nav2";
 import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
-import { select } from "../action/doc-api";
+import { select, deleteDoc } from "../action/doc-api";
 import { doccateArr, doctypeArr } from "../Utils/Config";
 import { useHistory } from "react-router-dom";
 
@@ -23,6 +23,20 @@ export default function DocDetial(props) {
   const strDocDate = "" + Detial.docdate;
   const spRCDate = strRCDate.split("T");
   const spDocDate = strDocDate.split("T");
+
+  const handleDelete = async (rcid) => {
+    if (
+      window.confirm(
+        "Are you sure you want to Delete this thing into the database?"
+      )
+    ) {
+      const res = await deleteDoc(rcid);
+      alert(res.data.massage);
+      history.push("/");
+    } else {
+      alert("Delete not success!!!");
+    }
+  };
   return (
     <>
       <Nav2 />
@@ -199,7 +213,9 @@ export default function DocDetial(props) {
               <button
                 class="btn btn-danger"
                 style={{ fontSize: "15px" }}
-                onClick={() => {}}
+                onClick={() => {
+                  handleDelete(search);
+                }}
               >
                 <DeleteForeverIcon color="white" />
                 ลบ

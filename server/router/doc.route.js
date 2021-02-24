@@ -44,12 +44,13 @@ router.get("/select/:rcid", (req, res) => {
   });
 });
 
-router.get("/delete:rcid ", (req, res) => {
+router.get("/delete/:rcid", (req, res) => {
   const { rcid } = req.params;
-  const sql = "DELETE * FROM document WHERE rcid = ?";
+  const sql = "DELETE FROM document WHERE rcid = ?";
   db.query(sql, [rcid], (err, result) => {
     if (err) throw err;
-    if (result.length > 0) {
+    console.log(result);
+    if (result) {
       res.json({
         massage: "delete success",
       });
