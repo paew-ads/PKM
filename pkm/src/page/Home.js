@@ -3,7 +3,7 @@ import Card from "../Components/Card";
 import Footer from "../Components/footer";
 import Nav2 from "../Components/nav2";
 import { useHistory } from "react-router-dom";
-import { list } from "../action/doc-api";
+import { list, deleteDoc } from "../action/doc-api";
 import { doccateArr, doctypeArr } from "../Utils/Config";
 import FindInPageIcon from "@material-ui/icons/FindInPage";
 import { IconButton } from "@material-ui/core";
@@ -33,6 +33,19 @@ export default function Home() {
     const res = await list(ipForm);
     console.log(res.data);
     setDoc(res.data);
+  };
+  const handleDelete = async (rcid) => {
+    if (
+      window.confirm(
+        "Are you sure you want to Delete this thing into the database?"
+      )
+    ) {
+      const res = await deleteDoc(rcid);
+      alert(res.data.massage);
+      window.location.reload();
+    } else {
+      alert("Delete not success!!!");
+    }
   };
 
   return (
@@ -278,6 +291,9 @@ export default function Home() {
                               width: "5px",
                               height: "5px",
                               marginLeft: "10px",
+                            }}
+                            onClick={() => {
+                              handleDelete(val.rcid);
                             }}
                           >
                             <DeleteForeverIcon color="secondary" />

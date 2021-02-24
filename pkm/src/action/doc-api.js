@@ -44,4 +44,8 @@ const update = async (oldid, ipfrom, ipfile) => {
   return res;
 };
 
-export { add, list, select, update };
+const deleteDoc = async (rcid) => {
+  const res = await Axios.get("/doc/delete/" + rcid);
+  return res;
+};
+export { add, list, select, update, deleteDoc };
