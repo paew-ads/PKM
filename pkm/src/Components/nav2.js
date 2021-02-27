@@ -6,13 +6,7 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import newLogo from "../img/newLogo.png";
-import MenuItem from "@material-ui/core/MenuItem";
-import MenuList from "@material-ui/core/MenuList";
 import ExitToAppOutlinedIcon from "@material-ui/icons/ExitToAppOutlined";
-import Paper from "@material-ui/core/Paper";
-import Popper from "@material-ui/core/Popper";
-import Grow from "@material-ui/core/Grow";
-import ClickAwayListener from "@material-ui/core/ClickAwayListener";
 import { useHistory } from "react-router-dom";
 import { signout } from "../action/auth-api";
 import { colors } from "@material-ui/core";
@@ -44,7 +38,7 @@ export default function ButtonAppBar() {
   const handleLogout = async () => {
     sessionStorage.clear();
     signout();
-    history.push("/signin");
+    history.push("/");
   };
 
   const handleToggle = () => {
@@ -60,20 +54,20 @@ export default function ButtonAppBar() {
     prevOpen.current = open;
   }, [open]);
 
-  const handleClose = (event) => {
-    if (anchorRef.current && anchorRef.current.contains(event.target)) {
-      return;
-    }
+  // const handleClose = (event) => {
+  //   if (anchorRef.current && anchorRef.current.contains(event.target)) {
+  //     return;
+  //   }
 
-    setOpen(false);
-  };
+  //   setOpen(false);
+  // };
 
-  function handleListKeyDown(event) {
-    if (event.key === "Tab") {
-      event.preventDefault();
-      setOpen(false);
-    }
-  }
+  // function handleListKeyDown(event) {
+  //   if (event.key === "Tab") {
+  //     event.preventDefault();
+  //     setOpen(false);
+  //   }
+  // }
 
   return (
     <div className={classes.root}>
@@ -83,7 +77,11 @@ export default function ButtonAppBar() {
       >
         <Toolbar>
           <IconButton edge="start" href="/">
-            <img src={newLogo} style={{ height: "8rem", width: "9rem" }}></img>
+            <img
+              src={newLogo}
+              style={{ height: "8rem", width: "9rem" }}
+              alt=""
+            />
           </IconButton>
         </Toolbar>
       </AppBar>
@@ -101,10 +99,10 @@ export default function ButtonAppBar() {
             onClick={handleToggle}
           >
             <Typography variant="h6" noWrap>
-              ข้อมูลลูกค้า
+              E-document
             </Typography>
           </Button>
-          <Popper
+          {/* <Popper
             open={open}
             anchorEl={anchorRef.current}
             role={undefined}
@@ -144,7 +142,7 @@ export default function ButtonAppBar() {
                 </Paper>
               </Grow>
             )}
-          </Popper>
+          </Popper> */}
 
           <Button
             aria-haspopup="true"

@@ -1,7 +1,6 @@
 import React from "react";
 import { Switch } from "react-router-dom";
 import SignIn from "../page/SignIn";
-import Home from "../page/Home";
 import Customers from "../page/Customers";
 import addCustomers from "../page/AddCustomer";
 import masterData from "../Components/MasterData";
@@ -19,8 +18,9 @@ import DocOut from "../page/DocOut";
 function Routes() {
   return (
     <Switch>
-      <PublicRoute exact path="/signin" component={SignIn} />
-      <PrivateRoute exact path="/" component={Home} />
+      <PublicRoute exact path="/" component={SignIn} />
+      <PrivateRoute exact path="/doc_in" component={DocIn} />
+      <PrivateRoute exact path="/doc_out" component={DocOut} />
       <PrivateRoute exact path="/Customers" component={Customers} />
       <PrivateRoute exact path="/addCustomers" component={addCustomers} />
       <PrivateRoute exact path="/masterData" component={masterData} />
@@ -30,8 +30,6 @@ function Routes() {
       <PrivateRoute exact path="/doc_form" component={DocForm} />
       <PrivateRoute exact path="/doc_detial" component={DocDetial} />
       <PrivateRoute exact path="/doc_edit" component={DocEdit} />
-      <PrivateRoute exact path="/doc_in" component={DocIn} />
-      <PrivateRoute exact path="/doc_out" component={DocOut} />
     </Switch>
   );
 }

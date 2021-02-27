@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Footer from "../Components/footer";
 import Nav2 from "../Components/nav2";
 import { useHistory } from "react-router-dom";
@@ -9,7 +9,7 @@ import { IconButton } from "@material-ui/core";
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 
-export default function Home() {
+export default function DocIn() {
   const [Doc, setDoc] = useState([]);
   const history = useHistory();
   const [ipForm, setipForm] = useState({
@@ -18,6 +18,19 @@ export default function Home() {
     stdate: "",
     endate: "",
   });
+
+  useEffect(() => {
+    async function fetchData() {
+      if (!ipForm.doccate) {
+        ipForm.doccate = "0";
+      }
+      const res = await list(ipForm);
+      console.log(res.data);
+      setDoc(res.data);
+    }
+    fetchData();
+  }, [ipForm]);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setipForm({
