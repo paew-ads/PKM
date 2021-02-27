@@ -5,8 +5,7 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
-import Avatar from "@material-ui/core/Avatar";
-import logo from "../img/PKM.png";
+import newLogo from "../img/newLogo.png";
 import MenuItem from "@material-ui/core/MenuItem";
 import MenuList from "@material-ui/core/MenuList";
 import ExitToAppOutlinedIcon from "@material-ui/icons/ExitToAppOutlined";
@@ -14,9 +13,9 @@ import Paper from "@material-ui/core/Paper";
 import Popper from "@material-ui/core/Popper";
 import Grow from "@material-ui/core/Grow";
 import ClickAwayListener from "@material-ui/core/ClickAwayListener";
-import { purple } from "@material-ui/core/colors";
 import { useHistory } from "react-router-dom";
 import { signout } from "../action/auth-api";
+import { colors } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -78,12 +77,22 @@ export default function ButtonAppBar() {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static" style={{ backgroundColor: purple[300] }}>
+      <AppBar
+        position="static"
+        style={{ backgroundColor: colors.blueGrey[900], height: "3rem" }}
+      >
         <Toolbar>
           <IconButton edge="start" href="/">
-            <Avatar src={logo} style={{ height: "2.8rem", width: "2.8rem" }} />
+            <img src={newLogo} style={{ height: "8rem", width: "9rem" }}></img>
           </IconButton>
+        </Toolbar>
+      </AppBar>
 
+      <AppBar
+        position="static"
+        style={{ backgroundColor: colors.blueGrey[900], height: "3rem" }}
+      >
+        <Toolbar>
           <Button
             ref={anchorRef}
             aria-controls={open ? "menu-list-grow" : undefined}
@@ -137,15 +146,26 @@ export default function ButtonAppBar() {
             )}
           </Popper>
 
-          <Button aria-haspopup="true" color="inherit">
+          <Button
+            aria-haspopup="true"
+            color="inherit"
+            onClick={() => {
+              history.push("/doc_in");
+            }}
+          >
             <Typography variant="h6" noWrap>
-              ข้อมูลสินค้า
+              เอกสารเข้า
             </Typography>
           </Button>
 
-          <Button color="inherit">
+          <Button
+            color="inherit"
+            onClick={() => {
+              history.push("/doc_out");
+            }}
+          >
             <Typography variant="h6" noWrap>
-              การสั่งซื้อสินค้า
+              เอกสารออก
             </Typography>
           </Button>
 
@@ -155,7 +175,7 @@ export default function ButtonAppBar() {
             </Typography>
           </Button>
           <Button
-            color="secondary"
+            color="inherit"
             type="cancel"
             onClick={handleLogout}
             startIcon={<ExitToAppOutlinedIcon />}

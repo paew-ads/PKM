@@ -4,10 +4,8 @@ export default function card(props) {
   return (
     <>
       <div
-        className="card text-white  mb-3"
+        className="card text-white "
         style={{
-          maxWidth: "18rem",
-          maxHeight: "18rem",
           backgroundColor: props.color,
           alignItems: "center",
         }}

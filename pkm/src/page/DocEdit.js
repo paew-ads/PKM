@@ -77,31 +77,33 @@ export default function DocEdit(props) {
     <>
       <Nav2 />
       <div className="container">
-        <div
-          className="row align-items-center"
-          style={{ marginTop: "3rem", backgroundColor: "#ccccff" }}
-        >
+        <div className="cardd" style={{ marginTop: "3rem" }}>
           <div
             className="row align-items-center"
-            style={{ marginTop: "1rem", marginLeft: "1.8rem" }}
+            style={{ marginLeft: "1rem" }}
           >
-            <div className="col-sm-5">
-              <th>
+            <div className="col-sm-4">
+              <div className="text" style={{ marginTop: "2rem" }}>
                 หมายเลขบันทึก:
                 <input
                   type="text"
-                  style={{ marginLeft: "1rem" }}
+                  style={{ marginLeft: "2.2rem" }}
                   name="rcid"
                   value={ipForm.rcid}
                   onChange={handleChange}
                 ></input>
-              </th>
+              </div>
             </div>
-            <div className="col-sm-1" style={{ marginLeft: "6.8rem" }}>
-              <th>วันที่บันทึก:</th>
+            <div className="col">
+              <div className="text" style={{ marginTop: "2rem" }}>
+                วันที่บันทึก:
+              </div>
             </div>
             <div className="col-sm-4">
-              <td class="input-group ">
+              <td
+                class="input-group "
+                style={{ marginTop: "2rem", marginLeft: "-9.5rem" }}
+              >
                 <input
                   type="date"
                   name="rcdate"
@@ -112,20 +114,20 @@ export default function DocEdit(props) {
             </div>
 
             <div className="row " style={{ marginTop: "1rem" }}>
-              <div className="col-sm-5">
-                <th>
+              <div className="col-sm-4">
+                <div className="text" style={{ marginLeft: "2rem" }}>
                   เลขที่หนังสือ:
                   <input
                     type="text"
-                    style={{ marginLeft: "1rem" }}
+                    style={{ marginLeft: "2rem" }}
                     name="docid"
                     value={ipForm.docid}
                     onChange={handleChange}
                   ></input>
-                </th>
+                </div>
               </div>
-              <div className="col-sm-1" style={{ marginLeft: "7.5rem" }}>
-                <th>วันที่ออก:</th>
+              <div className="col-sm-1" style={{ marginLeft: "11rem" }}>
+                <div className="text">วันที่ออก:</div>
               </div>
               <div className="col-sm-4">
                 <td class="input-group ">
@@ -140,10 +142,12 @@ export default function DocEdit(props) {
             </div>
 
             <div className="row " style={{ marginTop: "1rem" }}>
-              <div className="col">
-                <th>หมวดหนังสือ:</th>
+              <div className="col-sm-4">
+                <div className="text" style={{ marginLeft: "-12rem" }}>
+                  หมวดหนังสือ:
+                </div>
               </div>
-              <div className="col-sm-2" style={{ marginRight: "58.5rem" }}>
+              <div className="col-sm-2" style={{ marginLeft: "-15rem" }}>
                 <select
                   class="form-select"
                   aria-label="Default select example"
@@ -158,10 +162,12 @@ export default function DocEdit(props) {
               </div>
             </div>
             <div className="row " style={{ marginTop: "1rem" }}>
-              <div className="col">
-                <th>ชนิดหนังสือ:</th>
+              <div className="col-sm-4">
+                <div className="text" style={{ marginLeft: "-12rem" }}>
+                  ชนิดหนังสือ:
+                </div>
               </div>
-              <div className="col-sm-2" style={{ marginRight: "58.5rem" }}>
+              <div className="col-sm-2" style={{ marginLeft: "-15rem" }}>
                 <select
                   class="form-select"
                   aria-label="Default select example"
@@ -181,43 +187,47 @@ export default function DocEdit(props) {
             </div>
 
             <div className="row " style={{ marginTop: "1rem" }}>
-              <div className="col">
-                <th>
+              <div className="col-sm-4">
+                <div className="text" style={{ marginLeft: "4rem" }}>
                   เรื่อง:
                   <input
                     type="text"
-                    style={{ marginLeft: "1rem" }}
+                    style={{ marginLeft: "3rem" }}
                     name="docsubj"
                     value={ipForm.docsubj}
                     onChange={handleChange}
                   ></input>
-                </th>
+                </div>
               </div>
             </div>
 
             <div className="row " style={{ marginTop: "1rem" }}>
-              <div className="col">
-                <th>
+              <div className="col-sm-4">
+                <div className="text" style={{ marginLeft: "4rem" }}>
                   ผู้ออก:
                   <input
                     type="text"
-                    style={{ marginLeft: "1rem" }}
+                    style={{ marginLeft: "2.5rem" }}
                     name="docauth"
                     value={ipForm.docauth}
                     onChange={handleChange}
                   ></input>
-                </th>
+                </div>
               </div>
             </div>
 
             <div className="row " style={{ marginTop: "1rem" }}>
-              <div className="col">
-                <th>เนื้อความ(ย่อ):</th>
+              <div className="col-sm-2">
+                <div className="text">เนื้อความ(ย่อ):</div>
               </div>
               <div>
                 <th>
                   <textarea
-                    style={{ width: "22rem", height: "7rem" }}
+                    style={{
+                      width: "22rem",
+                      height: "7rem",
+                      marginLeft: "3rem",
+                    }}
                     name="doccont"
                     value={ipForm.doccont}
                     onChange={handleChange}
@@ -226,15 +236,18 @@ export default function DocEdit(props) {
               </div>
             </div>
             <div className="row ">
-              <div className="col">
-                <th>
+              <div className="col-sm-4">
+                <div className="text" style={{ marginLeft: "2rem" }}>
                   File:
                   <input type="file" name="file" onChange={selectFile}></input>
-                </th>
+                </div>
               </div>
             </div>
 
-            <div className="row " style={{ marginTop: "1rem" }}>
+            <div
+              className="row "
+              style={{ marginTop: "1rem", marginLeft: "60rem" }}
+            >
               <div className="col-sm-1">
                 <th>
                   <button

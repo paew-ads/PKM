@@ -5,3 +5,9 @@
   border-radius: 50%;
   margin-top: 1rem;
 }
+
+.cardd {
+  background-color: #263238;
+  height: 37rem;
+  width: 80rem;
+}

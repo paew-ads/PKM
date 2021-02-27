@@ -50,7 +50,14 @@ export default function Home() {
   return (
     <>
       <Nav2 />
-      <div className="container">
+
+      <div className="container" style={{ marginBottom: "7rem" }}>
+        <h2
+          className="text"
+          style={{ marginLeft: "-74rem", marginTop: "2rem" }}
+        >
+          เอกสารเข้า
+        </h2>
         <div
           className="row align-items-center"
           style={{ marginTop: "3rem", backgroundColor: "#263238" }}
@@ -69,23 +76,6 @@ export default function Home() {
                   onChange={handleChange}
                 ></input>
               </td>
-            </div>
-          </div>
-          <div className="row aling-item-center" style={{ marginTop: "1rem" }}>
-            <div className="col-sm-1">
-              <div className="text">หมวดหมู่หนังสือ:</div>
-            </div>
-            <div className="col-sm-2">
-              <select
-                class="form-select"
-                aria-label="Default select example"
-                name="doccate"
-                onChange={handleChange}
-              >
-                <option selected>โปรดเลือก</option>
-                <option value="0">{doccateArr[0]}</option>
-                <option value="1">{doccateArr[1]}</option>
-              </select>
             </div>
           </div>
           <div className="row align-items-center" style={{ marginTop: "1rem" }}>

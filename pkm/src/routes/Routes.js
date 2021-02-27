@@ -13,6 +13,8 @@ import PublicRoute from "../Utils/PublicRoute";
 import DocForm from "../page/DocForm";
 import DocDetial from "../page/DocDetial";
 import DocEdit from "../page/DocEdit";
+import DocIn from "../page/DocIn";
+import DocOut from "../page/DocOut";
 
 function Routes() {
   return (
@@ -28,6 +30,8 @@ function Routes() {
       <PrivateRoute exact path="/doc_form" component={DocForm} />
       <PrivateRoute exact path="/doc_detial" component={DocDetial} />
       <PrivateRoute exact path="/doc_edit" component={DocEdit} />
+      <PrivateRoute exact path="/doc_in" component={DocIn} />
+      <PrivateRoute exact path="/doc_out" component={DocOut} />
     </Switch>
   );
 }

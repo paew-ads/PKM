@@ -8,8 +8,7 @@ import {
 } from "react-bootstrap";
 
 // wad;
-import img1 from "../img/img1.jpg";
-import logo from "../img/PKM.png";
+import newLogo from "../img/newLogo.png";
 import { HiOutlineUserGroup } from "react-icons/hi";
 import { RiLockPasswordLine } from "react-icons/ri";
 import "../Components/App.css";
@@ -43,24 +42,25 @@ export default function SignIn() {
     <div className="Login">
       <div className="Login-header">
         <CardGroup>
-          <Card style={{ width: "30rem", height: "30rem" }}>
-            <Card.Img src={img1} style={{ width: "30rem", height: "30rem" }} />
-          </Card>
           <form>
             <Card
-              style={{ width: "30rem", height: "30rem" }}
+              style={{
+                width: "30rem",
+                height: "35rem",
+                backgroundColor: "#546e7a",
+              }}
               className="text-center"
             >
               <Card.Title>
-                <img src={logo} alt="" />
+                <img src={newLogo} alt="" />
               </Card.Title>
-              <h3>Login</h3>
+
               <Card.Body>
-                <InputGroup className="mb-3">
+                <InputGroup className="mb-3" style={{ marginTop: "3rem" }}>
                   <InputGroup.Prepend>
                     <InputGroup.Text
                       id="basic-addon1"
-                      style={{ height: "2.2rem" }}
+                      style={{ height: "2.2rem", color: "whitesmoke" }}
                     >
                       <HiOutlineUserGroup />
                     </InputGroup.Text>
@@ -77,7 +77,7 @@ export default function SignIn() {
                   <InputGroup.Prepend>
                     <InputGroup.Text
                       id="basic-addon1"
-                      style={{ height: "2.2rem" }}
+                      style={{ height: "2.2rem", color: "whitesmoke" }}
                     >
                       <RiLockPasswordLine />
                     </InputGroup.Text>
@@ -97,6 +97,7 @@ export default function SignIn() {
                   variant="outline-success"
                   type="submit"
                   onClick={handleSignIn}
+                  style={{ width: "7rem", height: "3rem" }}
                 >
                   login
                 </Button>
