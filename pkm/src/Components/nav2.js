@@ -10,6 +10,7 @@ import ExitToAppOutlinedIcon from "@material-ui/icons/ExitToAppOutlined";
 import { useHistory } from "react-router-dom";
 import { signout } from "../action/auth-api";
 import { colors } from "@material-ui/core";
+import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -167,10 +168,22 @@ export default function ButtonAppBar() {
             </Typography>
           </Button>
 
-          <Button color="inherit">
+          <Button
+            color="inherit"
+            onClick={() => {
+              history.push("/Users");
+            }}
+          >
             <Typography variant="h6" noWrap>
-              รายงานการสั่งซื้อสินค้า
+              ผู้ใช้
             </Typography>
+          </Button>
+          <Button
+            color="inherit"
+            style={{ position: "absolute", right: "220px" }}
+            startIcon={<AccountCircleIcon />}
+          >
+            AzeleaGK
           </Button>
           <Button
             color="inherit"
