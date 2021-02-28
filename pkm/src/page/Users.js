@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Footer from "../Components/footer";
 import Nav2 from "../Components/nav2";
 import SearchIcon from "@material-ui/icons/Search";
@@ -7,9 +7,33 @@ import AddBoxIcon from "@material-ui/icons/AddBox";
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 import { useHistory } from "react-router-dom";
+import SettingsIcon from "@material-ui/icons/Settings";
+import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
+import { list, search } from "../action/auth-api";
 
 export default function Users() {
+  const [ListUsers, setListUsers] = useState([]);
+  const [Search, setSearch] = useState("");
   const history = useHistory();
+
+  useEffect(() => {
+    async function fetchData() {
+      const res = await list();
+      setListUsers(res.data);
+    }
+    fetchData();
+  }, []);
+
+  const handleChange = (e) => {
+    const { value } = e.target;
+    setSearch(value);
+  };
+
+  const handleSearch = async (e) => {
+    const res = await search(Search);
+    console.log(res.data);
+    setListUsers(res.data);
+  };
 
   return (
     <>
@@ -34,21 +58,21 @@ export default function Users() {
                 <td class="input-group ">
                   <input
                     class="form-control py-2"
-                    type="search"
+                    type="text"
                     id="example-search-input"
                     name="keyword"
+                    onChange={handleChange}
                   ></input>
                 </td>
               </div>
-              <div
-                className="col-sm-1"
-                style={{ marginLeft: "-3rem", marginTop: "0.3rem" }}
-              >
-                <SearchIcon className="text" />
+              <div className="col-sm-1" style={{ marginLeft: "-3rem" }}>
+                <IconButton color="primary" onClick={handleSearch}>
+                  <SearchIcon className="text" />
+                </IconButton>
               </div>
               <div
                 className="col-sm-1"
-                style={{ marginLeft: "-3rem", marginTop: "-0.7rem" }}
+                style={{ marginLeft: "-4rem", marginTop: "-0.7rem" }}
               >
                 <IconButton
                   color="primary"
@@ -96,6 +120,22 @@ export default function Users() {
                     <th scope="col-sm-3">นายหล่อโคตร เจ็ตจะย่อง</th>
                     <th scope="col-sm-2">admin</th>
                   </tr>
+
+                  {ListUsers.map((val, key) => {
+                    return (
+                      <tr>
+                        <th scope="col">
+                          <IconButton style={{ width: "3rem", height: "1rem" }}>
+                            <SettingsIcon color="primary" />
+                            <ArrowDropDownIcon color="primary" />
+                          </IconButton>
+                        </th>
+                        <th scope="col-sm-3">{val.uid}</th>
+                        <th scope="col-sm-3">{val.uname}</th>
+                        <th scope="col-sm-2">{val.urole}</th>
+                      </tr>
+                    );
+                  })}
                 </tbody>
               </table>
             </div>

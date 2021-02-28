@@ -15,4 +15,14 @@ const signout = async () => {
   return res;
 };
 
-export { signin, hassSignned, signout };
+const list = async () => {
+  const res = await Axios.get("/list");
+  return res;
+};
+
+const search = async (search) => {
+  const res = await Axios.get("/search?keyword=" + search);
+  return res;
+};
+
+export { signin, hassSignned, signout, list, search };

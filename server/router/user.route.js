@@ -35,17 +35,39 @@ router.post("/auth/signin", (req, res) => {
   });
 });
 
-router.get("/auth/hassignned", (req, res) => {
-  if (req.session.user) {
-    return res.json({
-      auth: true,
-      message: "you are signned",
+router.get("/list", (req, res) => {
+  const sql = "SELECT * FROM users";
+  db.query(sql, (err, result) => {
+    if (err) throw err;
+    if (result.length > 0) {
+      res.send(result);
+    }
+  });
+});
+
+router.get("/search", (req, res) => {
+  const { keyword } = req.query;
+  if (keyword) {
+    const sql = "SELECT * FROM users WHERE uname LIKE ?";
+    db.query(sql, ["%" + keyword + "%"], (err, result) => {
+      if (err) throw err;
+      if (result.length > 0) {
+        res.send(result);
+      } else {
+        res.send({
+          message: "This user does not exist.",
+        });
+      }
+    });
+  } else {
+    const sql = "SELECT * FROM users";
+    db.query(sql, (err, result) => {
+      if (err) throw err;
+      if (result.length > 0) {
+        res.send(result);
+      }
     });
   }
-  return res.json({
-    auth: false,
-    message: "you are not login",
-  });
 });
 
 router.get("/auth/signout", (req, res) => {

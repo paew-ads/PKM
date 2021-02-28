@@ -149,7 +149,7 @@ export default function ButtonAppBar() {
             aria-haspopup="true"
             color="inherit"
             onClick={() => {
-              history.push("/doc_in");
+              history.push("/");
             }}
           >
             <Typography variant="h6" noWrap>

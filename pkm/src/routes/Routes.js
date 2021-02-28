@@ -20,8 +20,8 @@ import AddUses from "../page/AddUses";
 function Routes() {
   return (
     <Switch>
-      <PublicRoute exact path="/" component={SignIn} />
-      <PrivateRoute exact path="/doc_in" component={DocIn} />
+      <PublicRoute exact path="/signin" component={SignIn} />
+      <PrivateRoute exact path="/" component={DocIn} />
       <PrivateRoute exact path="/doc_out" component={DocOut} />
       <PrivateRoute exact path="/Customers" component={Customers} />
       <PrivateRoute exact path="/addCustomers" component={addCustomers} />
