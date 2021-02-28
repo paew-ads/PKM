@@ -4,10 +4,13 @@ import Nav2 from "../Components/nav2";
 import SearchIcon from "@material-ui/icons/Search";
 import { IconButton } from "@material-ui/core";
 import AddBoxIcon from "@material-ui/icons/AddBox";
-import SettingsIcon from "@material-ui/icons/Settings";
-import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
+import EditIcon from "@material-ui/icons/Edit";
+import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
+import { useHistory } from "react-router-dom";
 
 export default function Users() {
+  const history = useHistory();
+
   return (
     <>
       <Nav2 />
@@ -47,7 +50,14 @@ export default function Users() {
                 className="col-sm-1"
                 style={{ marginLeft: "-3rem", marginTop: "-0.7rem" }}
               >
-                <IconButton color="primary">
+                <IconButton
+                  color="primary"
+                  onClick={() => {
+                    history.push({
+                      pathname: "/AddUses",
+                    });
+                  }}
+                >
                   <AddBoxIcon className="text" fontSize="large" />
                 </IconButton>
               </div>
@@ -60,9 +70,7 @@ export default function Users() {
               <table class="table table-bordered ">
                 <thead style={{ backgroundColor: "#eceff1" }}>
                   <tr>
-                    <th scope="col">
-                      <SettingsIcon style={{ marginLeft: "-1rem" }} />
-                    </th>
+                    <th scope="col">จัดการ</th>
                     <th scope="col-sm-3">User ID</th>
                     <th scope="col-sm-3">ชื่อ-นามสกุล</th>
                     <th scope="col-sm-2">ระดับ</th>
@@ -71,9 +79,17 @@ export default function Users() {
                 <tbody style={{ backgroundColor: "#eceff1" }}>
                   <tr>
                     <th scope="col">
-                      <IconButton style={{ width: "3rem", height: "1rem" }}>
-                        <SettingsIcon color="primary" />
-                        <ArrowDropDownIcon color="primary" />
+                      <IconButton>
+                        <EditIcon
+                          color="primary"
+                          style={{ marginTop: "-1rem" }}
+                        />
+                      </IconButton>
+                      <IconButton>
+                        <DeleteForeverIcon
+                          color="secondary"
+                          style={{ marginTop: "-1rem" }}
+                        />
                       </IconButton>
                     </th>
                     <th scope="col-sm-3">1234455555</th>
