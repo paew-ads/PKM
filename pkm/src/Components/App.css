@@ -60,3 +60,15 @@
 .text {
   color: whitesmoke;
 }
+
+.cardd {
+  background-color: #263238;
+  height: 37rem;
+  width: 80rem;
+}
+
+.cardForm {
+  background-color: #263238;
+  height: 29rem;
+  width: 80rem;
+}

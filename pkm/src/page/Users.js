@@ -2,19 +2,44 @@ import React, { useState, useEffect } from "react";
 import Footer from "../Components/footer";
 import Nav2 from "../Components/nav2";
 import SearchIcon from "@material-ui/icons/Search";
-import { IconButton } from "@material-ui/core";
+import { IconButton, Button } from "@material-ui/core";
 import AddBoxIcon from "@material-ui/icons/AddBox";
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 import { useHistory } from "react-router-dom";
-import SettingsIcon from "@material-ui/icons/Settings";
-import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 import { list, search } from "../action/auth-api";
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles({
+  btn1: {
+    border: "none",
+
+    height: 40,
+    borderRadius: 6,
+    textTransform: "uppercase",
+    cursor: "pointer",
+    color: "#fff",
+    backgroundSize: "200%",
+    transition: "0.4s",
+    "&:hover": {
+      backgroundPosition: "right",
+    },
+  },
+  save1: {
+    backgroundImage: "linear-gradient(45deg, #007bb2, #00b0ff, #33bfff)",
+  },
+  new1: {
+    backgroundImage: "linear-gradient(45deg, #76ff03, #ffeb3b, #00e5ff)",
+    color: "white",
+  },
+});
 
 export default function Users() {
   const [ListUsers, setListUsers] = useState([]);
   const [Search, setSearch] = useState("");
   const history = useHistory();
+
+  const classes = useStyles();
 
   useEffect(() => {
     async function fetchData() {
@@ -65,24 +90,31 @@ export default function Users() {
                   ></input>
                 </td>
               </div>
-              <div className="col-sm-1" style={{ marginLeft: "-3rem" }}>
-                <IconButton color="primary" onClick={handleSearch}>
+              <div
+                className="col-sm-1"
+                style={{ marginLeft: "-2rem", marginTop: "-0.1rem" }}
+              >
+                <IconButton
+                  className={`${classes.btn1} ${classes.save1}`}
+                  variant="contained"
+                  onClick={handleSearch}
+                >
                   <SearchIcon className="text" />
                 </IconButton>
               </div>
               <div
                 className="col-sm-1"
-                style={{ marginLeft: "-4rem", marginTop: "-0.7rem" }}
+                style={{ marginLeft: "-2.5rem", marginTop: "-0.1rem" }}
               >
                 <IconButton
-                  color="primary"
+                  className={`${classes.btn1} ${classes.new1}`}
                   onClick={() => {
                     history.push({
                       pathname: "/AddUses",
                     });
                   }}
                 >
-                  <AddBoxIcon className="text" fontSize="large" />
+                  <AddBoxIcon className="text" />
                 </IconButton>
               </div>
             </div>
@@ -94,40 +126,22 @@ export default function Users() {
               <table class="table table-bordered ">
                 <thead style={{ backgroundColor: "#eceff1" }}>
                   <tr>
-                    <th scope="col">จัดการ</th>
+                    <th scope="col-sm-1">จัดการ</th>
                     <th scope="col-sm-3">User ID</th>
                     <th scope="col-sm-3">ชื่อ-นามสกุล</th>
                     <th scope="col-sm-2">ระดับ</th>
                   </tr>
                 </thead>
                 <tbody style={{ backgroundColor: "#eceff1" }}>
-                  <tr>
-                    <th scope="col">
-                      <IconButton>
-                        <EditIcon
-                          color="primary"
-                          style={{ marginTop: "-1rem" }}
-                        />
-                      </IconButton>
-                      <IconButton>
-                        <DeleteForeverIcon
-                          color="secondary"
-                          style={{ marginTop: "-1rem" }}
-                        />
-                      </IconButton>
-                    </th>
-                    <th scope="col-sm-3">1234455555</th>
-                    <th scope="col-sm-3">นายหล่อโคตร เจ็ตจะย่อง</th>
-                    <th scope="col-sm-2">admin</th>
-                  </tr>
-
                   {ListUsers.map((val, key) => {
                     return (
                       <tr>
-                        <th scope="col">
-                          <IconButton style={{ width: "3rem", height: "1rem" }}>
-                            <SettingsIcon color="primary" />
-                            <ArrowDropDownIcon color="primary" />
+                        <th scope="col-sm-1">
+                          <IconButton>
+                            <EditIcon color="primary" />
+                          </IconButton>
+                          <IconButton>
+                            <DeleteForeverIcon color="secondary" />
                           </IconButton>
                         </th>
                         <th scope="col-sm-3">{val.uid}</th>

@@ -8,7 +8,29 @@ import FindInPageIcon from "@material-ui/icons/FindInPage";
 import { IconButton } from "@material-ui/core";
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
+import { makeStyles } from "@material-ui/core/styles";
+import Button from "@material-ui/core/Button";
+import SearchIcon from "@material-ui/icons/Search";
 
+const useStyles = makeStyles({
+  btn1: {
+    border: "none",
+
+    height: 48,
+    borderRadius: 6,
+    textTransform: "uppercase",
+    cursor: "pointer",
+    color: "#fff",
+    backgroundSize: "200%",
+    transition: "0.4s",
+    "&:hover": {
+      backgroundPosition: "right",
+    },
+  },
+  btn2: {
+    backgroundImage: "linear-gradient(45deg, #007bb2, #00b0ff, #33bfff)",
+  },
+});
 export default function DocOut() {
   const [Doc, setDoc] = useState([]);
   const history = useHistory();
@@ -18,6 +40,8 @@ export default function DocOut() {
     stdate: "",
     endate: "",
   });
+
+  const classes = useStyles();
 
   useEffect(() => {
     async function fetchData() {
@@ -124,8 +148,8 @@ export default function DocOut() {
             style={{ marginTop: "1rem", marginLeft: "10px" }}
           >
             <div className="col-sm-3">
-              <button
-                class="btn btn-primary"
+              <Button
+                className={`${classes.btn1} ${classes.btn2}`}
                 type="submit"
                 onClick={() => {
                   history.push("/doc_form");
@@ -133,31 +157,15 @@ export default function DocOut() {
                 style={{ fontSize: "0.9rem" }}
               >
                 บันทึกเอกสารใหม่
-              </button>
-              <button
-                class="btn btn-primary"
+              </Button>
+              <Button
+                className={`${classes.btn1} ${classes.btn2}`}
                 type="search"
                 style={{ marginLeft: "1rem", fontSize: "0.9rem" }}
                 onClick={handleSearch}
               >
-                <svg
-                  width="1em"
-                  height="1em"
-                  viewBox="0 0 16 16"
-                  class="bi bi-search"
-                  fill="currentColor"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"
-                  />
-                  <path
-                    fill-rule="evenodd"
-                    d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"
-                  />
-                </svg>
-              </button>
+                <SearchIcon />
+              </Button>
             </div>
           </div>
           <div

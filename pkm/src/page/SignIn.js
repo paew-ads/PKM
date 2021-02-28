@@ -1,11 +1,5 @@
 import React, { useState } from "react";
-import {
-  Card,
-  Button,
-  CardGroup,
-  InputGroup,
-  FormControl,
-} from "react-bootstrap";
+import { Card, CardGroup, InputGroup, FormControl } from "react-bootstrap";
 
 // wad;
 import newLogo from "../img/newLogo.png";
@@ -16,7 +10,32 @@ import { signin } from "../action/auth-api";
 import { useHistory } from "react-router-dom";
 import { setUserSession } from "../Utils/Common";
 
+import Button from "@material-ui/core/Button";
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles({
+  btn1: {
+    border: "none",
+
+    height: 48,
+    borderRadius: 6,
+    textTransform: "uppercase",
+    boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .3)",
+    cursor: "pointer",
+    color: "#fff",
+    backgroundSize: "200%",
+    transition: "0.4s",
+    "&:hover": {
+      backgroundPosition: "right",
+    },
+  },
+  btn2: {
+    backgroundImage: "linear-gradient(45deg, #76ff03, #ffeb3b, #00e5ff)",
+  },
+});
+
 export default function SignIn() {
+  const classes = useStyles();
   const history = useHistory();
   const [ipForm, setipForm] = useState({
     uid: "",
@@ -94,7 +113,7 @@ export default function SignIn() {
               </Card.Body>
               <Card.Footer>
                 <Button
-                  variant="outline-success"
+                  className={`${classes.btn1} ${classes.btn2}`}
                   type="submit"
                   onClick={handleSignIn}
                   style={{ width: "7rem", height: "3rem" }}
