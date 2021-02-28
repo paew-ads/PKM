@@ -198,6 +198,27 @@ router.post("/update", (req, res) => {
 });
 
 router.get("/list", (req, res) => {
+  const { doccate, keyword, stdate, endate } = req.query;
+  const st = Date.now();
+  const now = new Date(st);
+  const nowDate =
+    now.getFullYear() + "-" + (now.getMonth() + 1) + "-" + now.getDate();
+  const sql =
+    "SELECT * FROM document WHERE doccate = ? AND (docdate BETWEEN ? AND ?)  ORDER BY rcdate DESC,rcid DESC";
+  db.query(
+    sql,
+    [doccate, new Date(nowDate), new Date(nowDate)],
+    (err, result) => {
+      if (err) throw err;
+      if (result.length > 0) {
+        console.log(result);
+        res.send(result);
+      }
+    }
+  );
+});
+
+router.get("/search", (req, res) => {
   console.log(req.query);
   const { doccate, keyword, stdate, endate } = req.query;
   if (keyword && stdate && endate) {

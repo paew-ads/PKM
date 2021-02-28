@@ -235,7 +235,13 @@ export default function DocForm() {
               </div>
               <div className="col-sm-1">
                 <th>
-                  <button class="btn btn-danger" type="cancel">
+                  <button
+                    class="btn btn-danger"
+                    type="cancel"
+                    onClick={() => {
+                      history.push("/");
+                    }}
+                  >
                     ยกเลิก
                   </button>
                 </th>

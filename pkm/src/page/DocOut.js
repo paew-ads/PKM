@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Footer from "../Components/footer";
 import Nav2 from "../Components/nav2";
 import { useHistory } from "react-router-dom";
-import { list, deleteDoc } from "../action/doc-api";
+import { list, deleteDoc, search } from "../action/doc-api";
 import { doccateArr, doctypeArr } from "../Utils/Config";
 import FindInPageIcon from "@material-ui/icons/FindInPage";
 import { IconButton } from "@material-ui/core";
@@ -42,7 +42,7 @@ export default function DocOut() {
     if (!ipForm.doccate) {
       ipForm.doccate = "1";
     }
-    const res = await list(ipForm);
+    const res = await search(ipForm);
     console.log(res.data);
     setDoc(res.data);
   };
