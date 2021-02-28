@@ -7,6 +7,7 @@ import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import { select, deleteDoc } from "../action/doc-api";
 import { doccateArr, doctypeArr } from "../Utils/Config";
 import { useHistory } from "react-router-dom";
+import "../Components/App.css";
 
 export default function DocDetial(props) {
   const history = useHistory();
@@ -41,7 +42,7 @@ export default function DocDetial(props) {
   return (
     <>
       <Nav2 />
-      <div className="container">
+      <div className="container page">
         <div className="cardd" style={{ marginTop: "3rem" }}>
           <div
             className="row align-items-center"

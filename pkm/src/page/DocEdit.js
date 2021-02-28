@@ -4,6 +4,7 @@ import { update } from "../action/doc-api";
 import { useHistory } from "react-router-dom";
 import { doccateArr, doctypeArr } from "../Utils/Config";
 import { select } from "../action/doc-api";
+import "../Components/App.css";
 
 export default function DocEdit(props) {
   const history = useHistory();
@@ -76,7 +77,7 @@ export default function DocEdit(props) {
   return (
     <>
       <Nav2 />
-      <div className="container">
+      <div className="container page">
         <div className="cardd" style={{ marginTop: "3rem" }}>
           <div
             className="row align-items-center"

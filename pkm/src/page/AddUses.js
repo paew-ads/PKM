@@ -6,6 +6,7 @@ import Footer from "../Components/footer";
 import CloseIcon from "@material-ui/icons/Close";
 import AddIcon from "@material-ui/icons/Add";
 import { makeStyles } from "@material-ui/core/styles";
+import "../Components/App.css";
 
 const useStyles = makeStyles({
   root: {
@@ -28,7 +29,7 @@ export default function Users() {
   return (
     <>
       <Nav2 />
-      <div className="container">
+      <div className="page container">
         <h2
           className="text"
           style={{ marginLeft: "-79rem", marginTop: "2rem" }}
@@ -146,6 +147,7 @@ export default function Users() {
           </div>
         </div>
       </div>
+
       <Footer />
     </>
   );

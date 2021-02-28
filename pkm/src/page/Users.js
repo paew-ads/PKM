@@ -9,6 +9,7 @@ import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 import { useHistory } from "react-router-dom";
 import { list, search } from "../action/auth-api";
 import { makeStyles } from "@material-ui/core/styles";
+import "../Components/App.css";
 
 const useStyles = makeStyles({
   btn1: {
@@ -63,7 +64,7 @@ export default function Users() {
   return (
     <>
       <Nav2 />
-      <div className="container">
+      <div className="container page">
         <h2
           className="text"
           style={{ marginLeft: "-79rem", marginTop: "2rem" }}

@@ -11,6 +11,7 @@ import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import SearchIcon from "@material-ui/icons/Search";
+import "../Components/App.css";
 
 const useStyles = makeStyles({
   btn1: {
@@ -89,7 +90,7 @@ export default function DocIn() {
     <>
       <Nav2 />
 
-      <div className="container" style={{ marginBottom: "7rem" }}>
+      <div className="container page" style={{ marginBottom: "7rem" }}>
         <h2
           className="text"
           style={{ marginLeft: "-74rem", marginTop: "2rem" }}

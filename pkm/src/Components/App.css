@@ -54,7 +54,7 @@
   color: whitesmoke;
   text-align: center;
   padding: 1rem;
-  position: fixed;
+  position: relative;
 }
 
 .text {
@@ -71,4 +71,8 @@
   background-color: #263238;
   height: 29rem;
   width: 80rem;
+}
+
+.page {
+  min-height: 100vh;
 }

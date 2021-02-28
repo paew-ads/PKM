@@ -3,6 +3,8 @@ import Nav2 from "../Components/nav2";
 import { add } from "../action/doc-api";
 import { useHistory } from "react-router-dom";
 import { doccateArr, doctypeArr } from "../Utils/Config";
+import Footer from "../Components/footer";
+import "../Components/App.css";
 
 export default function DocForm() {
   const history = useHistory();
@@ -49,7 +51,7 @@ export default function DocForm() {
   return (
     <>
       <Nav2 />
-      <div className="container">
+      <div className="container page">
         <div className="cardd" style={{ marginTop: "3rem" }}>
           <div
             className="row align-items-center"
@@ -250,6 +252,7 @@ export default function DocForm() {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 }
