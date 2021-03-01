@@ -4,7 +4,6 @@ import Button from "@material-ui/core/Button";
 import SaveIcon from "@material-ui/icons/Save";
 import Footer from "../Components/footer";
 import CloseIcon from "@material-ui/icons/Close";
-import AddIcon from "@material-ui/icons/Add";
 import { makeStyles } from "@material-ui/core/styles";
 import "../Components/App.css";
 import { add } from "../action/auth-api";

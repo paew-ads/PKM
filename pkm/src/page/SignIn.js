@@ -51,11 +51,13 @@ export default function SignIn() {
   const handleSignIn = async (e) => {
     e.preventDefault();
     const res = await signin({ ipForm });
-    alert(res.data.message);
-    if (res) {
-      setUserSession(res.data.token, res.data.user);
-      history.push("/");
+    if (res.data.error) {
+      alert(res.data.message);
+      return;
     }
+    alert(res.data.message);
+    setUserSession(res.data.token, res.data.user);
+    history.push("/");
   };
   return (
     <div className="Login">

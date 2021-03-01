@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Footer from "../Components/footer";
 import Nav2 from "../Components/nav2";
 import { useHistory } from "react-router-dom";
-import { list, deleteDoc, search } from "../action/doc-api";
+import { list, deleteDoc, searchs } from "../action/doc-api";
 import { doccateArr, doctypeArr } from "../Utils/Config";
 import FindInPageIcon from "@material-ui/icons/FindInPage";
 import { IconButton } from "@material-ui/core";
@@ -51,7 +51,11 @@ export default function DocIn() {
       }
       const res = await list(ipForm);
       console.log(res.data);
-      setDoc(res.data);
+      if (res.data.error) {
+        return;
+      } else {
+        setDoc(res.data);
+      }
     }
     fetchData();
   }, [ipForm]);
@@ -63,14 +67,20 @@ export default function DocIn() {
       [name]: value,
     });
   };
+
   const handleSearch = async (e) => {
     if (!ipForm.doccate) {
       ipForm.doccate = "0";
     }
-    const res = await search(ipForm);
+    const res = await searchs(ipForm);
+    if (res.data.error) {
+      alert(res.data.message);
+      return;
+    }
     console.log(res.data);
     setDoc(res.data);
   };
+
   const handleDelete = async (rcid) => {
     if (
       window.confirm(

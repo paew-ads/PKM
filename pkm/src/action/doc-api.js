@@ -25,7 +25,7 @@ const list = async (search) => {
   return res;
 };
 
-const search = async (search) => {
+const searchs = async (search) => {
   const url =
     "/doc/search?doccate=" +
     search.doccate +
@@ -62,4 +62,4 @@ const deleteDoc = async (rcid) => {
   const res = await Axios.get("/doc/delete/" + rcid);
   return res;
 };
-export { add, list, select, update, deleteDoc, search };
+export { add, list, select, update, deleteDoc, searchs };

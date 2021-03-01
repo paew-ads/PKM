@@ -43,6 +43,11 @@ router.post("/auth/signin", (req, res) => {
         user: result[0],
         token: "test-token",
       });
+    } else {
+      return res.json({
+        error: true,
+        message: "Login fail",
+      });
     }
   });
 });

@@ -213,6 +213,10 @@ router.get("/list", (req, res) => {
       if (result.length > 0) {
         console.log(result);
         res.send(result);
+      } else {
+        res.send({
+          error: true,
+        });
       }
     }
   );
@@ -239,6 +243,11 @@ router.get("/search", (req, res) => {
         if (result.length > 0) {
           console.log(result);
           res.send(result);
+        } else {
+          res.send({
+            error: true,
+            message: "no data",
+          });
         }
       }
     );
@@ -253,6 +262,11 @@ router.get("/search", (req, res) => {
         if (result.length > 0) {
           console.log(result);
           res.send(result);
+        } else {
+          res.send({
+            error: true,
+            message: "no data",
+          });
         }
       }
     );
@@ -264,6 +278,11 @@ router.get("/search", (req, res) => {
       if (result.length > 0) {
         console.log(result);
         res.send(result);
+      } else {
+        res.send({
+          error: true,
+          message: "no data",
+        });
       }
     });
   } else {
@@ -281,6 +300,11 @@ router.get("/search", (req, res) => {
         if (result.length > 0) {
           console.log(result);
           res.send(result);
+        } else {
+          res.send({
+            error: true,
+            message: "no data",
+          });
         }
       }
     );
