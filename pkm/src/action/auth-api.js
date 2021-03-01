@@ -25,4 +25,10 @@ const search = async (search) => {
   return res;
 };
 
-export { signin, hassSignned, signout, list, search };
+const add = async (ipForm) => {
+  console.log(ipForm);
+  const res = await Axios.post("add", ipForm);
+  return res;
+};
+
+export { signin, hassSignned, signout, list, search, add };

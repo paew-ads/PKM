@@ -10,6 +10,7 @@ import { useHistory } from "react-router-dom";
 import { list, search } from "../action/auth-api";
 import { makeStyles } from "@material-ui/core/styles";
 import "../Components/App.css";
+import { uroleArr } from "../Utils/Config";
 
 const useStyles = makeStyles({
   btn1: {
@@ -153,7 +154,7 @@ export default function Users() {
                         </th>
                         <th scope="col-sm-3">{val.uid}</th>
                         <th scope="col-sm-3">{val.uname}</th>
-                        <th scope="col-sm-2">{val.urole}</th>
+                        <th scope="col-sm-2">{uroleArr[val.urole]}</th>
                       </tr>
                     );
                   })}
