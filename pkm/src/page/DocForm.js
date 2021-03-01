@@ -5,6 +5,33 @@ import { useHistory } from "react-router-dom";
 import { doccateArr, doctypeArr } from "../Utils/Config";
 import Footer from "../Components/footer";
 import "../Components/App.css";
+import { makeStyles } from "@material-ui/core/styles";
+import Button from "@material-ui/core/Button";
+import SaveIcon from "@material-ui/icons/Save";
+import CloseIcon from "@material-ui/icons/Close";
+
+const useStyles = makeStyles({
+  btn1: {
+    border: "none",
+    height: 38,
+    width: 80,
+    borderRadius: 6,
+    textTransform: "uppercase",
+    cursor: "pointer",
+    color: "#fff",
+    backgroundSize: "200%",
+    transition: "0.4s",
+    "&:hover": {
+      backgroundPosition: "right",
+    },
+  },
+  btn2: {
+    backgroundImage: "linear-gradient(45deg, #007bb2, #00b0ff, #33bfff)",
+  },
+  btn3: {
+    backgroundImage: "linear-gradient(45deg, #d50000, #c62828, #d50000)",
+  },
+});
 
 export default function DocForm() {
   const history = useHistory();
@@ -20,6 +47,8 @@ export default function DocForm() {
     doccont: "",
     docauth: "",
   });
+  const classes = useStyles();
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setipForm({
@@ -224,28 +253,28 @@ export default function DocForm() {
             </div>
 
             <div className="row " style={{ marginTop: "1rem" }}>
-              <div className="col-sm-1" style={{ marginLeft: "60rem" }}>
+              <div className="col-sm-2" style={{ marginLeft: "60rem" }}>
                 <th>
-                  <button
-                    class="btn btn-primary"
+                  <Button
+                    style={{ marginLeft: "-1rem" }}
+                    className={`${classes.btn1} ${classes.btn2}`}
                     type="submit"
                     onClick={handleSubmit}
                   >
+                    <SaveIcon />
                     บันทึก
-                  </button>
-                </th>
-              </div>
-              <div className="col-sm-1">
-                <th>
-                  <button
-                    class="btn btn-danger"
+                  </Button>
+                  <Button
+                    className={`${classes.btn1} ${classes.btn3}`}
+                    style={{ marginLeft: "2rem" }}
                     type="cancel"
                     onClick={() => {
                       history.push("/");
                     }}
                   >
+                    <CloseIcon />
                     ยกเลิก
-                  </button>
+                  </Button>
                 </th>
               </div>
             </div>

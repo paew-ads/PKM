@@ -34,7 +34,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function Users() {
+export default function EditUses() {
   const classes = useStyles();
 
   return (
@@ -50,7 +50,7 @@ export default function Users() {
         <div className="cardForm" style={{ marginTop: "2rem" }}>
           <div className="row align-items-center" style={{ marginTop: "2rem" }}>
             <h4 className="text" style={{ marginLeft: "-38rem" }}>
-              Form
+              Edit
             </h4>
             <div
               className="row"

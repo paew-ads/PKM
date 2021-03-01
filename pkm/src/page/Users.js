@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Footer from "../Components/footer";
 import Nav2 from "../Components/nav2";
 import SearchIcon from "@material-ui/icons/Search";
-import { IconButton, Button } from "@material-ui/core";
+import { IconButton } from "@material-ui/core";
 import AddBoxIcon from "@material-ui/icons/AddBox";
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
@@ -138,7 +138,13 @@ export default function Users() {
                     return (
                       <tr>
                         <th scope="col-sm-1">
-                          <IconButton>
+                          <IconButton
+                            onClick={() => {
+                              history.push({
+                                pathname: "/EditUses",
+                              });
+                            }}
+                          >
                             <EditIcon color="primary" />
                           </IconButton>
                           <IconButton>

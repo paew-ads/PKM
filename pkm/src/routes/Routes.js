@@ -16,6 +16,7 @@ import DocIn from "../page/DocIn";
 import DocOut from "../page/DocOut";
 import Users from "../page/Users";
 import AddUses from "../page/AddUses";
+import EditUses from "../page/EditUses";
 
 function Routes() {
   return (
@@ -34,6 +35,7 @@ function Routes() {
       <PrivateRoute exact path="/doc_edit" component={DocEdit} />
       <PrivateRoute exact path="/Users" component={Users} />
       <PrivateRoute exact path="/AddUses" component={AddUses} />
+      <PrivateRoute exact path="/EditUses" component={EditUses} />
     </Switch>
   );
 }

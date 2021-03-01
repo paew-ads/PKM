@@ -182,9 +182,7 @@ export default function ButtonAppBar() {
             color="inherit"
             style={{ position: "absolute", right: "220px" }}
             startIcon={<AccountCircleIcon />}
-          >
-            AzeleaGK
-          </Button>
+          ></Button>
           <Button
             color="inherit"
             type="cancel"
