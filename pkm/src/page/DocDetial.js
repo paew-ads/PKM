@@ -8,11 +8,40 @@ import { select, deleteDoc } from "../action/doc-api";
 import { doccateArr, doctypeArr } from "../Utils/Config";
 import { useHistory } from "react-router-dom";
 import "../Components/App.css";
+import { makeStyles } from "@material-ui/core/styles";
+import Button from "@material-ui/core/Button";
+
+const useStyles = makeStyles({
+  btn1: {
+    border: "none",
+    height: 38,
+    width: 100,
+    borderRadius: 6,
+    textTransform: "uppercase",
+    cursor: "pointer",
+    color: "#fff",
+    backgroundSize: "200%",
+    transition: "0.4s",
+    "&:hover": {
+      backgroundPosition: "right",
+    },
+  },
+  btn2: {
+    backgroundImage: "linear-gradient(45deg, #ffc107, #ff9800, #ffcf33)",
+  },
+  btn3: {
+    backgroundImage: "linear-gradient(45deg, #d50000, #c62828, #d50000)",
+  },
+  btn4: {
+    backgroundImage: "linear-gradient(45deg, #4615b2, #651fff, #834bff)",
+  },
+});
 
 export default function DocDetial(props) {
   const history = useHistory();
   const search = props.location.state.rcid;
   const [Detial, setDetial] = useState({});
+  const classes = useStyles();
 
   useEffect(() => {
     async function fetchData() {
@@ -169,18 +198,14 @@ export default function DocDetial(props) {
             style={{ marginTop: "1rem", marginLeft: "1.8rem" }}
           >
             <div className="col-sm-2" style={{ marginLeft: "8rem" }}>
-              <a
-                class="btn btn-secondary"
+              <Button
+                className={`${classes.btn1} ${classes.btn4}`}
                 href={"http://localhost:3001/doc/file/" + Detial.rcid}
-                role="button"
-                style={{ fontSize: "15px" }}
-                target="_blank"
-                rel="noopener noreferrer"
                 download="file.pdf"
               >
                 <FindInPageIcon />
                 เอกสาร
-              </a>
+              </Button>
             </div>
           </div>
 
@@ -192,9 +217,8 @@ export default function DocDetial(props) {
               className="col-sm-2"
               style={{ marginLeft: "1rem", marginTop: "1rem" }}
             >
-              <button
-                class="btn btn-warning"
-                style={{ fontSize: "15px" }}
+              <Button
+                className={`${classes.btn1} ${classes.btn2}`}
                 onClick={() => {
                   history.push({
                     pathname: "/doc_edit",
@@ -204,37 +228,35 @@ export default function DocDetial(props) {
               >
                 <EditIcon />
                 แก้ไข
-              </button>
+              </Button>
             </div>
             <div
               className="col-sm-2"
               style={{ marginLeft: "-6rem", marginTop: "1rem" }}
             >
-              <button
-                class="btn btn-danger"
-                style={{ fontSize: "15px" }}
+              <Button
+                className={`${classes.btn1} ${classes.btn3}`}
                 onClick={() => {
                   handleDelete(search);
                 }}
               >
-                <DeleteForeverIcon color="white" />
+                <DeleteForeverIcon />
                 ลบ
-              </button>
+              </Button>
             </div>
             <div
               className="col-sm-2"
               style={{ marginLeft: "-5rem", marginTop: "1rem" }}
             >
-              <button
-                class="btn btn-secondary"
-                style={{ fontSize: "15px" }}
+              <Button
+                className={`${classes.btn1} ${classes.btn4}`}
                 onClick={() => {
                   history.push("/");
                 }}
               >
                 <ArrowBackIosIcon />
                 กลับ
-              </button>
+              </Button>
             </div>
           </div>
         </div>

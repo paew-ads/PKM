@@ -5,10 +5,38 @@ import { useHistory } from "react-router-dom";
 import { doccateArr, doctypeArr } from "../Utils/Config";
 import { select } from "../action/doc-api";
 import "../Components/App.css";
+import { makeStyles } from "@material-ui/core/styles";
+import Button from "@material-ui/core/Button";
+import SaveIcon from "@material-ui/icons/Save";
+import CloseIcon from "@material-ui/icons/Close";
+
+const useStyles = makeStyles({
+  btn1: {
+    border: "none",
+    height: 38,
+    width: 100,
+    borderRadius: 6,
+    textTransform: "uppercase",
+    cursor: "pointer",
+    color: "#fff",
+    backgroundSize: "200%",
+    transition: "0.4s",
+    "&:hover": {
+      backgroundPosition: "right",
+    },
+  },
+  btn2: {
+    backgroundImage: "linear-gradient(45deg, #007bb2, #00b0ff, #33bfff)",
+  },
+  btn3: {
+    backgroundImage: "linear-gradient(45deg, #d50000, #c62828, #d50000)",
+  },
+});
 
 export default function DocEdit(props) {
   const history = useHistory();
   const oldid = props.location.state.rcid;
+  const classes = useStyles();
 
   const [ipForm, setipForm] = useState({
     rcid: "",
@@ -251,26 +279,29 @@ export default function DocEdit(props) {
             >
               <div className="col-sm-1">
                 <th>
-                  <button
-                    class="btn btn-primary"
+                  <Button
+                    className={`${classes.btn1} ${classes.btn2}`}
                     type="submit"
                     onClick={handleSubmit}
                   >
+                    <SaveIcon />
                     บันทึก
-                  </button>
+                  </Button>
                 </th>
               </div>
               <div className="col-sm-1">
                 <th>
-                  <button
-                    class="btn btn-danger"
+                  <Button
+                    className={`${classes.btn1} ${classes.btn3}`}
+                    style={{ marginLeft: "1rem" }}
                     type="cancel"
                     onClick={() => {
                       history.push("/");
                     }}
                   >
+                    <CloseIcon />
                     ยกเลิก
-                  </button>
+                  </Button>
                 </th>
               </div>
             </div>
