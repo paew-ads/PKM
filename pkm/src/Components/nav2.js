@@ -11,6 +11,7 @@ import { useHistory } from "react-router-dom";
 import { signout } from "../action/auth-api";
 import { colors } from "@material-ui/core";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
+import { getUser } from "../Utils/Common";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -31,6 +32,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function ButtonAppBar() {
+  const user = getUser();
   const history = useHistory();
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
@@ -54,21 +56,6 @@ export default function ButtonAppBar() {
 
     prevOpen.current = open;
   }, [open]);
-
-  // const handleClose = (event) => {
-  //   if (anchorRef.current && anchorRef.current.contains(event.target)) {
-  //     return;
-  //   }
-
-  //   setOpen(false);
-  // };
-
-  // function handleListKeyDown(event) {
-  //   if (event.key === "Tab") {
-  //     event.preventDefault();
-  //     setOpen(false);
-  //   }
-  // }
 
   return (
     <div className={classes.root}>
@@ -103,47 +90,6 @@ export default function ButtonAppBar() {
               E-document
             </Typography>
           </Button>
-          {/* <Popper
-            open={open}
-            anchorEl={anchorRef.current}
-            role={undefined}
-            transition
-            disablePortal
-          >
-            {({ TransitionProps, placement }) => (
-              <Grow
-                {...TransitionProps}
-                style={{
-                  transformOrigin:
-                    placement === "bottom" ? "center top" : "center bottom",
-                }}
-              >
-                <Paper>
-                  <ClickAwayListener onClickAway={handleClose}>
-                    <MenuList
-                      autoFocusItem={open}
-                      onKeyDown={handleListKeyDown}
-                    >
-                      <MenuItem
-                        onClick={() => {
-                          history.push("/Customers");
-                        }}
-                      >
-                        ข้อมูลลูกค้า
-                      </MenuItem>
-                      <MenuItem
-                        onClick={() => {
-                          history.push("/addCustomers");
-                        }}
-                      >
-                        เพิ่มลูกค้าใหม่
-                      </MenuItem>
-                    </MenuList>
-                  </ClickAwayListener>
-                </Paper>
-              </Grow>
-            )}
-          </Popper> */}
 
           <Button
             aria-haspopup="true"
@@ -182,7 +128,9 @@ export default function ButtonAppBar() {
             color="inherit"
             style={{ position: "absolute", right: "220px" }}
             startIcon={<AccountCircleIcon />}
-          ></Button>
+          >
+            {user.uname}
+          </Button>
           <Button
             color="inherit"
             type="cancel"
