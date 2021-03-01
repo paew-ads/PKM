@@ -9,6 +9,18 @@ const db = mysql.createPool({
   database: "pkm",
 });
 
+router.get("/select/:uid", (req, res) => {
+  const { uid } = req.params;
+  console.log(uid);
+  const sql = "SELECT * FROM users WHERE uid = ?";
+  db.query(sql, [uid], (err, result) => {
+    if (err) throw err;
+    if (result.length > 0) {
+      res.send(result[0]);
+    }
+  });
+});
+
 router.post("/auth/signin", (req, res) => {
   console.log(req.body);
   const { uid, upwd } = req.body.ipForm;
@@ -91,6 +103,25 @@ router.post("/add", (req, res) => {
       res.json({
         error: false,
         message: "insert sucess",
+      });
+    }
+  });
+});
+
+router.post("/update", (req, res) => {
+  const olduid = req.body.olduid;
+  const { uid, upwd, uname, urole } = req.body.ipForm;
+  const sql = "UPDATE users SET uid = ?,upwd=?,uname=?,urole=? WHERE uid = ?";
+  db.query(sql, [uid, upwd, uname, urole, olduid], (err, result) => {
+    if (err) {
+      res.json({
+        error: true,
+        message: "Failed to Update data",
+      });
+    } else {
+      res.json({
+        error: false,
+        message: "Update sucess",
       });
     }
   });

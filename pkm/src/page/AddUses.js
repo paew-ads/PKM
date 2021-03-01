@@ -184,17 +184,11 @@ export default function AddUses() {
                   className={`${classes.btn1} ${classes.btn3}`}
                   variant="contained"
                   startIcon={<CloseIcon />}
+                  onClick={() => {
+                    history.push("/Users");
+                  }}
                 >
                   Cancel
-                </Button>
-              </div>
-              <div className="col-sm-2" style={{ marginLeft: "-6rem" }}>
-                <Button
-                  className={`${classes.btn1} ${classes.btn4}`}
-                  variant="contained"
-                  startIcon={<AddIcon />}
-                >
-                  New
                 </Button>
               </div>
             </div>

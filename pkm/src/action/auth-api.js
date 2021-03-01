@@ -27,8 +27,18 @@ const search = async (search) => {
 
 const add = async (ipForm) => {
   console.log(ipForm);
-  const res = await Axios.post("add", ipForm);
+  const res = await Axios.post("/add", ipForm);
   return res;
 };
 
-export { signin, hassSignned, signout, list, search, add };
+const select = async (olduid) => {
+  const res = await Axios.get("/select/" + olduid);
+  return res;
+};
+
+const update = async (olduid, ipForm) => {
+  const res = await Axios.post("/update", { olduid, ipForm });
+  return res;
+};
+
+export { signin, hassSignned, signout, list, search, add, select, update };

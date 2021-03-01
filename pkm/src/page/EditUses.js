@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Nav2 from "../Components/nav2";
 import Button from "@material-ui/core/Button";
 import SaveIcon from "@material-ui/icons/Save";
@@ -7,6 +7,9 @@ import CloseIcon from "@material-ui/icons/Close";
 import AddIcon from "@material-ui/icons/Add";
 import { makeStyles } from "@material-ui/core/styles";
 import "../Components/App.css";
+import { select, update } from "../action/auth-api";
+import { uroleArr } from "../Utils/Config";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles({
   btn1: {
@@ -34,7 +37,50 @@ const useStyles = makeStyles({
   },
 });
 
-export default function EditUses() {
+export default function EditUses(props) {
+  const history = useHistory();
+  const olduid = props.location.state.uid;
+  const [ipForm, setipForm] = useState({
+    uid: "",
+    upwd: "",
+    uname: "",
+    urole: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setipForm({
+      ...ipForm,
+      [name]: value,
+    });
+  };
+
+  useEffect(() => {
+    async function fetchData() {
+      const res = await select(olduid);
+      setipForm({
+        uid: res.data.uid,
+        upwd: res.data.upwd,
+        uname: res.data.uname,
+        urole: res.data.urole,
+      });
+    }
+    fetchData();
+  }, [olduid]);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const res = await update(olduid, ipForm);
+    if (res.data.error) {
+      alert(res.data.message);
+      alert("หมายเลขบันทึก อาจซ้ำในฐานข้อมูล");
+      return;
+    }
+    alert(res.data.message);
+    history.push("/Users");
+  };
+
   const classes = useStyles();
 
   return (
@@ -65,6 +111,9 @@ export default function EditUses() {
                 <input
                   class="input-group form-control py-1"
                   type="text"
+                  name="uid"
+                  value={ipForm.uid}
+                  onChange={handleChange}
                 ></input>
               </div>
             </div>
@@ -82,6 +131,9 @@ export default function EditUses() {
                 <input
                   class="input-group form-control py-1"
                   type="text"
+                  name="upwd"
+                  value={ipForm.upwd}
+                  onChange={handleChange}
                 ></input>
               </div>
             </div>
@@ -100,6 +152,9 @@ export default function EditUses() {
                 <input
                   class="input-group form-control py-1"
                   type="text"
+                  name="uname"
+                  value={ipForm.uname}
+                  onChange={handleChange}
                 ></input>
               </div>
             </div>
@@ -115,10 +170,16 @@ export default function EditUses() {
 
             <div className="row" style={{ marginLeft: "1rem" }}>
               <div className="col-sm-3">
-                <select class="form-select" aria-label="Default select example">
+                <select
+                  class="form-select"
+                  aria-label="Default select example"
+                  name="urole"
+                  value={ipForm.urole}
+                  onChange={handleChange}
+                >
                   <option></option>
-                  <option>User</option>
-                  <option>Admin</option>
+                  <option value="2">{uroleArr[2]}</option>
+                  <option value="3">{uroleArr[3]}</option>
                 </select>
               </div>
             </div>
@@ -132,6 +193,7 @@ export default function EditUses() {
                   className={`${classes.btn1} ${classes.btn2}`}
                   variant="contained"
                   startIcon={<SaveIcon />}
+                  onClick={handleSubmit}
                 >
                   Save
                 </Button>
@@ -141,6 +203,9 @@ export default function EditUses() {
                   className={`${classes.btn1} ${classes.btn3}`}
                   variant="contained"
                   startIcon={<CloseIcon />}
+                  onClick={() => {
+                    history.push("/Users");
+                  }}
                 >
                   Cancel
                 </Button>
@@ -150,6 +215,9 @@ export default function EditUses() {
                   className={`${classes.btn1} ${classes.btn4}`}
                   variant="contained"
                   startIcon={<AddIcon />}
+                  onClick={() => {
+                    history.push("/AddUses");
+                  }}
                 >
                   New
                 </Button>
