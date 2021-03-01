@@ -16,7 +16,6 @@ import "../Components/App.css";
 const useStyles = makeStyles({
   btn1: {
     border: "none",
-
     height: 48,
     borderRadius: 6,
     textTransform: "uppercase",

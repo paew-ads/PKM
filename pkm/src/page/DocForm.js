@@ -14,7 +14,7 @@ const useStyles = makeStyles({
   btn1: {
     border: "none",
     height: 38,
-    width: 80,
+    width: 100,
     borderRadius: 6,
     textTransform: "uppercase",
     cursor: "pointer",
@@ -253,7 +253,7 @@ export default function DocForm() {
             </div>
 
             <div className="row " style={{ marginTop: "1rem" }}>
-              <div className="col-sm-2" style={{ marginLeft: "60rem" }}>
+              <div className="col-sm-5" style={{ marginLeft: "55rem" }}>
                 <th>
                   <Button
                     style={{ marginLeft: "-1rem" }}
