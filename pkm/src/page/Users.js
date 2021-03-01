@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Footer from "../Components/footer";
 import Nav2 from "../Components/nav2";
 import SearchIcon from "@material-ui/icons/Search";
-import { IconButton, Button } from "@material-ui/core";
+import { IconButton } from "@material-ui/core";
 import AddBoxIcon from "@material-ui/icons/AddBox";
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
@@ -10,6 +10,7 @@ import { useHistory } from "react-router-dom";
 import { list, search } from "../action/auth-api";
 import { makeStyles } from "@material-ui/core/styles";
 import "../Components/App.css";
+import { uroleArr } from "../Utils/Config";
 
 const useStyles = makeStyles({
   btn1: {
@@ -147,7 +148,7 @@ export default function Users() {
                         </th>
                         <th scope="col-sm-3">{val.uid}</th>
                         <th scope="col-sm-3">{val.uname}</th>
-                        <th scope="col-sm-2">{val.urole}</th>
+                        <th scope="col-sm-2">{uroleArr[val.urole]}</th>
                       </tr>
                     );
                   })}

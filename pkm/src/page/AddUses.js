@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Nav2 from "../Components/nav2";
 import Button from "@material-ui/core/Button";
 import SaveIcon from "@material-ui/icons/Save";
@@ -7,6 +7,9 @@ import CloseIcon from "@material-ui/icons/Close";
 import AddIcon from "@material-ui/icons/Add";
 import { makeStyles } from "@material-ui/core/styles";
 import "../Components/App.css";
+import { add } from "../action/auth-api";
+import { uroleArr } from "../Utils/Config";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles({
   root: {
@@ -23,7 +26,35 @@ const useStyles = makeStyles({
   },
 });
 
-export default function Users() {
+export default function AddUses() {
+  const history = useHistory();
+  const [ipForm, setipForm] = useState({
+    uid: "",
+    upwd: "",
+    uname: "",
+    urole: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setipForm({
+      ...ipForm,
+      [name]: value,
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const res = await add(ipForm);
+    if (res.data.error) {
+      alert(res.data.message);
+      alert("UserID อาจซ้ำในฐานข้อมูล");
+      return;
+    }
+    alert(res.data.message);
+    history.push("/Users");
+  };
+
   const classes = useStyles();
 
   return (
@@ -54,6 +85,8 @@ export default function Users() {
                 <input
                   class="input-group form-control py-1"
                   type="text"
+                  name="uid"
+                  onChange={handleChange}
                 ></input>
               </div>
             </div>
@@ -71,6 +104,8 @@ export default function Users() {
                 <input
                   class="input-group form-control py-1"
                   type="text"
+                  name="upwd"
+                  onChange={handleChange}
                 ></input>
               </div>
             </div>
@@ -89,6 +124,8 @@ export default function Users() {
                 <input
                   class="input-group form-control py-1"
                   type="text"
+                  name="uname"
+                  onChange={handleChange}
                 ></input>
               </div>
             </div>
@@ -104,10 +141,15 @@ export default function Users() {
 
             <div className="row" style={{ marginLeft: "1rem" }}>
               <div className="col-sm-3">
-                <select class="form-select" aria-label="Default select example">
+                <select
+                  class="form-select"
+                  aria-label="Default select example"
+                  name="urole"
+                  onChange={handleChange}
+                >
                   <option></option>
-                  <option>User</option>
-                  <option>Admin</option>
+                  <option value="2">{uroleArr[2]}</option>
+                  <option value="3">{uroleArr[3]}</option>
                 </select>
               </div>
             </div>
@@ -121,6 +163,7 @@ export default function Users() {
                   className={classes.root}
                   variant="contained"
                   startIcon={<SaveIcon />}
+                  onClick={handleSubmit}
                 >
                   Save
                 </Button>

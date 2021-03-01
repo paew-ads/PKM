@@ -77,4 +77,23 @@ router.get("/auth/signout", (req, res) => {
   });
 });
 
+router.post("/add", (req, res) => {
+  const { uid, upwd, uname, urole } = req.body;
+  const sql = "INSERT INTO users (uid, upwd,uname, urole) VALUES (?, ?, ?, ?)";
+
+  db.query(sql, [uid, upwd, uname, urole], (err, result) => {
+    if (err) {
+      res.json({
+        error: true,
+        message: "Failed to save data",
+      });
+    } else {
+      res.json({
+        error: false,
+        message: "insert sucess",
+      });
+    }
+  });
+});
+
 module.exports = router;

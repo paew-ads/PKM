@@ -9,4 +9,6 @@ const doctypeArr = [
   "หนังสือใช้เป็นหลักฐาน",
 ];
 
-export { doccateArr, doctypeArr };
+const uroleArr = ["", "", "User", "Admin"];
+
+export { doccateArr, doctypeArr, uroleArr };
