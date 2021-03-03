@@ -88,3 +88,15 @@
   height: 23rem;
   width: 25rem;
 }
+
+.textm {
+  background-color: #78909c;
+}
+
+.textmb {
+  background-color: #cfd8dc;
+}
+
+.textmf {
+  background-color: #b0bec5;
+}

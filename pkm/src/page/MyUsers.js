@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Nav2 from "../Components/nav2";
 import PKM from "../img/PKM.png";
 import Footer from "../Components/footer";
@@ -9,6 +9,8 @@ import EditIcon from "@material-ui/icons/Edit";
 import { makeStyles } from "@material-ui/core/styles";
 import { getUser } from "../Utils/Common";
 import { uroleArr } from "../Utils/Config";
+import { Modal } from "react-bootstrap";
+import ImageIcon from "@material-ui/icons/Image";
 
 const useStyles = makeStyles({
   btn1: {
@@ -28,13 +30,26 @@ const useStyles = makeStyles({
   btn2: {
     backgroundImage: "linear-gradient(45deg, #ffc107, #ff9800, #ffcf33)",
   },
+  chang: {
+    backgroundImage: "linear-gradient(45deg, #007bb2, #00b0ff, #33bfff)",
+  },
+  close: {
+    backgroundImage: "linear-gradient(45deg, #d50000, #fbc02d, #d50000)",
+  },
+  add: {
+    backgroundImage: "linear-gradient(45deg, #76ff03, #76ff03, #b2ff59)",
+    color: "white",
+  },
 });
 
 export default function MyUsers() {
   const user = getUser();
-
   const classes = useStyles();
-  //const history = useHistory();
+
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   return (
     <>
       <Nav2 />
@@ -72,15 +87,50 @@ export default function MyUsers() {
             </div>
             <div className="row  ">
               <div className="col  d-flex justify-content-start my-5 mx-4">
-                <Button className={`${classes.btn1} ${classes.btn2}`}>
+                <Button
+                  className={`${classes.btn1} ${classes.btn2}`}
+                  onClick={handleShow}
+                >
                   <EditIcon />
-                  แก้ไข
+                  Change
+                </Button>
+              </div>
+              <div className="col  d-flex justify-content-start my-5 mx-4">
+                <Button className={`${classes.btn1} ${classes.add}`}>
+                  <ImageIcon />
+                  ADD IMG
                 </Button>
               </div>
             </div>
           </div>
         </div>
       </div>
+
+      {/* modal  */}
+
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header className="textm text" closeButton>
+          <Modal.Title>CHANGE PASSWORD</Modal.Title>
+        </Modal.Header>
+        <Modal.Body className="textmb">
+          <h5>Create password</h5>
+          <input class="form-control  " type="text"></input>
+          <h5 className=" my-2">Confirm password</h5>
+          <input class="form-control " type="text"></input>
+        </Modal.Body>
+        <Modal.Footer className="textmf ">
+          <Button
+            className={`${classes.btn1} ${classes.close}`}
+            onClick={handleClose}
+          >
+            Close
+          </Button>
+          <span />
+          <Button className={`${classes.btn1} ${classes.chang}`}>Change</Button>
+        </Modal.Footer>
+      </Modal>
+
+      {/* endmodal  */}
       <Footer />
     </>
   );
