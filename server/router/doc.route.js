@@ -52,7 +52,7 @@ router.get("/delete/:rcid", (req, res) => {
     console.log(result);
     if (result) {
       res.json({
-        massage: "delete success",
+        massage: "ลบข้อมูลสำเร็จ",
       });
     }
   });

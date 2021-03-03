@@ -9,6 +9,20 @@ const db = mysql.createPool({
   database: "pkm",
 });
 
+router.get("/delete/:uid", (req, res) => {
+  const { uid } = req.params;
+  console.log(uid);
+  const sql = "DELETE FROM users WHERE uid = ?";
+  db.query(sql, [uid], (err, result) => {
+    if (err) throw err;
+    if (result) {
+      res.send({ error: false, message: "ลบผู้ใช้สำเร็จ" });
+    } else {
+      res.send({ error: true, message: "ลบผู้ใช้ไม่สำเร็จ" });
+    }
+  });
+});
+
 router.get("/select/:uid", (req, res) => {
   const { uid } = req.params;
   console.log(uid);
@@ -39,7 +53,7 @@ router.post("/auth/signin", (req, res) => {
       console.log(result[0]);
       req.session.user = result[0];
       return res.json({
-        message: "Login Success",
+        message: "ยินดีต้อนรับคุณ " + result[0].uname,
         user: result[0],
         token: "test-token",
       });
@@ -72,7 +86,8 @@ router.get("/search", (req, res) => {
         res.send(result);
       } else {
         res.send({
-          message: "This user does not exist.",
+          error: true,
+          message: "ไม่มีผู้ใช้นี้",
         });
       }
     });

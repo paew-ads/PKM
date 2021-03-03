@@ -12,6 +12,9 @@ import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import SearchIcon from "@material-ui/icons/Search";
 import "../Components/App.css";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+toast.configure();
 
 const useStyles = makeStyles({
   btn1: {
@@ -73,7 +76,15 @@ export default function DocOut() {
     }
     const res = await searchs(ipForm);
     if (res.data.error) {
-      alert(res.data.message);
+      toast.error("✋ " + res.data.message, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
       return;
     }
     console.log(res.data);
@@ -86,10 +97,26 @@ export default function DocOut() {
       )
     ) {
       const res = await deleteDoc(rcid);
-      alert(res.data.massage);
+      toast.success("👌 " + res.data.massage, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
       window.location.reload();
     } else {
-      alert("Delete not success!!!");
+      toast.warn("😱 ยกเลิกการลบข้อมูล", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     }
   };
 

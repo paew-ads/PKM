@@ -12,6 +12,8 @@ import { setUserSession } from "../Utils/Common";
 
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const useStyles = makeStyles({
   btn1: {
@@ -34,6 +36,8 @@ const useStyles = makeStyles({
   },
 });
 
+toast.configure();
+
 export default function SignIn() {
   const classes = useStyles();
   const history = useHistory();
@@ -52,10 +56,26 @@ export default function SignIn() {
     e.preventDefault();
     const res = await signin({ ipForm });
     if (res.data.error) {
-      alert(res.data.message);
+      toast.error("😭 " + res.data.message, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
       return;
     }
-    alert(res.data.message);
+    toast.success("🎉 " + res.data.message, {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
     setUserSession(res.data.token, res.data.user);
     history.push("/");
   };
@@ -116,7 +136,6 @@ export default function SignIn() {
               <Card.Footer>
                 <Button
                   className={`${classes.btn1} ${classes.btn2}`}
-                  type="submit"
                   onClick={handleSignIn}
                   style={{ width: "7rem", height: "3rem" }}
                 >
