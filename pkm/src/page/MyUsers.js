@@ -5,8 +5,10 @@ import Footer from "../Components/footer";
 import "../Components/App.css";
 import { Button } from "@material-ui/core";
 import EditIcon from "@material-ui/icons/Edit";
-import { useHistory } from "react-router-dom";
+//import { useHistory } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
+import { getUser } from "../Utils/Common";
+import { uroleArr } from "../Utils/Config";
 
 const useStyles = makeStyles({
   btn1: {
@@ -29,8 +31,10 @@ const useStyles = makeStyles({
 });
 
 export default function MyUsers() {
+  const user = getUser();
+
   const classes = useStyles();
-  const history = useHistory();
+  //const history = useHistory();
   return (
     <>
       <Nav2 />
@@ -38,32 +42,32 @@ export default function MyUsers() {
         <div className="cardProfile  container my-5">
           <div className="row ">
             <div className="col d-flex justify-content-center w-50 h-50">
-              <img className="rounded-circle " src={PKM} />
+              <img className="rounded-circle " src={PKM} alt="" />
             </div>
           </div>
           <div className="cardProfilein container my-3">
             <div className="row    ">
               <div className="col d-flex justify-content-start my-4 ">
                 <h4 className="text  d-inline mx-4">ID :</h4>
-                <h4 className="text  d-inline">kim</h4>
+                <h4 className="text  d-inline">{user.uid}</h4>
               </div>
             </div>
             <div className="row  ">
               <div className="col  d-flex justify-content-start my-2">
                 <h4 className="text  d-inline mx-4">PASSWORD :</h4>
-                <h4 className="text  d-inline">1234</h4>
+                <h4 className="text  d-inline">{user.upwd}</h4>
               </div>
             </div>
             <div className="row  ">
               <div className="col  d-flex justify-content-start my-2">
                 <h4 className="text  d-inline mx-4">ชื่อ-นามสกุล :</h4>
-                <h4 className="text  d-inline">kim</h4>
+                <h4 className="text  d-inline">{user.uname}</h4>
               </div>
             </div>
             <div className="row  ">
               <div className="col  d-flex justify-content-start my-2">
                 <h4 className="text  d-inline mx-4">ระดับ :</h4>
-                <h4 className="text  d-inline">admin</h4>
+                <h4 className="text  d-inline">{uroleArr[user.urole]}</h4>
               </div>
             </div>
             <div className="row  ">
