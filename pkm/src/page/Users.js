@@ -89,7 +89,7 @@ export default function Users() {
         draggable: true,
         progress: undefined,
       });
-      window.location.reload();
+      setTimeout(window.location.reload.bind(window.location), 3000);
     } else {
       toast.warn("😱 ยกเลิกการลบข้อมูล", {
         position: "top-right",
