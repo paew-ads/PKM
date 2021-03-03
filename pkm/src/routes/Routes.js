@@ -17,6 +17,7 @@ import DocOut from "../page/DocOut";
 import Users from "../page/Users";
 import AddUses from "../page/AddUses";
 import EditUses from "../page/EditUses";
+import MyUsers from "../page/MyUsers";
 
 function Routes() {
   return (
@@ -36,6 +37,7 @@ function Routes() {
       <PrivateRoute exact path="/Users" component={Users} />
       <PrivateRoute exact path="/AddUses" component={AddUses} />
       <PrivateRoute exact path="/EditUses" component={EditUses} />
+      <PrivateRoute exact path="/MyUsers" component={MyUsers} />
     </Switch>
   );
 }

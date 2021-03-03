@@ -10,6 +10,7 @@ import { useHistory } from "react-router-dom";
 import "../Components/App.css";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
+import Footer from "../Components/footer";
 
 const useStyles = makeStyles({
   btn1: {
@@ -33,7 +34,7 @@ const useStyles = makeStyles({
     backgroundImage: "linear-gradient(45deg, #d50000, #c62828, #d50000)",
   },
   btn4: {
-    backgroundImage: "linear-gradient(45deg, #4615b2, #651fff, #834bff)",
+    backgroundImage: "linear-gradient(45deg, #757575, #bdbdbd, #e0e0e0)",
   },
 });
 
@@ -72,30 +73,28 @@ export default function DocDetial(props) {
     <>
       <Nav2 />
       <div className="container page">
-        <div className="cardd" style={{ marginTop: "3rem" }}>
+        <div className="cardd" style={{ marginTop: "4rem" }}>
           <div
             className="row align-items-center"
             style={{ marginTop: "2rem", marginLeft: "1.8rem" }}
           >
             <div className="col-sm-4">
-              <div className="text" style={{ marginTop: "2rem" }}>
-                หมายเลขบันทึก:
+              <h6 className="text" style={{ marginTop: "2rem" }}>
+                หมายเลขบันทึก :
                 <input
-                  type="text"
                   style={{ marginLeft: "1rem" }}
                   value={Detial.rcid}
                 ></input>
-              </div>
+              </h6>
             </div>
             <div className="col">
-              <div className="text" style={{ marginTop: "2rem" }}>
+              <h6 className="text" style={{ marginTop: "2rem" }}>
                 วันที่บันทึก:
                 <input
-                  type="date"
                   style={{ marginLeft: "1rem" }}
                   value={spRCDate[0]}
                 ></input>
-              </div>
+              </h6>
             </div>
           </div>
 
@@ -104,24 +103,22 @@ export default function DocDetial(props) {
             style={{ marginTop: "1rem", marginLeft: "1.8rem" }}
           >
             <div className="col-sm-4">
-              <div className="text">
+              <h6 className="text">
                 หมวดหนังสือ:
                 <input
-                  type="text"
                   style={{ marginLeft: "2rem" }}
                   value={doccateArr[Detial.doccate]}
                 ></input>
-              </div>
+              </h6>
             </div>
             <div className="col">
-              <div className="text">
+              <h6 className="text">
                 วันที่ออก:
                 <input
-                  type="date"
                   style={{ marginLeft: "1.9rem" }}
                   value={spDocDate[0]}
                 ></input>
-              </div>
+              </h6>
             </div>
           </div>
 
@@ -130,14 +127,14 @@ export default function DocDetial(props) {
             style={{ marginTop: "1rem", marginLeft: "1.9rem" }}
           >
             <div className="col-sm-4">
-              <div className="text">
+              <h6 className="text">
                 เลขที่หนังสือ:
                 <input
                   type="text"
                   style={{ marginLeft: "2rem" }}
                   value={Detial.docid}
                 ></input>
-              </div>
+              </h6>
             </div>
           </div>
 
@@ -146,14 +143,14 @@ export default function DocDetial(props) {
             style={{ marginTop: "1rem", marginLeft: "1.8rem" }}
           >
             <div className="col-sm-4">
-              <div className="text">
+              <h6 className="text">
                 ชนิดหนังสือ:
                 <input
                   type="text"
                   style={{ marginLeft: "2.5rem" }}
                   value={doctypeArr[Detial.doctype]}
                 ></input>
-              </div>
+              </h6>
             </div>
           </div>
 
@@ -162,14 +159,14 @@ export default function DocDetial(props) {
             style={{ marginTop: "1rem", marginLeft: "1.8rem" }}
           >
             <div className="col-sm-4">
-              <div className="text">
+              <h6 className="text">
                 เรื่อง:
                 <input
                   type="text"
                   style={{ marginLeft: "5.3rem" }}
                   value={Detial.docsubj}
                 ></input>
-              </div>
+              </h6>
             </div>
           </div>
 
@@ -178,7 +175,7 @@ export default function DocDetial(props) {
             style={{ marginTop: "1rem", marginLeft: "1.8rem" }}
           >
             <div className="col-sm-2" style={{ marginTop: "-5rem" }}>
-              <div className="text">เนื้อความ(ย่อ):</div>
+              <h6 className="text">เนื้อความ(ย่อ):</h6>
             </div>
             <div className="col-sm-2">
               <textarea
@@ -201,7 +198,7 @@ export default function DocDetial(props) {
               <Button
                 className={`${classes.btn1} ${classes.btn4}`}
                 href={"http://localhost:3001/doc/file/" + Detial.rcid}
-                download="file.pdf"
+                target="_blank"
               >
                 <FindInPageIcon />
                 เอกสาร
@@ -261,6 +258,7 @@ export default function DocDetial(props) {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 }

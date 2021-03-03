@@ -128,6 +128,9 @@ export default function ButtonAppBar() {
             color="inherit"
             style={{ position: "absolute", right: "220px" }}
             startIcon={<AccountCircleIcon />}
+            onClick={() => {
+              history.push("/MyUsers");
+            }}
           >
             {user.uname}
           </Button>
