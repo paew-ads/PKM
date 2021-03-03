@@ -41,4 +41,19 @@ const update = async (olduid, ipForm) => {
   return res;
 };
 
-export { signin, hassSignned, signout, list, search, add, select, update };
+const deleteUser = async (uid) => {
+  const res = await Axios.get("/delete/" + uid);
+  return res;
+};
+
+export {
+  signin,
+  hassSignned,
+  signout,
+  list,
+  search,
+  add,
+  select,
+  update,
+  deleteUser,
+};

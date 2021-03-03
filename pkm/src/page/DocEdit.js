@@ -9,6 +9,9 @@ import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import SaveIcon from "@material-ui/icons/Save";
 import CloseIcon from "@material-ui/icons/Close";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+toast.configure();
 
 const useStyles = makeStyles({
   btn1: {
@@ -89,17 +92,49 @@ export default function DocEdit(props) {
     for (const [key, value] of Object.entries(ipForm)) {
       console.log(`${key}: ${value}`);
       if (value === "") {
-        alert("Please provide complete information.");
+        toast.warn("⚠️ โปรดกรอกข้อมูลให้ครบ", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
         return;
       }
     }
     const res = await update(oldid, ipForm, ipFile);
     if (res.data.error) {
-      alert(res.data.message);
-      alert("หมายเลขบันทึก อาจซ้ำในฐานข้อมูล");
+      toast.error("🙀 " + res.data.message, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      toast.warn("🤓 หมายเลขบันทึก อาจซ้ำในฐานข้อมูล", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
       return;
     }
-    alert(res.data.message);
+    toast.success("🤩 " + res.data.message, {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
     history.push("/");
   };
   return (

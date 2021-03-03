@@ -10,6 +10,9 @@ import { useHistory } from "react-router-dom";
 import "../Components/App.css";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+toast.configure();
 
 const useStyles = makeStyles({
   btn1: {
@@ -56,16 +59,28 @@ export default function DocDetial(props) {
   const spDocDate = strDocDate.split("T");
 
   const handleDelete = async (rcid) => {
-    if (
-      window.confirm(
-        "Are you sure you want to Delete this thing into the database?"
-      )
-    ) {
+    if (window.confirm("คุณแน่ใจที่จะลบเอกสารนี้?")) {
       const res = await deleteDoc(rcid);
-      alert(res.data.massage);
+      toast.success("👌 " + res.data.massage, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
       history.push("/");
     } else {
-      alert("Delete not success!!!");
+      toast.warn("😱 ยกเลิกการลบข้อมูล", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     }
   };
   return (

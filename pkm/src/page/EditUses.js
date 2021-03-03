@@ -10,6 +10,9 @@ import "../Components/App.css";
 import { select, update } from "../action/auth-api";
 import { uroleArr } from "../Utils/Config";
 import { useHistory } from "react-router-dom";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+toast.configure();
 
 const useStyles = makeStyles({
   btn1: {
@@ -73,11 +76,35 @@ export default function EditUses(props) {
 
     const res = await update(olduid, ipForm);
     if (res.data.error) {
-      alert(res.data.message);
-      alert("หมายเลขบันทึก อาจซ้ำในฐานข้อมูล");
+      toast.error("🙀 " + res.data.message, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      toast.warn("🤓 UserID อาจซ้ำในฐานข้อมูล", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
       return;
     }
-    alert(res.data.message);
+    toast.success("🤩 " + res.data.message, {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
     history.push("/Users");
   };
 

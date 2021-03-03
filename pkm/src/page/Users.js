@@ -7,10 +7,13 @@ import AddBoxIcon from "@material-ui/icons/AddBox";
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 import { useHistory } from "react-router-dom";
-import { list, search } from "../action/auth-api";
+import { list, search, deleteUser } from "../action/auth-api";
 import { makeStyles } from "@material-ui/core/styles";
 import "../Components/App.css";
 import { uroleArr } from "../Utils/Config";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+toast.configure();
 
 const useStyles = makeStyles({
   btn1: {
@@ -58,8 +61,46 @@ export default function Users() {
 
   const handleSearch = async (e) => {
     const res = await search(Search);
+    if (res.data.error) {
+      toast.error("✋ " + res.data.message, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      return;
+    }
     console.log(res.data);
     setListUsers(res.data);
+  };
+
+  const handleDelete = async (uid) => {
+    if (window.confirm("คุณแน่ใจที่จะลบผู้ใช้นี้?")) {
+      const res = await deleteUser(uid);
+      toast.success("👌 " + res.data.massage, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      window.location.reload();
+    } else {
+      toast.warn("😱 ยกเลิกการลบข้อมูล", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }
   };
 
   return (
@@ -149,7 +190,11 @@ export default function Users() {
                           >
                             <EditIcon color="primary" />
                           </IconButton>
-                          <IconButton>
+                          <IconButton
+                            onClick={() => {
+                              handleDelete(val.uid);
+                            }}
+                          >
                             <DeleteForeverIcon color="secondary" />
                           </IconButton>
                         </th>
