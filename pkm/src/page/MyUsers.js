@@ -11,6 +11,10 @@ import { getUser } from "../Utils/Common";
 import { uroleArr } from "../Utils/Config";
 import { Modal } from "react-bootstrap";
 import ImageIcon from "@material-ui/icons/Image";
+import { update, signout, upload } from "../action/auth-api";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+toast.configure();
 
 const useStyles = makeStyles({
   btn1: {
@@ -43,12 +47,100 @@ const useStyles = makeStyles({
 });
 
 export default function MyUsers() {
+  const [ipForm, setipForm] = useState({
+    upwd: "",
+    cfupwd: "",
+  });
+
+  const hiddenFileInput = React.useRef(null);
   const user = getUser();
   const classes = useStyles();
-
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const handleClick = (event) => {
+    hiddenFileInput.current.click();
+  };
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setipForm({
+      ...ipForm,
+      [name]: value,
+    });
+  };
+
+  const handleSubmit = async () => {
+    if (ipForm.upwd === ipForm.cfupwd) {
+      const res = await update(user.uid, ipForm);
+      if (res.data.error) {
+        toast.error("😱 " + res.data.message, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+        return;
+      }
+      toast.success("😍 กรุณา Login ใหม่", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      handleClose();
+      sessionStorage.clear();
+      signout();
+      setTimeout(window.location.reload.bind(window.location), 3000);
+    } else {
+      toast.warn("🖕 รหัสผ่านของท่านไม่ตรงกับการยืนยัน", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }
+  };
+
+  const handleUpload = async (e) => {
+    const fileUploaded = e.target.files[0];
+    const res = await upload(fileUploaded, user.uid);
+    if (res.data.error) {
+      toast.error("😱 " + res.data.message, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      return;
+    }
+    toast.success("😍 กรุณา Login ใหม่", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+    handleClose();
+    sessionStorage.clear();
+    signout();
+    setTimeout(window.location.reload.bind(window.location), 3000);
+  };
 
   return (
     <>
@@ -57,7 +149,16 @@ export default function MyUsers() {
         <div className="cardProfile  container my-5">
           <div className="row ">
             <div className="col d-flex justify-content-center w-50 h-50">
-              <img className="rounded-circle " src={PKM} alt="" />
+              <img
+                className="rounded-circle "
+                src={
+                  user.uimg === ""
+                    ? PKM
+                    : "http://localhost:3001/image?path=" + user.uimg
+                }
+                alt=""
+                style={{ width: "150px", height: "150px", marginTop: "2rem" }}
+              />
             </div>
           </div>
           <div className="cardProfilein container my-3">
@@ -96,17 +197,25 @@ export default function MyUsers() {
                 </Button>
               </div>
               <div className="col  d-flex justify-content-start my-5 mx-4">
-                <Button className={`${classes.btn1} ${classes.add}`}>
+                <Button
+                  className={`${classes.btn1} ${classes.add}`}
+                  onClick={handleClick}
+                >
                   <ImageIcon />
                   ADD IMG
                 </Button>
+                <input
+                  type="file"
+                  style={{ display: "none" }}
+                  ref={hiddenFileInput}
+                  onChange={handleUpload}
+                  accept="image/png, image/jpeg"
+                />
               </div>
             </div>
           </div>
         </div>
       </div>
-
-      {/* modal  */}
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header className="textm text" closeButton>
@@ -114,23 +223,37 @@ export default function MyUsers() {
         </Modal.Header>
         <Modal.Body className="textmb">
           <h5>Create password</h5>
-          <input class="form-control  " type="text"></input>
+          <input
+            class="form-control "
+            type="password"
+            name="upwd"
+            onChange={handleChange}
+          ></input>
           <h5 className=" my-2">Confirm password</h5>
-          <input class="form-control " type="text"></input>
+          <input
+            class="form-control "
+            type="password"
+            name="cfupwd"
+            onChange={handleChange}
+          ></input>
         </Modal.Body>
         <Modal.Footer className="textmf ">
           <Button
             className={`${classes.btn1} ${classes.close}`}
             onClick={handleClose}
           >
-            Close
+            ยกเลิก
           </Button>
           <span />
-          <Button className={`${classes.btn1} ${classes.chang}`}>Change</Button>
+          <Button
+            className={`${classes.btn1} ${classes.chang}`}
+            onClick={handleSubmit}
+          >
+            บันทึก
+          </Button>
         </Modal.Footer>
       </Modal>
 
-      {/* endmodal  */}
       <Footer />
     </>
   );

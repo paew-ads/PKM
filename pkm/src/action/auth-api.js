@@ -46,6 +46,17 @@ const deleteUser = async (uid) => {
   return res;
 };
 
+const upload = async (myFile, uid) => {
+  var formData = new FormData();
+  formData.append("myFile", myFile);
+  formData.append("uid", uid);
+
+  const res = await Axios.post("/upload", formData, {
+    headers: { "Content-Type": "multipart/form-data" },
+  });
+  return res;
+};
+
 export {
   signin,
   hassSignned,
@@ -56,4 +67,5 @@ export {
   select,
   update,
   deleteUser,
+  upload,
 };
