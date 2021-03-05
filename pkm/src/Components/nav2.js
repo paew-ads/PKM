@@ -119,6 +119,7 @@ export default function ButtonAppBar() {
             onClick={() => {
               history.push("/Users");
             }}
+            style={user.urole < 3 ? { display: "none" } : {}}
           >
             <Typography variant="h6" noWrap>
               ผู้ใช้

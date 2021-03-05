@@ -3,7 +3,6 @@ import { Switch } from "react-router-dom";
 import SignIn from "../page/SignIn";
 import Customers from "../page/Customers";
 import addCustomers from "../page/AddCustomer";
-import masterData from "../Components/MasterData";
 import tax from "../Components/TaxInvoice";
 import PrivateRoute from "../Utils/PrivateRoute";
 import PublicRoute from "../Utils/PublicRoute";
@@ -25,7 +24,6 @@ function Routes() {
       <PrivateRoute exact path="/doc_out" component={DocOut} />
       <PrivateRoute exact path="/Customers" component={Customers} />
       <PrivateRoute exact path="/addCustomers" component={addCustomers} />
-      <PrivateRoute exact path="/masterData" component={masterData} />
       <PrivateRoute exact path="/tax" component={tax} />
       <PrivateRoute exact path="/doc_form" component={DocForm} />
       <PrivateRoute exact path="/doc_detial" component={DocDetial} />
