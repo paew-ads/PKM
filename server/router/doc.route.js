@@ -76,9 +76,10 @@ router.post("/add", (req, res) => {
     docsubj,
     doccont,
     docauth,
+    docsend,
   } = JSON.parse(req.body.info);
   const sql =
-    "INSERT INTO document(rcid, rcdate,doccate,docid,docdate,doctype,docsubj,doccont,docauth,fitype,ficont) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+    "INSERT INTO document(rcid, rcdate,doccate,docid,docdate,doctype,docsubj,doccont,docauth,fitype,ficont,docsend) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
   db.query(
     sql,
     [
@@ -93,6 +94,7 @@ router.post("/add", (req, res) => {
       docauth,
       fitype,
       ficont,
+      docsend,
     ],
     (err, result) => {
       if (err) {
