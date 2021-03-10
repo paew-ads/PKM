@@ -7,7 +7,7 @@ import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import newLogo from "../img/newLogo.png";
 import ExitToAppOutlinedIcon from "@material-ui/icons/ExitToAppOutlined";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import { signout } from "../action/auth-api";
 import { colors } from "@material-ui/core";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
@@ -32,6 +32,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function ButtonAppBar() {
+  const location = useLocation();
   const user = getUser();
   const history = useHistory();
   const classes = useStyles();
@@ -104,6 +105,11 @@ export default function ButtonAppBar() {
             onClick={() => {
               history.push("/");
             }}
+            style={
+              location.pathname === "/"
+                ? { backgroundColor: "#666", color: "white" }
+                : {}
+            }
           >
             <text />
             <text />
@@ -118,6 +124,11 @@ export default function ButtonAppBar() {
             onClick={() => {
               history.push("/doc_out");
             }}
+            style={
+              location.pathname === "/doc_out"
+                ? { backgroundColor: "#666", color: "white" }
+                : {}
+            }
           >
             <text />
             <text />
@@ -132,7 +143,13 @@ export default function ButtonAppBar() {
             onClick={() => {
               history.push("/Users");
             }}
-            style={user.urole < 3 ? { display: "none" } : {}}
+            style={
+              user.urole < 3
+                ? { display: "none" }
+                : location.pathname === "/Users"
+                ? { backgroundColor: "#666", color: "white" }
+                : {}
+            }
           >
             <text />
             <text />
@@ -142,7 +159,17 @@ export default function ButtonAppBar() {
           </Button>
           <Button
             color="inherit"
-            style={{ position: "absolute", right: "220px" }}
+            //style={{ position: "absolute", right: "220px" }}
+            style={
+              location.pathname === "/MyUsers"
+                ? {
+                    backgroundColor: "#666",
+                    color: "white",
+                    position: "absolute",
+                    right: "220px",
+                  }
+                : { position: "absolute", right: "220px" }
+            }
             className="neon"
             startIcon={<AccountCircleIcon />}
             onClick={() => {
