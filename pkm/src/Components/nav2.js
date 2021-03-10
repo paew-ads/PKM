@@ -102,13 +102,12 @@ export default function ButtonAppBar() {
             aria-haspopup="true"
             color="inherit"
             className="neon"
-            style={{ fontSize: "18px" }}
             onClick={() => {
               history.push("/");
             }}
             style={
               location.pathname === "/"
-                ? { backgroundColor: "#666", color: "white" }
+                ? { backgroundColor: "#666", color: "white", fontSize: "18px" }
                 : {}
             }
           >
@@ -121,14 +120,13 @@ export default function ButtonAppBar() {
 
           <Button
             color="inherit"
-            style={{ fontSize: "18px" }}
             className="neon"
             onClick={() => {
               history.push("/doc_out");
             }}
             style={
               location.pathname === "/doc_out"
-                ? { backgroundColor: "#666", color: "white" }
+                ? { backgroundColor: "#666", color: "white", fontSize: "18px" }
                 : {}
             }
           >
