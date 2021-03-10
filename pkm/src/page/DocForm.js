@@ -116,7 +116,7 @@ export default function DocForm() {
     <>
       <Nav2 />
       <div className="container page">
-        <div className="cardd" style={{ marginTop: "3rem" }}>
+        <div className="cardd box" style={{ marginTop: "3rem" }}>
           <div
             className="row align-items-center"
             style={{ marginLeft: "1.8rem" }}
@@ -250,6 +250,30 @@ export default function DocForm() {
                     onChange={handleChange}
                   ></input>
                 </div>
+              </div>
+            </div>
+
+            <div className="row " style={{ marginTop: "1rem" }}>
+              <div className="col-sm-6">
+                <div className="text" style={{ marginLeft: "-26rem" }}>
+                  ผู้รับ:
+                </div>
+              </div>
+              <div className="col-sm-2" style={{ marginLeft: "-30rem" }}>
+                <select
+                  class="form-select"
+                  aria-label="Default select example"
+                  name=""
+                  onChange={handleChange}
+                >
+                  <option selected>โปรดเลือก</option>
+                  <option value="0">{doctypeArr[0]}</option>
+                  <option value="1">{doctypeArr[1]}</option>
+                  <option value="2">{doctypeArr[2]}</option>
+                  <option value="3">{doctypeArr[3]}</option>
+                  <option value="4">{doctypeArr[4]}</option>
+                  <option value="5">{doctypeArr[5]}</option>
+                </select>
               </div>
             </div>
 

@@ -89,8 +89,9 @@ export default function SignIn() {
                 width: "30rem",
                 height: "35rem",
                 backgroundColor: "#546e7a",
+                borderRadius: "10px",
               }}
-              className="text-center"
+              className="text-center box"
             >
               <Card.Title>
                 <img src={newLogo} alt="" />

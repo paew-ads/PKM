@@ -90,7 +90,7 @@ export default function DocDetial(props) {
     <>
       <Nav2 />
       <div className="container page">
-        <div className="cardd" style={{ marginTop: "4rem" }}>
+        <div className="cardd box" style={{ marginTop: "4rem" }}>
           <div
             className="row align-items-center"
             style={{ marginTop: "2rem", marginLeft: "1.8rem" }}
@@ -191,6 +191,38 @@ export default function DocDetial(props) {
             className="row align-items-center"
             style={{ marginTop: "1rem", marginLeft: "1.8rem" }}
           >
+            <div className="col-sm-4">
+              <h6 className="text">
+                ผู้ออก:
+                <input
+                  type="text"
+                  style={{ marginLeft: "4.8rem" }}
+                  value={Detial.docauth}
+                ></input>
+              </h6>
+            </div>
+          </div>
+
+          <div
+            className="row align-items-center"
+            style={{ marginTop: "1rem", marginLeft: "2.2rem" }}
+          >
+            <div className="col-sm-4">
+              <h6 className="text">
+                ผู้รับ:
+                <input
+                  type="text"
+                  style={{ marginLeft: "4.8rem" }}
+                  value={Detial.docauth}
+                ></input>
+              </h6>
+            </div>
+          </div>
+
+          <div
+            className="row align-items-center"
+            style={{ marginTop: "1rem", marginLeft: "1.8rem" }}
+          >
             <div className="col-sm-2" style={{ marginTop: "-5rem" }}>
               <h6 className="text">เนื้อความ(ย่อ):</h6>
             </div>
@@ -211,7 +243,7 @@ export default function DocDetial(props) {
             className="row align-items-center"
             style={{ marginTop: "1rem", marginLeft: "1.8rem" }}
           >
-            <div className="col-sm-2" style={{ marginLeft: "8rem" }}>
+            <div className="col-sm-2" style={{ marginLeft: "7.5rem" }}>
               <Button
                 className={`${classes.btn1} ${classes.btn4}`}
                 href={"http://localhost:3001/doc/file/" + Detial.rcid}
@@ -225,7 +257,7 @@ export default function DocDetial(props) {
 
           <div
             className="row align-items-center"
-            style={{ marginTop: "5rem", marginLeft: "1.8rem" }}
+            style={{ marginTop: "2.5rem", marginLeft: "1.8rem" }}
           >
             <div
               className="col-sm-2"

@@ -146,7 +146,7 @@ export default function MyUsers() {
     <>
       <Nav2 />
       <div className="page">
-        <div className="cardProfile  container my-5">
+        <div className="cardProfile  container my-5 box">
           <div className="row ">
             <div className="col d-flex justify-content-center w-50 h-50">
               <img
@@ -161,7 +161,7 @@ export default function MyUsers() {
               />
             </div>
           </div>
-          <div className="cardProfilein container my-3">
+          <div className="cardProfilein container my-3 box">
             <div className="row    ">
               <div className="col d-flex justify-content-start my-4 ">
                 <h4 className="text  d-inline mx-4">ID :</h4>

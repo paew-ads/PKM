@@ -114,8 +114,12 @@ export default function Users() {
           ผู้ใช้
         </h2>
         <div
-          className="row align-items-center"
-          style={{ marginTop: "2rem", backgroundColor: "#263238" }}
+          className="row align-items-center box"
+          style={{
+            marginTop: "2rem",
+            backgroundColor: "#263238",
+            borderRadius: "10px",
+          }}
         >
           <div className="row align-items-center" style={{ marginTop: "2rem" }}>
             <h4 className="text" style={{ marginLeft: "-38rem" }}>
@@ -164,7 +168,7 @@ export default function Users() {
 
             <div
               className="row"
-              style={{ marginTop: "2rem", marginLeft: "0.1rem" }}
+              style={{ marginTop: "2rem", marginLeft: "0.5rem" }}
             >
               <table class="table table-bordered ">
                 <thead style={{ backgroundColor: "#eceff1" }}>

@@ -106,7 +106,7 @@ export default function AddUses() {
         </h2>
         <div className="cardForm" style={{ marginTop: "2rem" }}>
           <div className="row align-items-center" style={{ marginTop: "2rem" }}>
-            <h4 className="text" style={{ marginLeft: "-38rem" }}>
+            <h4 className="text my-2" style={{ marginLeft: "-36rem" }}>
               Form
             </h4>
             <div

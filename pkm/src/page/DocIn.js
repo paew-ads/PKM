@@ -130,8 +130,12 @@ export default function DocIn() {
           เอกสารเข้า
         </h2>
         <div
-          className="row align-items-center"
-          style={{ marginTop: "3rem", backgroundColor: "#263238" }}
+          className="row align-items-center box"
+          style={{
+            marginTop: "3rem",
+            backgroundColor: "#263238",
+            borderRadius: "10px",
+          }}
         >
           <div className="row align-items-center" style={{ marginTop: "2rem" }}>
             <div className="col-sm-1">

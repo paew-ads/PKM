@@ -63,14 +63,16 @@
 
 .cardd {
   background-color: #263238;
-  height: 37rem;
+  height: 41rem;
   width: 80rem;
+  border-radius: 10px;
 }
 
 .cardForm {
   background-color: #263238;
   height: 29rem;
   width: 80rem;
+  border-radius: 10px;
 }
 
 .page {
@@ -81,12 +83,14 @@
   background-color: #263238;
   height: 39rem;
   width: 33rem;
+  border-radius: 10px;
 }
 
 .cardProfilein {
   background-color: #37474f;
   height: 23rem;
   width: 25rem;
+  border-radius: 10px;
 }
 
 .textm {
@@ -99,4 +103,14 @@
 
 .textmf {
   background-color: #b0bec5;
+}
+
+.box {
+  box-shadow: 1px 1px 20px rgb(255, 255, 255);
+}
+
+.neon:hover {
+  color: #4fc3f7;
+  background: #81d4fa;
+  box-shadow: 0 0 0 10px;
 }

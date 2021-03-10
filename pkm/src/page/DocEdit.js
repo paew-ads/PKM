@@ -141,7 +141,7 @@ export default function DocEdit(props) {
     <>
       <Nav2 />
       <div className="container page">
-        <div className="cardd" style={{ marginTop: "3rem" }}>
+        <div className="cardd box" style={{ marginTop: "3rem" }}>
           <div
             className="row align-items-center"
             style={{ marginLeft: "1rem" }}
@@ -281,6 +281,31 @@ export default function DocEdit(props) {
             </div>
 
             <div className="row " style={{ marginTop: "1rem" }}>
+              <div className="col-sm-4">
+                <div className="text" style={{ marginLeft: "-10rem" }}>
+                  ผู้รับ:
+                </div>
+              </div>
+              <div className="col-sm-2" style={{ marginLeft: "-15rem" }}>
+                <select
+                  class="form-select"
+                  aria-label="Default select example"
+                  name="doctype"
+                  value={ipForm.doctype}
+                  onChange={handleChange}
+                >
+                  <option selected>โปรดเลือก</option>
+                  <option value="0">{doctypeArr[0]}</option>
+                  <option value="1">{doctypeArr[1]}</option>
+                  <option value="2">{doctypeArr[2]}</option>
+                  <option value="3">{doctypeArr[3]}</option>
+                  <option value="4">{doctypeArr[4]}</option>
+                  <option value="5">{doctypeArr[5]}</option>
+                </select>
+              </div>
+            </div>
+
+            <div className="row " style={{ marginTop: "1rem" }}>
               <div className="col-sm-2">
                 <div className="text">เนื้อความ(ย่อ):</div>
               </div>
@@ -291,6 +316,7 @@ export default function DocEdit(props) {
                       width: "22rem",
                       height: "7rem",
                       marginLeft: "3rem",
+                      marginTop: "1rem",
                     }}
                     name="doccont"
                     value={ipForm.doccont}
