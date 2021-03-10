@@ -76,7 +76,10 @@ export default function ButtonAppBar() {
 
       <AppBar
         position="static"
-        style={{ backgroundColor: colors.blueGrey[900], height: "3rem" }}
+        style={{
+          backgroundColor: colors.blueGrey[900],
+          height: "3.5rem",
+        }}
       >
         <Toolbar>
           <Button
@@ -143,6 +146,7 @@ export default function ButtonAppBar() {
           >
             Logout
           </Button>
+          <div className="animation"></div>
         </Toolbar>
       </AppBar>
     </div>
