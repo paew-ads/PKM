@@ -87,64 +87,86 @@ export default function ButtonAppBar() {
             aria-controls={open ? "menu-list-grow" : undefined}
             aria-haspopup="true"
             color="inherit"
+            className="neon"
             onClick={handleToggle}
           >
-            <Typography variant="h6" noWrap>
-              E-document
-            </Typography>
+            <text />
+            <text />
+            <text />
+            <text />
+            E-document
           </Button>
 
           <Button
             aria-haspopup="true"
             color="inherit"
+            className="neon"
             onClick={() => {
               history.push("/");
             }}
           >
-            <Typography variant="h6" noWrap>
-              เอกสารเข้า
-            </Typography>
+            <text />
+            <text />
+            <text />
+            <text />
+            เอกสารเข้า
           </Button>
 
           <Button
             color="inherit"
+            className="neon"
             onClick={() => {
               history.push("/doc_out");
             }}
           >
-            <Typography variant="h6" noWrap>
-              เอกสารออก
-            </Typography>
+            <text />
+            <text />
+            <text />
+            <text />
+            เอกสารออก
           </Button>
 
           <Button
             color="inherit"
+            className="neon"
             onClick={() => {
               history.push("/Users");
             }}
             style={user.urole < 3 ? { display: "none" } : {}}
           >
-            <Typography variant="h6" noWrap>
-              ผู้ใช้
-            </Typography>
+            <text />
+            <text />
+            <text />
+            <text />
+            ผู้ใช้
           </Button>
           <Button
             color="inherit"
             style={{ position: "absolute", right: "220px" }}
+            className="neon"
             startIcon={<AccountCircleIcon />}
             onClick={() => {
               history.push("/MyUsers");
             }}
           >
+            <text />
+            <text />
+            <text />
+            <text />
             {user.uname}
           </Button>
           <Button
             color="inherit"
+            className="neon1"
             type="cancel"
             onClick={handleLogout}
             startIcon={<ExitToAppOutlinedIcon />}
             style={{ position: "absolute", right: "100px" }}
           >
+            <text />
+            <text />
+            <text />
+            <text />
             Logout
           </Button>
           <div className="animation"></div>
