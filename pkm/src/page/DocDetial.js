@@ -213,7 +213,7 @@ export default function DocDetial(props) {
                 <input
                   type="text"
                   style={{ marginLeft: "4.8rem" }}
-                  value={Detial.docauth}
+                  value={Detial.docsend}
                 ></input>
               </h6>
             </div>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Nav2 from "../Components/nav2";
 import { add } from "../action/doc-api";
 import { useHistory } from "react-router-dom";
@@ -9,6 +9,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import SaveIcon from "@material-ui/icons/Save";
 import CloseIcon from "@material-ui/icons/Close";
+import { list } from "../action/auth-api";
+
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 toast.configure();
@@ -37,6 +39,16 @@ const useStyles = makeStyles({
 });
 
 export default function DocForm() {
+  const [ListUsers, setListUsers] = useState([]);
+
+  useEffect(() => {
+    async function fetchData() {
+      const res = await list();
+      setListUsers(res.data);
+    }
+    fetchData();
+  }, []);
+
   const history = useHistory();
   const [ipFile, setipFile] = useState();
   const [ipForm, setipForm] = useState({
@@ -49,6 +61,7 @@ export default function DocForm() {
     docsubj: "",
     doccont: "",
     docauth: "",
+    docsend: "",
   });
   const classes = useStyles();
 
@@ -263,16 +276,13 @@ export default function DocForm() {
                 <select
                   class="form-select"
                   aria-label="Default select example"
-                  name=""
+                  name="docsend"
                   onChange={handleChange}
                 >
                   <option selected>โปรดเลือก</option>
-                  <option value="0">{doctypeArr[0]}</option>
-                  <option value="1">{doctypeArr[1]}</option>
-                  <option value="2">{doctypeArr[2]}</option>
-                  <option value="3">{doctypeArr[3]}</option>
-                  <option value="4">{doctypeArr[4]}</option>
-                  <option value="5">{doctypeArr[5]}</option>
+                  {ListUsers.map((val, key) => {
+                    return <option value={val.uid}>{val.uname}</option>;
+                  })}
                 </select>
               </div>
             </div>

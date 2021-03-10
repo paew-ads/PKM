@@ -4,6 +4,7 @@ import { update } from "../action/doc-api";
 import { useHistory } from "react-router-dom";
 import { doccateArr, doctypeArr } from "../Utils/Config";
 import { select } from "../action/doc-api";
+import { list } from "../action/auth-api";
 import "../Components/App.css";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
@@ -37,6 +38,7 @@ const useStyles = makeStyles({
 });
 
 export default function DocEdit(props) {
+  const [ListUsers, setListUsers] = useState([]);
   const history = useHistory();
   const oldid = props.location.state.rcid;
   const classes = useStyles();
@@ -51,6 +53,7 @@ export default function DocEdit(props) {
     docsubj: "",
     doccont: "",
     docauth: "",
+    docsend: "",
   });
 
   const handleChange = (e) => {
@@ -78,9 +81,15 @@ export default function DocEdit(props) {
         docsubj: res.data.docsubj,
         doccont: res.data.doccont,
         docauth: res.data.docauth,
+        docsend: res.data.docsend,
       });
     }
+    async function fetchUser() {
+      const res = await list();
+      setListUsers(res.data);
+    }
     fetchData();
+    fetchUser();
   }, [oldid]);
 
   const [ipFile, setipFile] = useState();
@@ -290,17 +299,14 @@ export default function DocEdit(props) {
                 <select
                   class="form-select"
                   aria-label="Default select example"
-                  name="doctype"
-                  value={ipForm.doctype}
+                  name="docsend"
+                  value={ipForm.docsend}
                   onChange={handleChange}
                 >
                   <option selected>โปรดเลือก</option>
-                  <option value="0">{doctypeArr[0]}</option>
-                  <option value="1">{doctypeArr[1]}</option>
-                  <option value="2">{doctypeArr[2]}</option>
-                  <option value="3">{doctypeArr[3]}</option>
-                  <option value="4">{doctypeArr[4]}</option>
-                  <option value="5">{doctypeArr[5]}</option>
+                  {ListUsers.map((val, key) => {
+                    return <option value={val.uid}>{val.uname}</option>;
+                  })}
                 </select>
               </div>
             </div>

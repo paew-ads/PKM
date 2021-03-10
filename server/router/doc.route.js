@@ -131,10 +131,11 @@ router.post("/update", (req, res) => {
     docsubj,
     doccont,
     docauth,
+    docsend,
   } = JSON.parse(req.body.ipfrom);
   if (req.files) {
     const sql =
-      "UPDATE document SET rcid=?, rcdate=?,doccate=?,docid=?,docdate=?,doctype=?,docsubj=?,doccont=?,docauth=?,fitype=?,ficont=? WHERE rcid=?";
+      "UPDATE document SET rcid=?, rcdate=?,doccate=?,docid=?,docdate=?,doctype=?,docsubj=?,doccont=?,docauth=?,fitype=?,ficont=?,docsend=?  WHERE rcid=?";
     db.query(
       sql,
       [
@@ -149,6 +150,7 @@ router.post("/update", (req, res) => {
         docauth,
         fitype,
         ficont,
+        docsend,
         oldid,
       ],
       (err, result) => {
@@ -167,7 +169,7 @@ router.post("/update", (req, res) => {
     );
   } else {
     const sql =
-      "UPDATE document SET rcid=?, rcdate=?,doccate=?,docid=?,docdate=?,doctype=?,docsubj=?,doccont=?,docauth=? WHERE rcid=?";
+      "UPDATE document SET rcid=?, rcdate=?,doccate=?,docid=?,docdate=?,doctype=?,docsubj=?,doccont=?,docauth=?,docsend=? WHERE rcid=?";
     db.query(
       sql,
       [
@@ -180,6 +182,7 @@ router.post("/update", (req, res) => {
         docsubj,
         doccont,
         docauth,
+        docsend,
         oldid,
       ],
       (err, result) => {
@@ -200,16 +203,17 @@ router.post("/update", (req, res) => {
 });
 
 router.get("/list", (req, res) => {
-  const { doccate, keyword, stdate, endate } = req.query;
+  console.log(req.query);
+  const { doccate, docsend } = req.query;
   const st = Date.now();
   const now = new Date(st);
   const nowDate =
     now.getFullYear() + "-" + (now.getMonth() + 1) + "-" + now.getDate();
   const sql =
-    "SELECT * FROM document WHERE doccate = ? AND (docdate BETWEEN ? AND ?)  ORDER BY rcdate DESC,rcid DESC";
+    "SELECT * FROM document WHERE doccate = ? AND (docdate BETWEEN ? AND ?) AND docsend=?  ORDER BY rcdate DESC,rcid DESC";
   db.query(
     sql,
-    [doccate, new Date(nowDate), new Date(nowDate)],
+    [doccate, new Date(nowDate), new Date(nowDate), docsend],
     (err, result) => {
       if (err) throw err;
       if (result.length > 0) {
@@ -226,10 +230,10 @@ router.get("/list", (req, res) => {
 
 router.get("/search", (req, res) => {
   console.log(req.query);
-  const { doccate, keyword, stdate, endate } = req.query;
+  const { doccate, keyword, stdate, endate, docsend } = req.query;
   if (keyword && stdate && endate) {
     const sql =
-      "SELECT * FROM document WHERE doccate = ? AND (rcid = ? OR docid = ? OR docsubj LIKE ?) AND (docdate BETWEEN ? AND ?) ORDER BY rcdate DESC,rcid DESC";
+      "SELECT * FROM document WHERE doccate = ? AND (rcid = ? OR docid = ? OR docsubj LIKE ?) AND (docdate BETWEEN ? AND ?) AND docsend=? ORDER BY rcdate DESC,rcid DESC";
     db.query(
       sql,
       [
@@ -239,6 +243,7 @@ router.get("/search", (req, res) => {
         "%" + keyword + "%",
         new Date(stdate),
         new Date(endate),
+        docsend,
       ],
       (err, result) => {
         if (err) throw err;
@@ -255,10 +260,10 @@ router.get("/search", (req, res) => {
     );
   } else if (keyword) {
     const sql =
-      "SELECT * FROM document WHERE doccate = ? AND (rcid = ? OR docid = ? OR docsubj LIKE ?) ORDER BY rcdate DESC,rcid DESC";
+      "SELECT * FROM document WHERE doccate = ? AND (rcid = ? OR docid = ? OR docsubj LIKE ?) AND docsend=? ORDER BY rcdate DESC,rcid DESC";
     db.query(
       sql,
-      [doccate, keyword, keyword, "%" + keyword + "%"],
+      [doccate, keyword, keyword, "%" + keyword + "%", docsend],
       (err, result) => {
         if (err) throw err;
         if (result.length > 0) {
@@ -274,8 +279,8 @@ router.get("/search", (req, res) => {
     );
   } else if (stdate && endate) {
     const sql =
-      "SELECT * FROM document WHERE doccate = ? AND (docdate BETWEEN ? AND ?) ORDER BY rcdate DESC,rcid DESC";
-    db.query(sql, [doccate, stdate, endate], (err, result) => {
+      "SELECT * FROM document WHERE doccate = ? AND (docdate BETWEEN ? AND ?) AND docsend=? ORDER BY rcdate DESC,rcid DESC";
+    db.query(sql, [doccate, stdate, endate, docsend], (err, result) => {
       if (err) throw err;
       if (result.length > 0) {
         console.log(result);
@@ -293,10 +298,10 @@ router.get("/search", (req, res) => {
     const nowDate =
       now.getFullYear() + "-" + (now.getMonth() + 1) + "-" + now.getDate();
     const sql =
-      "SELECT * FROM document WHERE doccate = ? AND (docdate BETWEEN ? AND ?)  ORDER BY rcdate DESC,rcid DESC";
+      "SELECT * FROM document WHERE doccate = ? AND (docdate BETWEEN ? AND ?) AND docsend=?  ORDER BY rcdate DESC,rcid DESC";
     db.query(
       sql,
-      [doccate, new Date(nowDate), new Date(nowDate)],
+      [doccate, new Date(nowDate), new Date(nowDate), docsend],
       (err, result) => {
         if (err) throw err;
         if (result.length > 0) {

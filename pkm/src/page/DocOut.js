@@ -12,6 +12,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import SearchIcon from "@material-ui/icons/Search";
 import "../Components/App.css";
+import { getUser } from "../Utils/Common";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 toast.configure();
@@ -36,6 +37,7 @@ const useStyles = makeStyles({
   },
 });
 export default function DocOut() {
+  const user = getUser();
   const [Doc, setDoc] = useState([]);
   const history = useHistory();
   const [ipForm, setipForm] = useState({
@@ -43,6 +45,7 @@ export default function DocOut() {
     keyword: "",
     stdate: "",
     endate: "",
+    docsend: user.uid,
   });
 
   const classes = useStyles();
