@@ -2,7 +2,6 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import newLogo from "../img/newLogo.png";
@@ -88,7 +87,8 @@ export default function ButtonAppBar() {
             aria-controls={open ? "menu-list-grow" : undefined}
             aria-haspopup="true"
             color="inherit"
-            className="neon"
+            className="neon "
+            style={{ fontSize: "18px" }}
             onClick={handleToggle}
           >
             <text />
@@ -102,6 +102,7 @@ export default function ButtonAppBar() {
             aria-haspopup="true"
             color="inherit"
             className="neon"
+            style={{ fontSize: "18px" }}
             onClick={() => {
               history.push("/");
             }}
@@ -120,6 +121,7 @@ export default function ButtonAppBar() {
 
           <Button
             color="inherit"
+            style={{ fontSize: "18px" }}
             className="neon"
             onClick={() => {
               history.push("/doc_out");
@@ -147,8 +149,8 @@ export default function ButtonAppBar() {
               user.urole < 3
                 ? { display: "none" }
                 : location.pathname === "/Users"
-                ? { backgroundColor: "#666", color: "white" }
-                : {}
+                ? { backgroundColor: "#666", color: "white", fontSize: "18px" }
+                : { fontSize: "18px" }
             }
           >
             <text />
@@ -159,7 +161,6 @@ export default function ButtonAppBar() {
           </Button>
           <Button
             color="inherit"
-            //style={{ position: "absolute", right: "220px" }}
             style={
               location.pathname === "/MyUsers"
                 ? {
@@ -167,8 +168,9 @@ export default function ButtonAppBar() {
                     color: "white",
                     position: "absolute",
                     right: "220px",
+                    fontSize: "15px",
                   }
-                : { position: "absolute", right: "220px" }
+                : { position: "absolute", right: "220px", fontSize: "15px" }
             }
             className="neon"
             startIcon={<AccountCircleIcon />}
@@ -188,7 +190,7 @@ export default function ButtonAppBar() {
             type="cancel"
             onClick={handleLogout}
             startIcon={<ExitToAppOutlinedIcon />}
-            style={{ position: "absolute", right: "100px" }}
+            style={{ position: "absolute", right: "100px", fontSize: "15px" }}
           >
             <text />
             <text />
