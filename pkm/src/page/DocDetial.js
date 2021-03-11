@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import EditIcon from "@material-ui/icons/Edit";
 import FindInPageIcon from "@material-ui/icons/FindInPage";
 import Nav2 from "../Components/nav2";
 import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
-import { select, deleteDoc } from "../action/doc-api";
+import { deleteDoc } from "../action/doc-api";
 import { doccateArr, doctypeArr } from "../Utils/Config";
 import { useHistory } from "react-router-dom";
 import "../Components/App.css";
@@ -45,21 +45,10 @@ const useStyles = makeStyles({
 
 export default function DocDetial(props) {
   const history = useHistory();
-  const search = props.location.state.rcid;
-  const [Detial, setDetial] = useState({});
+  const Detial = props.location.state.docData;
   const classes = useStyles();
-
-  useEffect(() => {
-    async function fetchData() {
-      const res = await select(search);
-      setDetial(res.data);
-    }
-    fetchData();
-  }, [search]);
-  const strRCDate = "" + Detial.rcdate;
-  const strDocDate = "" + Detial.docdate;
-  const spRCDate = strRCDate.split("T");
-  const spDocDate = strDocDate.split("T");
+  const spRCDate = new Date(Detial.rcdate).toString().slice(0, 15);
+  const spDocDate = new Date(Detial.docdate).toString().slice(0, 15);
 
   const handleDelete = async (rcid) => {
     if (window.confirm("คุณแน่ใจที่จะลบเอกสารนี้?")) {
@@ -107,10 +96,7 @@ export default function DocDetial(props) {
             <div className="col">
               <h6 className="text" style={{ marginTop: "2rem" }}>
                 วันที่บันทึก:
-                <input
-                  style={{ marginLeft: "1rem" }}
-                  value={spRCDate[0]}
-                ></input>
+                <input style={{ marginLeft: "1rem" }} value={spRCDate}></input>
               </h6>
             </div>
           </div>
@@ -133,7 +119,7 @@ export default function DocDetial(props) {
                 วันที่ออก:
                 <input
                   style={{ marginLeft: "1.9rem" }}
-                  value={spDocDate[0]}
+                  value={spDocDate}
                 ></input>
               </h6>
             </div>
@@ -268,7 +254,7 @@ export default function DocDetial(props) {
                 onClick={() => {
                   history.push({
                     pathname: "/doc_edit",
-                    state: { rcid: Detial.rcid },
+                    state: { docData: Detial },
                   });
                 }}
               >
@@ -283,7 +269,7 @@ export default function DocDetial(props) {
               <Button
                 className={`${classes.btn1} ${classes.btn3}`}
                 onClick={() => {
-                  handleDelete(search);
+                  handleDelete(Detial.rcid);
                 }}
               >
                 <DeleteForeverIcon />

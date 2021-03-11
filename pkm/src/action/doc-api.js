@@ -36,7 +36,9 @@ const searchs = async (search) => {
     "&stdate=" +
     search.stdate +
     "&endate=" +
-    search.endate;
+    search.endate +
+    "&docsend=" +
+    search.docsend;
   const res = await Axios.get(url);
   return res;
 };

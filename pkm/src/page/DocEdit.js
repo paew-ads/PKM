@@ -3,7 +3,6 @@ import Nav2 from "../Components/nav2";
 import { update } from "../action/doc-api";
 import { useHistory } from "react-router-dom";
 import { doccateArr, doctypeArr } from "../Utils/Config";
-import { select } from "../action/doc-api";
 import { list } from "../action/auth-api";
 import "../Components/App.css";
 import { makeStyles } from "@material-ui/core/styles";
@@ -40,20 +39,29 @@ const useStyles = makeStyles({
 export default function DocEdit(props) {
   const [ListUsers, setListUsers] = useState([]);
   const history = useHistory();
-  const oldid = props.location.state.rcid;
+  const docData = props.location.state.docData;
+  const oldid = docData.rcid;
+
+  const cvDate = (d) => {
+    const slD = d.slice(0, 10);
+    var spD = slD.split("-");
+    spD[2] = parseInt(spD[2]) + 1;
+    return spD[0] + "-" + spD[1] + "-" + spD[2];
+  };
+
   const classes = useStyles();
 
   const [ipForm, setipForm] = useState({
-    rcid: "",
-    rcdate: "",
-    doccate: "",
-    docid: "",
-    docdate: "",
-    doctype: "",
-    docsubj: "",
-    doccont: "",
-    docauth: "",
-    docsend: "",
+    rcid: docData.rcid,
+    rcdate: cvDate(docData.rcdate),
+    doccate: docData.doccate,
+    docid: docData.docid,
+    docdate: cvDate(docData.docdate),
+    doctype: docData.doctype,
+    docsubj: docData.docsubj,
+    doccont: docData.doccont,
+    docauth: docData.docauth,
+    docsend: docData.docsend,
   });
 
   const handleChange = (e) => {
@@ -65,30 +73,10 @@ export default function DocEdit(props) {
   };
 
   useEffect(() => {
-    async function fetchData() {
-      const res = await select(oldid);
-      const strRCDate = "" + res.data.rcdate;
-      const strDocDate = "" + res.data.docdate;
-      const spRCDate = strRCDate.split("T");
-      const spDocDate = strDocDate.split("T");
-      setipForm({
-        rcid: res.data.rcid,
-        rcdate: spRCDate[0],
-        doccate: res.data.doccate,
-        docid: res.data.docid,
-        docdate: spDocDate[0],
-        doctype: res.data.doctype,
-        docsubj: res.data.docsubj,
-        doccont: res.data.doccont,
-        docauth: res.data.docauth,
-        docsend: res.data.docsend,
-      });
-    }
     async function fetchUser() {
       const res = await list();
       setListUsers(res.data);
     }
-    fetchData();
     fetchUser();
   }, [oldid]);
 

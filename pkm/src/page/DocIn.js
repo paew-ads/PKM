@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Footer from "../Components/footer";
 import Nav2 from "../Components/nav2";
 import { useHistory } from "react-router-dom";
-import { list, deleteDoc, searchs } from "../action/doc-api";
+import { deleteDoc, searchs } from "../action/doc-api";
 import { doccateArr, doctypeArr } from "../Utils/Config";
 import FindInPageIcon from "@material-ui/icons/FindInPage";
 import { IconButton } from "@material-ui/core";
@@ -55,7 +55,7 @@ export default function DocIn() {
       if (!ipForm.doccate) {
         ipForm.doccate = "0";
       }
-      const res = await list(ipForm);
+      const res = await searchs(ipForm);
       console.log(res.data);
       if (res.data.error) {
         return;
@@ -229,8 +229,8 @@ export default function DocIn() {
               </thead>
               <tbody style={{ backgroundColor: "#eceff1" }}>
                 {Doc.map((val, key) => {
-                  const rcDate = val.rcdate.split("T");
-                  const docDate = val.docdate.split("T");
+                  const rcDate = new Date(val.rcdate).toString().slice(0, 15);
+                  const docDate = new Date(val.docdate).toString().slice(0, 15);
                   return (
                     <tr>
                       <th>
@@ -244,7 +244,7 @@ export default function DocIn() {
                             onClick={() => {
                               history.push({
                                 pathname: "/doc_detial",
-                                state: { rcid: val.rcid },
+                                state: { docData: val },
                               });
                             }}
                           >
@@ -261,7 +261,9 @@ export default function DocIn() {
                             onClick={() => {
                               history.push({
                                 pathname: "/doc_edit",
-                                state: { rcid: val.rcid },
+                                state: {
+                                  docData: val,
+                                },
                               });
                             }}
                           >
@@ -285,10 +287,10 @@ export default function DocIn() {
                       </th>
 
                       <td>{val.rcid}</td>
-                      <td>{rcDate[0]}</td>
+                      <td>{rcDate}</td>
                       <td>{doccateArr[val.doccate]}</td>
                       <td>{val.docid}</td>
-                      <td>{docDate[0]}</td>
+                      <td>{docDate}</td>
                       <td>{doctypeArr[val.doctype]}</td>
                       <td>{val.docsubj}</td>
                       <td>{val.docauth}</td>

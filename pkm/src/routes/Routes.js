@@ -1,7 +1,6 @@
 import React from "react";
 import { Switch } from "react-router-dom";
 import SignIn from "../page/SignIn";
-import Customers from "../page/Customers";
 import PrivateRoute from "../Utils/PrivateRoute";
 import PublicRoute from "../Utils/PublicRoute";
 import DocForm from "../page/DocForm";
@@ -20,7 +19,6 @@ function Routes() {
       <PublicRoute exact path="/signin" component={SignIn} />
       <PrivateRoute exact path="/" component={DocIn} />
       <PrivateRoute exact path="/doc_out" component={DocOut} />
-      <PrivateRoute exact path="/Customers" component={Customers} />
       <PrivateRoute exact path="/doc_form" component={DocForm} />
       <PrivateRoute exact path="/doc_detial" component={DocDetial} />
       <PrivateRoute exact path="/doc_edit" component={DocEdit} />
