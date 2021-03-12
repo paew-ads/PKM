@@ -42,12 +42,13 @@ const useStyles = makeStyles({
 
 export default function EditUses(props) {
   const history = useHistory();
-  const olduid = props.location.state.uid;
+  const userData = props.location.state.userData;
+  const olduid = userData.uid;
   const [ipForm, setipForm] = useState({
-    uid: "",
-    upwd: "",
-    uname: "",
-    urole: "",
+    uid: userData.uid,
+    upwd: userData.upwd,
+    uname: userData.uname,
+    urole: userData.urole,
   });
 
   const handleChange = (e) => {
@@ -57,19 +58,6 @@ export default function EditUses(props) {
       [name]: value,
     });
   };
-
-  useEffect(() => {
-    async function fetchData() {
-      const res = await select(olduid);
-      setipForm({
-        uid: res.data.uid,
-        upwd: res.data.upwd,
-        uname: res.data.uname,
-        urole: res.data.urole,
-      });
-    }
-    fetchData();
-  }, [olduid]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

@@ -188,7 +188,7 @@ export default function Users() {
                             onClick={() => {
                               history.push({
                                 pathname: "/EditUses",
-                                state: { uid: val.uid },
+                                state: { userData: val },
                               });
                             }}
                           >
