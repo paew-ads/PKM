@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Nav2 from "../Components/nav2";
 import Button from "@material-ui/core/Button";
 import SaveIcon from "@material-ui/icons/Save";
@@ -7,7 +7,7 @@ import CloseIcon from "@material-ui/icons/Close";
 import AddIcon from "@material-ui/icons/Add";
 import { makeStyles } from "@material-ui/core/styles";
 import "../Components/App.css";
-import { select, update } from "../action/auth-api";
+import { update } from "../action/auth-api";
 import { uroleArr } from "../Utils/Config";
 import { useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
